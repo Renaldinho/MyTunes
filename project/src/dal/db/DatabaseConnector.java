@@ -23,13 +23,13 @@ public class DatabaseConnector {
         return dataSource.getConnection();
     }
 
-    public static void main(String[] args) throws SQLException {
-
-        DatabaseConnector databaseConnector = new DatabaseConnector();
-        Connection connection = databaseConnector.getConnection();
-
-        System.out.println("IS it open?" + connection.isClosed());
-
-        connection.close();
-    }
+//    public static void main(String[] args) throws SQLException {
+//
+//        DatabaseConnector databaseConnector = new DatabaseConnector();
+//        Connection connection = databaseConnector.getConnection();
+//
+//        System.out.println("IS it open?" + connection.isClosed());
+//
+//        connection.close();
+//    }
 }
