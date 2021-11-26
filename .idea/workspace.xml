@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="" />
+    <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/view/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/GUI/view/mainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/view/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,7 +62,7 @@
       </method>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+      <option name="MAIN_CLASS_NAME" value="gui.view.Main" />
       <module name="MyTunes" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -80,7 +85,8 @@
       <updated>1637921328271</updated>
       <workItem from="1637921329598" duration="9000" />
       <workItem from="1637921360622" duration="234000" />
-      <workItem from="1637941424162" duration="8359000" />
+      <workItem from="1637941424162" duration="8562000" />
+      <workItem from="1637959231481" duration="442000" />
     </task>
     <servers />
   </component>
@@ -97,6 +103,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
