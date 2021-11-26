@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/javax_xml_bind_jaxb_api.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/microsoft_sqlserver_mssql_jdbc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javax.activation-api-1.2.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jaxb-api-2.4.0-b180830.0359.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/mssql-jdbc-8.2.0.jre13.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/src/dal/db/DatabaseConnector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyTunes.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MyTunes.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/be/Song.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/be/Song.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +74,7 @@
       <updated>1637921328271</updated>
       <workItem from="1637921329598" duration="9000" />
       <workItem from="1637921360622" duration="234000" />
-      <workItem from="1637941424162" duration="2211000" />
+      <workItem from="1637941424162" duration="2876000" />
     </task>
     <servers />
   </component>
