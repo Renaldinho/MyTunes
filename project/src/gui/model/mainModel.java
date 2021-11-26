@@ -1,4 +1,4 @@
-package GUI.model;
+package gui.model;
 
 public class mainModel {
 }
