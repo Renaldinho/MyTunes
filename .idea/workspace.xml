@@ -4,8 +4,8 @@
     <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/view/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/GUI/view/mainView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/view/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/view/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/view/mainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/view/newPlaylist.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/view/newPlaylist.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +86,8 @@
       <workItem from="1637921329598" duration="9000" />
       <workItem from="1637921360622" duration="234000" />
       <workItem from="1637941424162" duration="8562000" />
-      <workItem from="1637959231481" duration="442000" />
+      <workItem from="1637959231481" duration="462000" />
+      <workItem from="1637997689983" duration="1895000" />
     </task>
     <servers />
   </component>
