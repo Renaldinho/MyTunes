@@ -58,7 +58,7 @@
       </Label>
       <Label layoutX="620.0" layoutY="31.0" text="Filter" />
       <Button layoutX="73.0" layoutY="484.0" mnemonicParsing="false" text="Edit" />
-      <Button layoutX="14.0" layoutY="484.0" mnemonicParsing="false" text="New" />
-      <Button layoutX="480.0" layoutY="484.0" mnemonicParsing="false" text="New" />
+      <Button layoutX="14.0" layoutY="484.0" mnemonicParsing="false" onAction="#newPlayList" text="New" />
+      <Button layoutX="480.0" layoutY="484.0" mnemonicParsing="false" onAction="#newSong" text="New" />
    </children>
 </AnchorPane>
