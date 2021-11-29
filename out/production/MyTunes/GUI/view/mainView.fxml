@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="548.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.mainController">
+<AnchorPane prefHeight="548.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainController">
    <children>
       <Button layoutX="134.0" layoutY="484.0" mnemonicParsing="false" text="Delete" />
       <Button layoutX="351.0" layoutY="485.0" mnemonicParsing="false" text="Delete" />
@@ -45,7 +45,7 @@
       </TableView>
       <ListView layoutX="227.0" layoutY="106.0" prefHeight="362.0" prefWidth="175.0" />
       <Button layoutX="22.0" layoutY="16.0" mnemonicParsing="false" text="Back" />
-      <Button layoutX="86.0" layoutY="16.0" mnemonicParsing="false" text="Stop" />
+      <Button fx:id="playBtn" layoutX="86.0" layoutY="16.0" mnemonicParsing="false" onAction="#handlePlayBtn" text="Play" />
       <Button layoutX="149.0" layoutY="16.0" mnemonicParsing="false" text="Next" />
       <Slider layoutX="22.0" layoutY="51.0" prefHeight="24.0" prefWidth="182.0" />
       <Label layoutX="13.0" layoutY="91.0" text="Playlist" />
@@ -60,5 +60,6 @@
       <Button layoutX="73.0" layoutY="484.0" mnemonicParsing="false" text="Edit" />
       <Button layoutX="14.0" layoutY="484.0" mnemonicParsing="false" onAction="#newPlayList" text="New" />
       <Button layoutX="480.0" layoutY="484.0" mnemonicParsing="false" onAction="#newSong" text="New" />
+      <Button fx:id="stopBtn" disable="true" layoutX="84.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleStopBtn" opacity="0.0" text="Stop" />
    </children>
 </AnchorPane>

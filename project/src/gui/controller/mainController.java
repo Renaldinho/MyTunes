@@ -1,16 +1,27 @@
 package gui.controller;
 
+import gui.model.MainModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.SplitMenuButton;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class mainController {
+public class MainController {
     public SplitMenuButton category;
+
+    public Button playBtn;
+    public Button stopBtn;
+
+    private MainModel model;
+
+    public MainController(){
+        model = new MainModel();
+    }
 
     public void newSong(ActionEvent actionEvent) throws IOException {
         Parent root;
@@ -45,5 +56,23 @@ public class mainController {
 
     public void jazz(ActionEvent actionEvent) {
         category.setText("Jazz");
+    }
+
+    public void handlePlayBtn(ActionEvent actionEvent) {
+        playBtn.setDisable(true);
+        playBtn.setOpacity(0);
+        stopBtn.setOpacity(100);
+        stopBtn.setDisable(false);
+
+        model.playSong();
+    }
+
+    public void handleStopBtn(ActionEvent actionEvent) {
+        playBtn.setDisable(false);
+        playBtn.setOpacity(100);
+        stopBtn.setOpacity(0);
+        stopBtn.setDisable(true);
+
+
     }
 }

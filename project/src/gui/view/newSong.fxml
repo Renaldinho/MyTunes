@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="364.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.mainController">
+<AnchorPane prefHeight="400.0" prefWidth="364.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainController">
    <children>
       <Button layoutX="282.0" layoutY="162.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="56.0" text="More" />
       <Button layoutX="282.0" layoutY="336.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="56.0" text="Save" />

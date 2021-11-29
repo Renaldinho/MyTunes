@@ -1,4 +1,12 @@
 package gui.model;
 
-public class mainModel {
+import be.Song;
+
+public class MainModel {
+
+    private Song currentSong;
+
+
+    public void playSong() {
+    }
 }
