@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface IPlayListDAO {
     PlayList createPlayList(String name) throws SQLException;
+
     void deletePlayList(String name) throws SQLException;
-    List<PlayList>getAllPlayLists() throws SQLException;
+
+    List<PlayList> getAllPlayLists() throws SQLException;
 }
