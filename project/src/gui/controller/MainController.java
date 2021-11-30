@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class mainController {
+public class MainController {
     public SplitMenuButton category;
 
     public void newSong(ActionEvent actionEvent) throws IOException {

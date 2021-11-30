@@ -1,4 +1,4 @@
-package dal.db;
+package dal;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
