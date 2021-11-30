@@ -45,11 +45,11 @@ public class PlayListsDAO implements IPlayListDAO {
     @Override
     public List<PlayList> getAllPlayLists() throws SQLException {
         List<PlayList> allPlayLists = new ArrayList<>();
-        String sql = "SELECT * FROM playlists";
+        String sql = "SELECT * FROM playlists"; //should it have a ";" after "playlists" ? and should it be inside the try ?
         try (Connection connection = databaseConnector.getConnection()) {
             Statement statement = connection.createStatement();
-            statement.execute(sql);
-            ResultSet resultSet = statement.getResultSet();
+            statement.execute(sql); // should be in an "if" ?
+            ResultSet resultSet = statement.getResultSet(); // and this inside the "if" ? and all the "while"
             while (resultSet.next()) {
                 int id = resultSet.getInt(1);
                 String name = resultSet.getString(2);
