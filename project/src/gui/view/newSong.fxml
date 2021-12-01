@@ -10,18 +10,18 @@
 <AnchorPane prefHeight="400.0" prefWidth="364.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.SongController">
    <children>
       <Button layoutX="282.0" layoutY="162.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="56.0" text="More" />
-      <Button layoutX="282.0" layoutY="336.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="56.0" text="Save" />
-      <Button layoutX="214.0" layoutY="336.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="56.0" text="Cancel" />
+      <Button fx:id="SaveSongBtn" layoutX="282.0" layoutY="336.0" mnemonicParsing="false" onMouseClicked="#handleSaveSongBtn" prefHeight="26.0" prefWidth="56.0" text="Save" />
+      <Button fx:id="CancelSongBtn" layoutX="214.0" layoutY="336.0" mnemonicParsing="false" onMouseClicked="#handleCancelSongBtn" prefHeight="26.0" prefWidth="56.0" text="Cancel" />
       <Button layoutX="282.0" layoutY="264.0" mnemonicParsing="false" text="Choose" />
       <Label layoutX="20.0" layoutY="54.0" text="Title" />
       <Label layoutX="18.0" layoutY="108.0" text="Artist" />
       <Label layoutX="8.0" layoutY="166.0" text="Category" />
       <Label layoutX="18.0" layoutY="218.0" text="Time" />
       <Label layoutX="23.0" layoutY="268.0" text="File" />
-      <TextField layoutX="67.0" layoutY="50.0" prefHeight="26.0" prefWidth="198.0" />
-      <TextField layoutX="66.0" layoutY="104.0" prefHeight="26.0" prefWidth="198.0" />
-      <TextField layoutX="68.0" layoutY="214.0" prefHeight="26.0" prefWidth="198.0" />
-      <TextField layoutX="68.0" layoutY="264.0" prefHeight="26.0" prefWidth="198.0" />
+      <TextField fx:id="songNameTxt" layoutX="67.0" layoutY="50.0" prefHeight="26.0" prefWidth="198.0" />
+      <TextField fx:id="songArtistTxt" layoutX="66.0" layoutY="104.0" prefHeight="26.0" prefWidth="198.0" />
+      <TextField fx:id="songTimeTxt" layoutX="68.0" layoutY="214.0" prefHeight="26.0" prefWidth="198.0" />
+      <TextField fx:id="songFileTxt" layoutX="68.0" layoutY="264.0" prefHeight="26.0" prefWidth="198.0" />
       <SplitMenuButton fx:id="category" alignment="TOP_CENTER" layoutX="66.0" layoutY="162.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="198.0" text="Choose one">
         <items>
           <MenuItem fx:id="rockMusic" mnemonicParsing="false" onAction="#rockMusic" text="Rock music" />

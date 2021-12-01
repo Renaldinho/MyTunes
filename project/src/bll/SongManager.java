@@ -1,10 +1,10 @@
 package bll;
 
-import be.PlayList;
 import dal.Interfaces.ISongDAO;
+import dal.dao.ArtistsDAO;
+import dal.dao.CategoriesDAO;
 import dal.dao.SongDAO;
 
-import java.util.List;
 
 public class SongManager {
 
@@ -14,7 +14,9 @@ public class SongManager {
         songDAO = new SongDAO();
     }
 
-    public List<PlayList> createSong() throws Exception{
-        return null;
+    public void createSong(String songName, String songArtist, String category, String songFile) throws Exception{
+        ArtistsDAO artistDAO = new ArtistsDAO();
+        CategoriesDAO categoriesDAO = new CategoriesDAO();
+        songDAO.createSong(songName, songArtist, category, songFile, artistDAO, categoriesDAO);
     }
 }

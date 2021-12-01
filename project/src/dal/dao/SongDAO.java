@@ -1,7 +1,5 @@
 package dal.dao;
 
-import be.Artist;
-import be.Category;
 import be.Song;
 import dal.DatabaseConnector;
 import dal.Interfaces.ISongDAO;
