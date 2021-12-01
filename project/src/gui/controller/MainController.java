@@ -6,13 +6,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.SplitMenuButton;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class MainController {
-    public SplitMenuButton category;
+
 
     public Button playBtn;
     public Button stopBtn;
@@ -42,21 +41,7 @@ public class MainController {
         stage.show();
     }
 
-    public void rockMusic(ActionEvent actionEvent) {
-        category.setText("Rock Music");
-    }
 
-    public void rythmAndBlues(ActionEvent actionEvent) {
-        category.setText("Rythm and blues");
-    }
-
-    public void reggae(ActionEvent actionEvent) {
-        category.setText("Reggae");
-    }
-
-    public void jazz(ActionEvent actionEvent) {
-        category.setText("Jazz");
-    }
 
     public void handlePlayBtn(ActionEvent actionEvent) {
         playBtn.setDisable(true);

@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="364.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainController">
+<AnchorPane prefHeight="400.0" prefWidth="364.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.SongController">
    <children>
       <Button layoutX="282.0" layoutY="162.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="56.0" text="More" />
       <Button layoutX="282.0" layoutY="336.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="56.0" text="Save" />
@@ -25,7 +25,7 @@
       <SplitMenuButton fx:id="category" alignment="TOP_CENTER" layoutX="66.0" layoutY="162.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="198.0" text="Choose one">
         <items>
           <MenuItem fx:id="rockMusic" mnemonicParsing="false" onAction="#rockMusic" text="Rock music" />
-          <MenuItem fx:id="rythmAndBlues" mnemonicParsing="false" onAction="#rythmAndBlues" text="Rhythm and blues" />
+          <MenuItem fx:id="rhythmAndBlues" mnemonicParsing="false" onAction="#rhythmAndBlues" text="Rhythm and blues" />
             <MenuItem fx:id="reggae" mnemonicParsing="false" onAction="#reggae" text="Reggae" />
             <MenuItem fx:id="jazz" mnemonicParsing="false" onAction="#jazz" text="Jazz" />
         </items>
