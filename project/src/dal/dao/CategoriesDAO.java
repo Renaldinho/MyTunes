@@ -6,10 +6,7 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.DatabaseConnector;
 import dal.Interfaces.ICategoriesDAO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class CategoriesDAO implements ICategoriesDAO {
     DatabaseConnector databaseConnector;
@@ -20,12 +17,12 @@ public class CategoriesDAO implements ICategoriesDAO {
     //looks for a given category and return its id, if not found just creates a new one and returns the generated key associated to it.
 
     @Override
-    public int createNewCategory(String name) throws SQLException {
-        String sql0 = "SELECT FROM categories WHERE Name = ?";
+    public int createNewCategory(String category) throws SQLException {
+        String sql0 = "SELECT * FROM categories WHERE Category = ?";
         int id = 0;
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql0);
-            preparedStatement.setString(1, name);
+            preparedStatement.setString(1, category);
             preparedStatement.execute();
             ResultSet resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {
@@ -33,8 +30,8 @@ public class CategoriesDAO implements ICategoriesDAO {
                 return id;
             }
             String sql1 = "INSERT INTO categories VALUES(?)";
-            PreparedStatement preparedStatement1 = connection.prepareStatement(sql1);
-            preparedStatement1.setString(1, name);
+            PreparedStatement preparedStatement1 = connection.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement1.setString(1, category);
             preparedStatement1.executeUpdate();
             ResultSet resultSet1 = preparedStatement1.getGeneratedKeys();
             while (resultSet1.next()) {

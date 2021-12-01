@@ -49,7 +49,7 @@ public class SongDAO implements ISongDAO {
         int id = 0;
         int artistId = artistsDAO.createArtist(artist);
         int categoryId = categoriesDAO.createNewCategory(category);
-        String sql = ("INSERT INTO songs VALUES (?,?,?,?,?");
+        String sql = ("INSERT INTO songs VALUES (?,?,?,?,?)");
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, title);
