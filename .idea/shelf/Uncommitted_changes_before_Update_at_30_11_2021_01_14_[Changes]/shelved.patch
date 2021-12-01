@@ -1,0 +1,53 @@
+Index: project/src/dal/Interfaces/IArtistsDAO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package dal.Interfaces;\r\n\r\n\r\nimport be.Artist;\r\n\r\nimport java.sql.SQLException;\r\n\r\npublic interface IArtistsDAO {\r\n    int createArtist(String name) throws SQLException;\r\n    void deleteArtist(String name) throws SQLException;\r\n\r\n    Artist getArtistById(int artistId) throws SQLException;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/project/src/dal/Interfaces/IArtistsDAO.java b/project/src/dal/Interfaces/IArtistsDAO.java
+--- a/project/src/dal/Interfaces/IArtistsDAO.java	(revision 657197a1d2b1b9d883e854b2daae9c4318e9d78f)
++++ b/project/src/dal/Interfaces/IArtistsDAO.java	(date 1638231224887)
+@@ -6,6 +6,7 @@
+ import java.sql.SQLException;
+ 
+ public interface IArtistsDAO {
++    //looks for a given artist in the table in database and returns his/her id if exists otherwise creates a new one and returns the generated key.
+     int createArtist(String name) throws SQLException;
+     void deleteArtist(String name) throws SQLException;
+ 
+Index: project/src/dal/Interfaces/ICategoriesDAO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package dal.Interfaces;\r\n\r\nimport be.Category;\r\nimport com.microsoft.sqlserver.jdbc.SQLServerException;\r\n\r\nimport java.sql.SQLException;\r\n\r\npublic interface ICategoriesDAO {\r\n    int createNewCategory(String name) throws SQLException;\r\n    void deleteCategory(String name) throws SQLServerException, SQLException;\r\n\r\n    Category getCategoryById(int categoryId) throws SQLException;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/project/src/dal/Interfaces/ICategoriesDAO.java b/project/src/dal/Interfaces/ICategoriesDAO.java
+--- a/project/src/dal/Interfaces/ICategoriesDAO.java	(revision 657197a1d2b1b9d883e854b2daae9c4318e9d78f)
++++ b/project/src/dal/Interfaces/ICategoriesDAO.java	(date 1638231224859)
+@@ -6,6 +6,7 @@
+ import java.sql.SQLException;
+ 
+ public interface ICategoriesDAO {
++    //looks for a given category in the table in database and returns its id if exists otherwise creates a new one and returns the generated key.
+     int createNewCategory(String name) throws SQLException;
+     void deleteCategory(String name) throws SQLServerException, SQLException;
+ 
+Index: project/src/dal/Interfaces/ISong_PlayListDAO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package dal.Interfaces;\r\n\r\nimport java.sql.SQLException;\r\n\r\npublic interface ISong_PlayListDAO {\r\n    void addSongToPlayList(int songId,int playListId) throws SQLException;\r\n    void removeSongFromPlayList(int songId,int playListId) throws SQLException;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/project/src/dal/Interfaces/ISong_PlayListDAO.java b/project/src/dal/Interfaces/ISong_PlayListDAO.java
+--- a/project/src/dal/Interfaces/ISong_PlayListDAO.java	(revision 657197a1d2b1b9d883e854b2daae9c4318e9d78f)
++++ b/project/src/dal/Interfaces/ISong_PlayListDAO.java	(date 1638231224875)
+@@ -4,5 +4,5 @@
+ 
+ public interface ISong_PlayListDAO {
+     void addSongToPlayList(int songId,int playListId) throws SQLException;
+-    void removeSongFromPlayList(int songId,int playListId) throws SQLException;
++    void removeSongFromPlayList(int songId,int playListId);
+ }
