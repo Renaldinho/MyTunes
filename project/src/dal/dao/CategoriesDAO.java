@@ -6,10 +6,7 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.DatabaseConnector;
 import dal.Interfaces.ICategoriesDAO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class CategoriesDAO implements ICategoriesDAO {
     DatabaseConnector databaseConnector;
@@ -17,14 +14,15 @@ public class CategoriesDAO implements ICategoriesDAO {
     public CategoriesDAO() {
         databaseConnector = new DatabaseConnector();
     }
+    //looks for a given category and return its id, if not found just creates a new one and returns the generated key associated to it.
 
     @Override
-    public int createNewCategory(String name) throws SQLException {
-        String sql0 = "SELECT FROM categories WHERE Name = ?";
+    public int createNewCategory(String category) throws SQLException {
+        String sql0 = "SELECT * FROM categories WHERE Category = ?";
         int id = 0;
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql0);
-            preparedStatement.setString(1, name);
+            preparedStatement.setString(1, category);
             preparedStatement.execute();
             ResultSet resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {
@@ -32,8 +30,8 @@ public class CategoriesDAO implements ICategoriesDAO {
                 return id;
             }
             String sql1 = "INSERT INTO categories VALUES(?)";
-            PreparedStatement preparedStatement1 = connection.prepareStatement(sql1);
-            preparedStatement1.setString(1, name);
+            PreparedStatement preparedStatement1 = connection.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement1.setString(1, category);
             preparedStatement1.executeUpdate();
             ResultSet resultSet1 = preparedStatement1.getGeneratedKeys();
             while (resultSet1.next()) {
@@ -45,14 +43,34 @@ public class CategoriesDAO implements ICategoriesDAO {
     }
 
     @Override
-    public void deleteCategory(String name) throws SQLException {
-        String sql = "DELETE FROM categories WHERE Name = ?";
+    public void deleteCategory(int id) throws SQLException {
+        String sql = "DELETE FROM categories WHERE Id = ?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, name);
+            preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
 
         }
+    }
+
+    /**
+     * this method returns how many songs a category is involved in. We need this to check while deleting a song.
+     * If a category only belongs to one song that we want to delete, we just clear it from database.
+     */
+    @Override
+    public int categoryOccurrences(int categoryId) throws SQLException {
+        int occurrences = 0;
+        String sql = "SELECT FROM songs WHERE Category = ?";
+        try (Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, categoryId);
+            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getResultSet();
+            while (resultSet.next()) {
+                occurrences += 1;
+            }
+        }
+        return occurrences;
     }
 
     @Override
@@ -71,5 +89,17 @@ public class CategoriesDAO implements ICategoriesDAO {
             }
         }
         return category;
+    }
+
+    @Override
+    public void updateCategory(int id, String name) throws SQLException {
+        String sql = "UPDATE categories SET Category=? WHERE Id = ?";
+        try (Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, name);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+
+        }
     }
 }

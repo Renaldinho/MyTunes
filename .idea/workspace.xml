@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="" />
+=======
+    <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/be/Song.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/be/Song.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/TestClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/TestClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/ArtistsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/ArtistsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/CategoriesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/CategoriesDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/SongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/SongDAO.java" afterDir="false" />
+    </list>
+>>>>>>> main
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,7 +48,6 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -49,7 +59,7 @@
     <property name="project.structure.side.proportion" value="0.38045976" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.TestClass">
     <configuration name="DatabaseConnector" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dal.db.DatabaseConnector" />
       <module name="MyTunes" />
@@ -70,8 +80,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestClass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dal.TestClass" />
+      <module name="MyTunes" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dal.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TestClass" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.DatabaseConnector" />
       </list>
@@ -91,9 +115,41 @@
       <workItem from="1637959231481" duration="462000" />
       <workItem from="1637997689983" duration="3195000" />
       <workItem from="1638019927211" duration="118000" />
+<<<<<<< HEAD
       <workItem from="1638181295527" duration="1196000" />
       <workItem from="1638183012117" duration="2196000" />
     </task>
+=======
+      <workItem from="1638181295527" duration="2320000" />
+      <workItem from="1638196840862" duration="16656000" />
+      <workItem from="1638231871433" duration="823000" />
+      <workItem from="1638232729012" duration="90000" />
+      <workItem from="1638232853986" duration="406000" />
+      <workItem from="1638263997637" duration="28240000" />
+    </task>
+    <task id="LOCAL-00001" summary="javafx">
+      <created>1638182599764</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1638182599764</updated>
+    </task>
+    <task id="LOCAL-00002" summary="added a comment">
+      <created>1638233152784</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1638233152785</updated>
+    </task>
+    <task id="LOCAL-00003" summary="dal almost done.&#10;I will start testing tomorrow.">
+      <created>1638311698661</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1638311698661</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+>>>>>>> main
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -113,5 +169,23 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+<<<<<<< HEAD
+=======
+    <MESSAGE value="javafx" />
+    <MESSAGE value="added a comment" />
+    <MESSAGE value="dal almost done.&#10;I will start testing tomorrow." />
+    <option name="LAST_COMMIT_MESSAGE" value="dal almost done.&#10;I will start testing tomorrow." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/project/src/dal/TestClass.java</url>
+          <line>14</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+>>>>>>> main
   </component>
 </project>
