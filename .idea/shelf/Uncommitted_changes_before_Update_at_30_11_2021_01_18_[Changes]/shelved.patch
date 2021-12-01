@@ -1,0 +1,37 @@
+Index: project/src/dal/dao/CategoriesDAO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package dal.dao;\r\n\r\nimport be.Artist;\r\nimport be.Category;\r\nimport com.microsoft.sqlserver.jdbc.SQLServerException;\r\nimport dal.DatabaseConnector;\r\nimport dal.Interfaces.ICategoriesDAO;\r\n\r\nimport java.sql.Connection;\r\nimport java.sql.PreparedStatement;\r\nimport java.sql.ResultSet;\r\nimport java.sql.SQLException;\r\n\r\npublic class CategoriesDAO implements ICategoriesDAO {\r\n    DatabaseConnector databaseConnector;\r\n\r\n    public CategoriesDAO() {\r\n        databaseConnector = new DatabaseConnector();\r\n    }\r\n\r\n    @Override\r\n    public int createNewCategory(String name) throws SQLException {\r\n        String sql0 = \"SELECT FROM categories WHERE Name = ?\";\r\n        int id = 0;\r\n        try (Connection connection = databaseConnector.getConnection()) {\r\n            PreparedStatement preparedStatement = connection.prepareStatement(sql0);\r\n            preparedStatement.setString(1, name);\r\n            preparedStatement.execute();\r\n            ResultSet resultSet = preparedStatement.getResultSet();\r\n            while (resultSet.next()) {\r\n                id = resultSet.getInt(\"Id\");\r\n                return id;\r\n            }\r\n            String sql1 = \"INSERT INTO categories VALUES(?)\";\r\n            PreparedStatement preparedStatement1 = connection.prepareStatement(sql1);\r\n            preparedStatement1.setString(1, name);\r\n            preparedStatement1.executeUpdate();\r\n            ResultSet resultSet1 = preparedStatement1.getGeneratedKeys();\r\n            while (resultSet1.next()) {\r\n                id = resultSet1.getInt(1);\r\n            }\r\n\r\n        }\r\n        return id;\r\n    }\r\n\r\n    @Override\r\n    public void deleteCategory(String name) throws SQLException {\r\n        String sql = \"DELETE FROM categories WHERE Name = ?\";\r\n        try (Connection connection = databaseConnector.getConnection()) {\r\n            PreparedStatement preparedStatement = connection.prepareStatement(sql);\r\n            preparedStatement.setString(1, name);\r\n            preparedStatement.executeUpdate();\r\n\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public Category getCategoryById(int categoryId) throws SQLException {\r\n        String sql = \"SELECT FROM categories WHERE Id=?\";\r\n        Category category = null;\r\n        try (Connection connection = databaseConnector.getConnection()) {\r\n            PreparedStatement preparedStatement = connection.prepareStatement(sql);\r\n            preparedStatement.setInt(1, categoryId);\r\n            preparedStatement.execute();\r\n            ResultSet resultSet = preparedStatement.getResultSet();\r\n            while (resultSet.next()) {\r\n                int id = resultSet.getInt(\"Id\");\r\n                String name = resultSet.getString(\"name\");\r\n                category = new Category(id, name);\r\n            }\r\n        }\r\n        return category;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/project/src/dal/dao/CategoriesDAO.java b/project/src/dal/dao/CategoriesDAO.java
+--- a/project/src/dal/dao/CategoriesDAO.java	(revision 657197a1d2b1b9d883e854b2daae9c4318e9d78f)
++++ b/project/src/dal/dao/CategoriesDAO.java	(date 1638231473033)
+@@ -45,16 +45,18 @@
+     }
+ 
+     @Override
+-    public void deleteCategory(String name) throws SQLException {
+-        String sql = "DELETE FROM categories WHERE Name = ?";
+-        try (Connection connection = databaseConnector.getConnection()) {
+-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+-            preparedStatement.setString(1, name);
+-            preparedStatement.executeUpdate();
++    public void deleteCategory(String name) throws SQLServerException, SQLException {
++            String sql = "DELETE FROM categories WHERE Name = ?";
++            try (Connection connection = databaseConnector.getConnection()) {
++                PreparedStatement preparedStatement = connection.prepareStatement(sql);
++                preparedStatement.setString(1, name);
++                preparedStatement.executeUpdate();
+ 
+-        }
+-    }
++            }
++        }
+ 
++
++
+     @Override
+     public Category getCategoryById(int categoryId) throws SQLException {
+         String sql = "SELECT FROM categories WHERE Id=?";
