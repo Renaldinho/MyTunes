@@ -4,7 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="" />
+    <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_11_2021_01_05__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_11_2021_01_05__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_11_2021_01_12__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_11_2021_01_12__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_11_2021_01_14__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_11_2021_01_14__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_11_2021_01_18__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_11_2021_01_18__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_11_2021_01_25__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_11_2021_01_25__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/mainController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/model/mainModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/be/Song.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/be/Song.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/TestClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/TestClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/ArtistsDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/ArtistsDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/CategoriesDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/CategoriesDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/PlayListsDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/PlayListsDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/SongDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/SongDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/Song_PlayListDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/Song_PlayListDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/db/DatabaseConnector.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/db/songDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/TestClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/TestClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/ArtistsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/ArtistsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/CategoriesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/CategoriesDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/PlayListsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/PlayListsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/SongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/SongDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/Song_PlayListDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/Song_PlayListDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/controller/mainController.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,7 +74,7 @@
     <property name="project.structure.side.proportion" value="0.38045976" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.TestClass">
     <configuration name="DatabaseConnector" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dal.db.DatabaseConnector" />
       <module name="MyTunes" />
@@ -70,8 +95,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestClass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dal.TestClass" />
+      <module name="MyTunes" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dal.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TestClass" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.DatabaseConnector" />
       </list>
@@ -93,6 +132,7 @@
       <workItem from="1638019927211" duration="118000" />
       <workItem from="1638181295527" duration="1196000" />
       <workItem from="1638183012117" duration="2196000" />
+      <workItem from="1638359570021" duration="26452000" />
     </task>
     <servers />
   </component>

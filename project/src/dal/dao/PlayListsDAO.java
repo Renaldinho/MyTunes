@@ -19,8 +19,11 @@ public class PlayListsDAO implements IPlayListDAO {
     public PlayList createPlayList(String name) throws SQLException {
         PlayList playList = null;
         String sql = "INSERT INTO playlists VALUES (?) ";
-        try (Connection connection = databaseConnector.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        if (playListNameTakenAlready(name)){
+            System.out.println("This name already exists. Please find another one for your new playlist or delete the old one.");
+        }
+     else {   try (Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, name);
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
@@ -28,6 +31,7 @@ public class PlayListsDAO implements IPlayListDAO {
                 int id = resultSet.getInt(1);
                 playList = new PlayList(id, name);
             }
+     }
         }
         return playList;
     }
@@ -58,5 +62,15 @@ public class PlayListsDAO implements IPlayListDAO {
             }
         }
         return allPlayLists;
+    }
+    private boolean playListNameTakenAlready(String name)throws SQLException{
+        String sql ="SELECT * FROM playlists WHERE Name= ?";
+        try (Connection connection = databaseConnector.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,name);
+            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getResultSet();
+            return resultSet.next();
+        }
     }
 }

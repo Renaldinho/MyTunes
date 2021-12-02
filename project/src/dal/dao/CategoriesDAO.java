@@ -60,7 +60,7 @@ public class CategoriesDAO implements ICategoriesDAO {
     @Override
     public int categoryOccurrences(int categoryId) throws SQLException {
         int occurrences = 0;
-        String sql = "SELECT FROM songs WHERE Category = ?";
+        String sql = "SELECT *  FROM songs WHERE Category = ?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, categoryId);

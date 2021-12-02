@@ -53,12 +53,16 @@ public class ArtistsDAO implements IArtistsDAO {
 
     @Override
     public void updateArtist(int id, String name) throws SQLException {
-        String sql = "UPDATE TABLE SET Name=? WHERE Id = ?";
+        String sql = "SELECT * FROM  artists WHERE Id = ?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, name);
-            preparedStatement.setInt(2, id);
-            preparedStatement.executeUpdate();
+            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getResultSet();
+            if (artistAlreadyExists(id)==true){
+
+            }
+            else  createArtist(name);
 
         }
     }
@@ -70,7 +74,7 @@ public class ArtistsDAO implements IArtistsDAO {
 
     public int artistOccurrences(int artistId) throws SQLException {
         int occurrences = 0;
-        String sql = "SELECT FROM songs WHERE Artist = ?";
+        String sql = "SELECT * FROM songs WHERE Artist = ?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, artistId);
@@ -99,5 +103,15 @@ public class ArtistsDAO implements IArtistsDAO {
             }
         }
         return artist;
+    }
+    private boolean artistAlreadyExists(int id)throws SQLException{
+        String sql = " SELECT  * FROM artists WHERE Id = ?  ";
+        try (Connection connection = databaseConnector.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,id);
+            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getResultSet();
+            return resultSet.next();
+        }
     }
 }

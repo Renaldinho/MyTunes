@@ -45,13 +45,17 @@ public class SongDAO implements ISongDAO {
 
     @Override
     public Song createSong(String title, String artist, String category, String filePath, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
-        Song song;
+        Song song=null;
         int id = 0;
         int artistId = artistsDAO.createArtist(artist);
         int categoryId = categoriesDAO.createNewCategory(category);
+        if(songAlreadyExists(filePath)==true){
+
+        }
+        else {
         String sql = ("INSERT INTO songs VALUES (?,?,?,?,?)");
         try (Connection connection = databaseConnector.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(sql);
+            PreparedStatement statement = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, title);
             statement.setInt(2, artistId);
             statement.setInt(3, categoryId);
@@ -64,27 +68,29 @@ public class SongDAO implements ISongDAO {
             }
             if (created != 0) {
                 song = new Song(id, title, artist, category, getSongTime(Path.of(filePath)), filePath);
-            } else song = null;
-        }
+            }
+        }}
         return song;
     }
 
     @Override
     public void deleteSong(int id, Song_PlayListDAO song_playListDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
         String sql = "DELETE FROM songs WHERE Id = ?";
-        //delete artist if he only has one song that was deleted
-        if (artistsDAO.artistOccurrences(songArtistId(id)) > 1) {
-        } else artistsDAO.deleteArtist(songArtistId(id));
-        //delete category if it only belongs to one song that was deleted
-        if (categoriesDAO.categoryOccurrences(id) > 1) {
-        } else categoriesDAO.deleteCategory(id);
-        //delete song from all playlists
+        int artistsId = songArtistId(id);
+        int categoryId = songCategoryId(id);
+
         song_playListDAO.deleteFromAllPlayLists(id);
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         }
+        //delete artist if he only has one song that was deleted
+        if (artistsDAO.artistOccurrences(artistsId) ==0)
+            artistsDAO.deleteArtist(artistsId);
+        //delete category if it only belongs to one song that was deleted
+        if (categoriesDAO.categoryOccurrences(categoryId) ==0)
+             categoriesDAO.deleteCategory(categoryId);
     }
 
     @Override
@@ -115,7 +121,7 @@ public class SongDAO implements ISongDAO {
     //Given a song id this method returns the id of the artist associated to the song.
     private int songArtistId(int id) throws SQLException {
         int artistId = 0;
-        String sql = "SELECT FROM songs WHERE Id = ?";
+        String sql = "SELECT * FROM songs WHERE Id = ?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, id);
@@ -131,7 +137,7 @@ public class SongDAO implements ISongDAO {
     //Given a song id this method returns the id of the category associated to the song.
     private int songCategoryId(int id) throws SQLException {
         int songCategoryId = 0;
-        String sql = "SELECT FROM songs WHERE Id = ?";
+        String sql = "SELECT * FROM songs WHERE Id = ?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, id);
@@ -142,6 +148,17 @@ public class SongDAO implements ISongDAO {
             }
         }
         return songCategoryId;
+    }
+    //controlling update
+    private boolean songAlreadyExists(String filePath)throws SQLException{
+        String sql = " SELECT  * FROM songs WHERE Path = ?  ";
+        try (Connection connection = databaseConnector.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,filePath);
+            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getResultSet();
+            return resultSet.next();
+        }
     }
 
 

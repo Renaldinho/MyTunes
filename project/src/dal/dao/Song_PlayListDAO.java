@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.SplittableRandom;
 
 public class Song_PlayListDAO implements ISong_PlayListDAO {
     DatabaseConnector databaseConnector;
@@ -26,7 +25,7 @@ public class Song_PlayListDAO implements ISong_PlayListDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, songId);
             preparedStatement.setInt(2, playListId);
-            preparedStatement.setInt(3, lastRankInThePlayList(playListId) + 1);
+            preparedStatement.setInt(3, lastRank(playListId) + 1);
             preparedStatement.executeUpdate();
         }
     }
@@ -35,16 +34,16 @@ public class Song_PlayListDAO implements ISong_PlayListDAO {
      * returns the rank of a song we add to a given playList
      * we need the rank for moving songs up and down.
      */
-    private int lastRankInThePlayList(int playListId) throws SQLException {
-        int rank = 0;
-        String sql = "SELECT FROM song_playlist where [PlayList Id] = ?";
+    public int lastRank(int playListId) throws SQLException {
+        int rank =0;
+        String sql = "SELECT Rank FROM song_playlist where [PlayList Id] = ? ORDER BY Rank ASC";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, playListId);
             preparedStatement.execute();
             ResultSet resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {
-                rank = resultSet.getInt("Rank");
+                rank =resultSet.getInt("Rank");
             }
         }
         return rank;
@@ -89,54 +88,37 @@ public class Song_PlayListDAO implements ISong_PlayListDAO {
 
     @Override
     public void moveSongDown(int playListId, int songRank) throws SQLException {
-        boolean possible = false;  //check if there is any song from the same playlist that has a higher rank
-        String sql0 = "SELECT FROM song_playlist WHERE PlayListId=? AND Rank>?ORDERED BY Rank ASC";
-        try (Connection connection = databaseConnector.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql0);
-            preparedStatement.setInt(1, playListId);
-            preparedStatement.setInt(2, songRank);
-            preparedStatement.execute();
-            ResultSet resultSet = preparedStatement.getResultSet();
-            while (resultSet.next() && !possible) {
-                possible = resultSet.getInt("Rank") != 0;
+        if(songRank==1)
+            switchFirstLast(playListId);
+        else {
+            String sql = "UPDATE song_playlist SET Rank = CASE Rank WHEN ? THEN ? WHEN ? THEN ? ELSE Rank END WHERE [playList Id]=?";
+            try (Connection connection =databaseConnector.getConnection()){
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setInt(1,songRank);
+                preparedStatement.setInt(2,songRank-1);
+                preparedStatement.setInt(3,songRank-1);
+                preparedStatement.setInt(4,songRank);
+                preparedStatement.setInt(5,playListId);
             }
-            if (possible) {
-                String sql = "UPDATE song_playlist SET Rank = ? WHERE RANK=? AND [PlayList Id]= ?ORDERED BY Rank ASC";
-                PreparedStatement preparedStatement0 = connection.prepareStatement(sql);
-                preparedStatement0.setInt(1, songRank + 1);
-                preparedStatement0.setInt(2, songRank);
-                preparedStatement0.setInt(3, playListId);
-                preparedStatement0.executeUpdate();
-                PreparedStatement preparedStatement1 = connection.prepareStatement(sql);
-                preparedStatement1.setInt(1, songRank);
-                preparedStatement1.setInt(2, songRank + 1);
-                preparedStatement1.setInt(3, playListId);
-                preparedStatement1.executeUpdate();
-            } else
-                switchFirstLast(0, lastRankInThePlayList(playListId), playListId);
         }
     }
 
     @Override
     public void moveSongUp(int playListId, int songRank) throws SQLException {
-        if (songRank == 0) {
-            switchFirstLast(0, lastRankInThePlayList(playListId), playListId);
+        if (songRank == lastRank(playListId)) {
+            switchFirstLast(playListId);
         } else {
-            String sql = "UPDATE song_playlist SET Rank = ? WHERE RANK=? AND [PlayList Id]= ?";
-            try (Connection connection = databaseConnector.getConnection()) {
-                PreparedStatement preparedStatement0 = connection.prepareStatement(sql);
-                preparedStatement0.setInt(1, songRank - 1);
-                preparedStatement0.setInt(2, songRank);
-                preparedStatement0.setInt(3, playListId);
-                preparedStatement0.executeUpdate();
+            String sql ="UPDATE song_playlist SET Rank = CASE Rank WHEN ? THEN ? WHEN ? THEN ? ELSE Rank END WHERE [playList Id]=?";
+            try (Connection connection = databaseConnector.getConnection()){
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                preparedStatement.setInt(1, songRank);
-                preparedStatement.setInt(2, songRank - 1);
-                preparedStatement.setInt(3, playListId);
+                preparedStatement.setInt(1,songRank);
+                preparedStatement.setInt(2,songRank+1);
+                preparedStatement.setInt(3,songRank+1);
+                preparedStatement.setInt(4,songRank);
+                preparedStatement.setInt(5,playListId);
                 preparedStatement.executeUpdate();
             }
         }
-
     }
 
     @Override
@@ -154,18 +136,15 @@ public class Song_PlayListDAO implements ISong_PlayListDAO {
      * or first song up.
      * It switches between them.
      */
-    private void switchFirstLast(int firstSongId, int lastSongId, int playListId) throws SQLException {
-        String sql = "UPDATE song_playlist SET Rank = ? WHERE [PlayList Id]= ? AND Rank=?";
-        try (Connection connection = databaseConnector.getConnection()) {
-            PreparedStatement preparedStatement0 = connection.prepareStatement(sql);
-            preparedStatement0.setInt(1, lastRankInThePlayList(playListId));
-            preparedStatement0.setInt(2, playListId);
-            preparedStatement0.setInt(3, 0);
-            preparedStatement0.executeUpdate();
+    public void switchFirstLast( int playListId) throws SQLException {
+        String sql ="UPDATE song_playlist SET Rank = CASE Rank WHEN ? THEN ? WHEN ? THEN ? ELSE Rank END WHERE [playList Id]=?";
+        try (Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, 0);
-            preparedStatement.setInt(2, playListId);
-            preparedStatement.setInt(3, lastRankInThePlayList(playListId));
+            preparedStatement.setInt(1,1);
+            preparedStatement.setInt(2, lastRank(playListId));
+            preparedStatement.setInt(3, lastRank(playListId));
+            preparedStatement.setInt(4,1);
+            preparedStatement.setInt(5,playListId);
             preparedStatement.executeUpdate();
         }
     }
