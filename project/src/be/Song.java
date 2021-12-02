@@ -17,8 +17,11 @@ public class Song {
         this.time = time;
     }
 
-    public Song(String queryTitle, String queryArtist, String queryCategory, Integer queryTime) {
-
+    public Song(String title, String artist, String category, Integer time){
+        this.title = title;
+        this.artist = artist;
+        this.category = category;
+        this.time = time;
     }
 
 
