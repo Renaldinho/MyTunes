@@ -11,7 +11,7 @@ public class TestClass {
         ArtistsDAO artistsDAO = new ArtistsDAO();
         CategoriesDAO categoriesDAO = new CategoriesDAO();
         Song_PlayListDAO song_playListDAO = new Song_PlayListDAO();
-        //songDAO.createSong("i am the boss","test","test","king",artistsDAO,categoriesDAO);
+        //songDAO.createSong("opo","coucou","dsvdsqd","si",artistsDAO,categoriesDAO);
         PlayListsDAO playListsDAO = new PlayListsDAO();
         //playListsDAO.createPlayList("zebi zebi");
         //artistsDAO.deleteArtist(14);
@@ -21,7 +21,8 @@ public class TestClass {
         //song_playListDAO.moveSongDown(3,1);
         //song_playListDAO.removeSongFromPlayList(32,3,2);
         //System.out.println(song_playListDAO.lastRank(3));
-        songDAO.deleteSong(31,song_playListDAO,artistsDAO,categoriesDAO);
+        //songDAO.deleteSong(31,song_playListDAO,artistsDAO,categoriesDAO);
+        songDAO.updateSong("kiki",33,"pppppppp","xxx",artistsDAO,categoriesDAO);
 
 
     }

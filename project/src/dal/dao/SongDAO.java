@@ -1,7 +1,5 @@
 package dal.dao;
 
-import be.Artist;
-import be.Category;
 import be.Song;
 import dal.DatabaseConnector;
 import dal.Interfaces.ISongDAO;
@@ -49,8 +47,8 @@ public class SongDAO implements ISongDAO {
         int id = 0;
         int artistId = artistsDAO.createArtist(artist);
         int categoryId = categoriesDAO.createNewCategory(category);
-        if(songAlreadyExists(filePath)==true){
-
+        if(pathAlreadyUsed(filePath)==true){
+        System.out.println("Song exists in the list as the path is already used. Try to delete the old one if you want to add this.");
         }
         else {
         String sql = ("INSERT INTO songs VALUES (?,?,?,?,?)");
@@ -95,20 +93,30 @@ public class SongDAO implements ISongDAO {
 
     @Override
     public void updateSong(String title, int id, String artist, String category, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
+        //old ids are used for deletion from database
+        int oldArtistsId = songArtistId(id);
+        int oldCategoryId = songCategoryId(id);
+
         //update artist table
-        artistsDAO.updateArtist(songArtistId(id), artist);
+        int idArtist = artistsDAO.createArtist( artist);
         //update category table
-        categoriesDAO.updateCategory(songCategoryId(id), category);
+        int idCategory = categoriesDAO.createNewCategory( category);
         //update song table
         String sql = "UPDATE songs SET Title = ?,Artist = ?, Category= ? WHERE Id=? ";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, title);
-            statement.setString(2, artist);
-            statement.setString(3, category);
+            statement.setInt(2, idArtist);
+            statement.setInt(3, idCategory);
             statement.setInt(4, id);
             statement.executeUpdate();
         }
+        //check if the old artist still have one song at least in the list otherwise clear it.
+        //same goes for category
+        if (artistsDAO.artistOccurrences(oldArtistsId) ==0)
+            artistsDAO.deleteArtist(oldArtistsId);
+        if (categoriesDAO.categoryOccurrences(oldCategoryId) ==0)
+            categoriesDAO.deleteCategory(oldCategoryId);
     }
 
     @Override
@@ -150,7 +158,7 @@ public class SongDAO implements ISongDAO {
         return songCategoryId;
     }
     //controlling update
-    private boolean songAlreadyExists(String filePath)throws SQLException{
+    private boolean pathAlreadyUsed(String filePath)throws SQLException{
         String sql = " SELECT  * FROM songs WHERE Path = ?  ";
         try (Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);

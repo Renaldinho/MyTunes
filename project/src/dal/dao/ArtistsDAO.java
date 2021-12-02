@@ -6,6 +6,8 @@ import dal.DatabaseConnector;
 import dal.Interfaces.IArtistsDAO;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ArtistsDAO implements IArtistsDAO {
     DatabaseConnector databaseConnector;
@@ -34,7 +36,7 @@ public class ArtistsDAO implements IArtistsDAO {
             preparedStatement1.executeUpdate();
             ResultSet resultSet1 = preparedStatement1.getGeneratedKeys();
             while (resultSet1.next()) {
-                id = resultSet.getInt(1);
+                id = resultSet1.getInt(1);
             }
         }
         return id;
@@ -53,18 +55,12 @@ public class ArtistsDAO implements IArtistsDAO {
 
     @Override
     public void updateArtist(int id, String name) throws SQLException {
-        String sql = "SELECT * FROM  artists WHERE Id = ?";
+        String sql = "UPDATE artists SET Category=? WHERE Id = ?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, name);
-            preparedStatement.execute();
-            ResultSet resultSet = preparedStatement.getResultSet();
-            if (artistAlreadyExists(id)==true){
-
-            }
-            else  createArtist(name);
-
-        }
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();}
     }
 
     /**
@@ -104,14 +100,25 @@ public class ArtistsDAO implements IArtistsDAO {
         }
         return artist;
     }
-    private boolean artistAlreadyExists(int id)throws SQLException{
-        String sql = " SELECT  * FROM artists WHERE Id = ?  ";
+
+    @Override
+    public List<Artist> getAllArtists() throws SQLException {
+        List<Artist>allArtists = new ArrayList<>();
+        String sql = "SELECT * FROM artists ";
         try (Connection connection = databaseConnector.getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1,id);
-            preparedStatement.execute();
-            ResultSet resultSet = preparedStatement.getResultSet();
-            return resultSet.next();
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+            ResultSet resultSet = statement.getResultSet();
+            while (resultSet.next()){
+                int id  = resultSet.getInt("Id");
+                String name = resultSet.getString("Name");
+                Artist artist = new Artist(id,name);
+                allArtists.add(artist);
+
+            }
         }
+        return allArtists;
     }
+
 }
+
