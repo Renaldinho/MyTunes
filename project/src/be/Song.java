@@ -1,13 +1,15 @@
 package be;
 
+import java.sql.Time;
+
 public class Song {
-    private final int id;
+    private Integer id;
     private String title;
     private String artist;
     private String category;
-    private int time;
+    private Integer time;
 
-    public Song(int id,String title, String artist, String category, int time, String filePath){
+    public Song(Integer id,String title, String artist, String category, Integer time, String filePath){
         this.id = id;
         this.title = title;
         this.artist = artist;
@@ -15,8 +17,12 @@ public class Song {
         this.time = time;
     }
 
+    public Song(String queryTitle, String queryArtist, String queryCategory, Integer queryTime) {
 
-    public int getId() {
+    }
+
+
+    public Integer getId() {
         return id;
     }
 
@@ -44,7 +50,7 @@ public class Song {
         this.category = category;
     }
 
-    public int getTime() {
+    public Integer getTime() {
         return time;
     }
 
