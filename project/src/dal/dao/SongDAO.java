@@ -72,33 +72,33 @@ public class SongDAO implements ISongDAO {
     }
 
     @Override
-    public void deleteSong(int id, Song_PlayListDAO song_playListDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
+    public void deleteSong(Song song, Song_PlayListDAO song_playListDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
         String sql = "DELETE FROM songs WHERE Id = ?";
-        int artistsId = songArtistId(id);
-        int categoryId = songCategoryId(id);
+        int artistsId = songArtistId(song.getId());
+        int categoryId = songCategoryId(song.getId());
 
-        song_playListDAO.deleteFromAllPlayLists(id);
+        song_playListDAO.deleteFromAllPlayLists(song);
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, song.getId());
             preparedStatement.executeUpdate();
         }
         //delete artist if he only has one song that was deleted
-        if (artistsDAO.artistOccurrences(artistsId) ==0)
-            artistsDAO.deleteArtist(artistsId);
+        if (artistsDAO.artistOccurrences(artistsDAO.getArtistById(artistsId)) ==0)
+            artistsDAO.deleteArtist(artistsDAO.getArtistById(artistsId));
         //delete category if it only belongs to one song that was deleted
-        if (categoriesDAO.categoryOccurrences(categoryId) ==0)
-             categoriesDAO.deleteCategory(categoryId);
+        if (categoriesDAO.categoryOccurrences(categoriesDAO.getCategoryById(categoryId)) ==0)
+             categoriesDAO.deleteCategory(categoriesDAO.getCategoryById(categoryId));
     }
 
     @Override
-    public void updateSong(String title, int id, String artist, String category, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
+    public void updateSong(String title, Song song, String artist, String category, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
         //old ids are used for deletion from database
-        int oldArtistsId = songArtistId(id);
-        int oldCategoryId = songCategoryId(id);
+        int oldArtistsId = songArtistId(song.getId());
+        int oldCategoryId = songCategoryId(song.getId());
 
         //update artist table
-        int idArtist = artistsDAO.createArtist( artist);
+        int idArtist = artistsDAO.createArtist(artist);
         //update category table
         int idCategory = categoriesDAO.createNewCategory( category);
         //update song table
@@ -108,15 +108,15 @@ public class SongDAO implements ISongDAO {
             statement.setString(1, title);
             statement.setInt(2, idArtist);
             statement.setInt(3, idCategory);
-            statement.setInt(4, id);
+            statement.setInt(4, song.getId());
             statement.executeUpdate();
         }
         //check if the old artist still have one song at least in the list otherwise clear it.
         //same goes for category
-        if (artistsDAO.artistOccurrences(oldArtistsId) ==0)
-            artistsDAO.deleteArtist(oldArtistsId);
-        if (categoriesDAO.categoryOccurrences(oldCategoryId) ==0)
-            categoriesDAO.deleteCategory(oldCategoryId);
+        if (artistsDAO.artistOccurrences(artistsDAO.getArtistById(oldArtistsId)) ==0)
+            artistsDAO.deleteArtist(artistsDAO.getArtistById(oldArtistsId));
+        if (categoriesDAO.categoryOccurrences(categoriesDAO.getCategoryById(oldCategoryId)) ==0)
+            categoriesDAO.deleteCategory(categoriesDAO.getCategoryById(oldCategoryId));
     }
 
     @Override
@@ -156,6 +156,26 @@ public class SongDAO implements ISongDAO {
             }
         }
         return songCategoryId;
+    }
+    public Song getSongById(int id,ArtistsDAO artistsDAO,CategoriesDAO categoriesDAO)throws SQLException{
+        Song song= null;
+        String sql= "SELECT *  FROM songs WHERE Id=?";
+        try (Connection connection = databaseConnector.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,id);
+            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getResultSet();
+            if(resultSet.next()){
+                String title = resultSet.getString("Title");
+                int artistId = resultSet.getInt("Artist");
+                int categoryId = resultSet.getInt("Category");
+                int time = resultSet.getInt("Time");
+                String path = resultSet.getString("Path");
+                song = new Song(id,title,artistsDAO.getArtistById(artistId).getName(),categoriesDAO.getCategoryById(categoryId).getCategoryName(),time,path);
+            }
+
+        }
+        return song;
     }
     //controlling update
     private boolean pathAlreadyUsed(String filePath)throws SQLException{

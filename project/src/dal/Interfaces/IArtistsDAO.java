@@ -9,9 +9,9 @@ import java.util.List;
 public interface IArtistsDAO {
     int createArtist(String name) throws SQLException;
 
-    void deleteArtist(int id) throws SQLException;
+    void deleteArtist(Artist artist) throws SQLException;
 
-    void updateArtist(int id, String name) throws SQLException;
+    void updateArtist(Artist artist, String name) throws SQLException;
 
     Artist getArtistById(int artistId) throws SQLException;
 

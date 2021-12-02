@@ -43,11 +43,11 @@ public class CategoriesDAO implements ICategoriesDAO {
     }
 
     @Override
-    public void deleteCategory(int id) throws SQLException {
+    public void deleteCategory(Category category) throws SQLException {
         String sql = "DELETE FROM categories WHERE Id = ?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, category.getId());
             preparedStatement.executeUpdate();
 
         }
@@ -58,12 +58,12 @@ public class CategoriesDAO implements ICategoriesDAO {
      * If a category only belongs to one song that we want to delete, we just clear it from database.
      */
     @Override
-    public int categoryOccurrences(int categoryId) throws SQLException {
+    public int categoryOccurrences(Category category) throws SQLException {
         int occurrences = 0;
         String sql = "SELECT *  FROM songs WHERE Category = ?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, categoryId);
+            preparedStatement.setInt(1, category.getId());
             preparedStatement.execute();
             ResultSet resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {
@@ -75,7 +75,7 @@ public class CategoriesDAO implements ICategoriesDAO {
 
     @Override
     public Category getCategoryById(int categoryId) throws SQLException {
-        String sql = "SELECT FROM categories WHERE Id=?";
+        String sql = "SELECT *  FROM categories WHERE Id=?";
         Category category = null;
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -84,7 +84,7 @@ public class CategoriesDAO implements ICategoriesDAO {
             ResultSet resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {
                 int id = resultSet.getInt("Id");
-                String name = resultSet.getString("name");
+                String name = resultSet.getString("Category");
                 category = new Category(id, name);
             }
         }
@@ -92,12 +92,12 @@ public class CategoriesDAO implements ICategoriesDAO {
     }
 
     @Override
-    public void updateCategory(int id, String name) throws SQLException {
+    public void updateCategory(Category category, String name) throws SQLException {
         String sql = "UPDATE categories SET Category=? WHERE Id = ?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, name);
-            preparedStatement.setInt(2, id);
+            preparedStatement.setInt(2, category.getId());
             preparedStatement.executeUpdate();
 
         }

@@ -1,5 +1,6 @@
 package dal.dao;
 
+import be.PlayList;
 import be.Song;
 import dal.DatabaseConnector;
 import dal.Interfaces.ISong_PlayListDAO;
@@ -19,13 +20,13 @@ public class Song_PlayListDAO implements ISong_PlayListDAO {
     }
 
     @Override
-    public void addSongToPlayList(int songId, int playListId) throws SQLException {
+    public void addSongToPlayList(Song song, PlayList playList) throws SQLException {
         String sql = "INSERT INTO song_playlist VALUES(?,?,?)";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, songId);
-            preparedStatement.setInt(2, playListId);
-            preparedStatement.setInt(3, lastRank(playListId) + 1);
+            preparedStatement.setInt(1, song.getId());
+            preparedStatement.setInt(2, playList.getId());
+            preparedStatement.setInt(3, lastRank(playList) + 1);
             preparedStatement.executeUpdate();
         }
     }
@@ -34,12 +35,12 @@ public class Song_PlayListDAO implements ISong_PlayListDAO {
      * returns the rank of a song we add to a given playList
      * we need the rank for moving songs up and down.
      */
-    public int lastRank(int playListId) throws SQLException {
+    public int lastRank(PlayList playList) throws SQLException {
         int rank =0;
         String sql = "SELECT Rank FROM song_playlist where [PlayList Id] = ? ORDER BY Rank ASC";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, playListId);
+            preparedStatement.setInt(1, playList.getId());
             preparedStatement.execute();
             ResultSet resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {
@@ -50,12 +51,12 @@ public class Song_PlayListDAO implements ISong_PlayListDAO {
     }
 
     @Override
-    public void removeSongFromPlayList(int songId, int playListId, int rank) throws SQLException {
+    public void removeSongFromPlayList(Song song, PlayList playList, int rank) throws SQLException {
         String sql = "DELETE FROM song_playlist WHERE [Song Id]=? AND [PlayList Id]=? AND Rank= ?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, songId);
-            preparedStatement.setInt(2, playListId);
+            preparedStatement.setInt(1, song.getId());
+            preparedStatement.setInt(2, playList.getId());
             preparedStatement.setInt(3, rank);
             preparedStatement.executeUpdate();
         }
@@ -87,9 +88,9 @@ public class Song_PlayListDAO implements ISong_PlayListDAO {
     }
 
     @Override
-    public void moveSongDown(int playListId, int songRank) throws SQLException {
+    public void moveSongDown(PlayList playList, int songRank) throws SQLException {
         if(songRank==1)
-            switchFirstLast(playListId);
+            switchFirstLast(playList);
         else {
             String sql = "UPDATE song_playlist SET Rank = CASE Rank WHEN ? THEN ? WHEN ? THEN ? ELSE Rank END WHERE [playList Id]=?";
             try (Connection connection =databaseConnector.getConnection()){
@@ -98,15 +99,15 @@ public class Song_PlayListDAO implements ISong_PlayListDAO {
                 preparedStatement.setInt(2,songRank-1);
                 preparedStatement.setInt(3,songRank-1);
                 preparedStatement.setInt(4,songRank);
-                preparedStatement.setInt(5,playListId);
+                preparedStatement.setInt(5,playList.getId());
             }
         }
     }
 
     @Override
-    public void moveSongUp(int playListId, int songRank) throws SQLException {
-        if (songRank == lastRank(playListId)) {
-            switchFirstLast(playListId);
+    public void moveSongUp(PlayList playList, int songRank) throws SQLException {
+        if (songRank == lastRank(playList)) {
+            switchFirstLast(playList);
         } else {
             String sql ="UPDATE song_playlist SET Rank = CASE Rank WHEN ? THEN ? WHEN ? THEN ? ELSE Rank END WHERE [playList Id]=?";
             try (Connection connection = databaseConnector.getConnection()){
@@ -115,18 +116,18 @@ public class Song_PlayListDAO implements ISong_PlayListDAO {
                 preparedStatement.setInt(2,songRank+1);
                 preparedStatement.setInt(3,songRank+1);
                 preparedStatement.setInt(4,songRank);
-                preparedStatement.setInt(5,playListId);
+                preparedStatement.setInt(5,playList.getId());
                 preparedStatement.executeUpdate();
             }
         }
     }
 
     @Override
-    public void deleteFromAllPlayLists(int songId) throws SQLException {
+    public void deleteFromAllPlayLists(Song song) throws SQLException {
         String sql = "DELETE FROM song_playlist WHERE [Song Id]=?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, songId);
+            preparedStatement.setInt(1, song.getId());
             preparedStatement.executeUpdate();
         }
     }
@@ -136,15 +137,15 @@ public class Song_PlayListDAO implements ISong_PlayListDAO {
      * or first song up.
      * It switches between them.
      */
-    public void switchFirstLast( int playListId) throws SQLException {
+    public void switchFirstLast( PlayList playList) throws SQLException {
         String sql ="UPDATE song_playlist SET Rank = CASE Rank WHEN ? THEN ? WHEN ? THEN ? ELSE Rank END WHERE [playList Id]=?";
         try (Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1,1);
-            preparedStatement.setInt(2, lastRank(playListId));
-            preparedStatement.setInt(3, lastRank(playListId));
+            preparedStatement.setInt(2, lastRank(playList));
+            preparedStatement.setInt(3, lastRank(playList));
             preparedStatement.setInt(4,1);
-            preparedStatement.setInt(5,playListId);
+            preparedStatement.setInt(5,playList.getId());
             preparedStatement.executeUpdate();
         }
     }
@@ -165,4 +166,5 @@ public class Song_PlayListDAO implements ISong_PlayListDAO {
         }
         return allRankings;
     }
+
 }

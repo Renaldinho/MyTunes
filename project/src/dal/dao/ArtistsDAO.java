@@ -43,23 +43,23 @@ public class ArtistsDAO implements IArtistsDAO {
     }
 
     @Override
-    public void deleteArtist(int id) throws SQLException {
+    public void deleteArtist(Artist artist) throws SQLException {
         String sql = "DELETE FROM artists WHERE Id = ?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, artist.getId());
             preparedStatement.executeUpdate();
         }
 
     }
 
     @Override
-    public void updateArtist(int id, String name) throws SQLException {
+    public void updateArtist(Artist artist, String name) throws SQLException {
         String sql = "UPDATE artists SET Category=? WHERE Id = ?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, name);
-            preparedStatement.setInt(2, id);
+            preparedStatement.setInt(2, artist.getId());
             preparedStatement.executeUpdate();}
     }
 
@@ -68,12 +68,12 @@ public class ArtistsDAO implements IArtistsDAO {
      * If an artist has only one song that we want to delete, we clear him from database.
      */
 
-    public int artistOccurrences(int artistId) throws SQLException {
+    public int artistOccurrences(Artist artist) throws SQLException {
         int occurrences = 0;
         String sql = "SELECT * FROM songs WHERE Artist = ?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, artistId);
+            preparedStatement.setInt(1, artist.getId());
             preparedStatement.execute();
             ResultSet resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {
@@ -85,7 +85,7 @@ public class ArtistsDAO implements IArtistsDAO {
 
     @Override
     public Artist getArtistById(int artistId) throws SQLException {
-        String sql = "SELECT FROM artists WHERE Id=?";
+        String sql = "SELECT * FROM artists WHERE Id=?";
         Artist artist = null;
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);

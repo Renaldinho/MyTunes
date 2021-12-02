@@ -1,6 +1,7 @@
 package dal.dao;
 
 import be.PlayList;
+import be.Song;
 import dal.DatabaseConnector;
 import dal.Interfaces.IPlayListDAO;
 
@@ -22,7 +23,7 @@ public class PlayListsDAO implements IPlayListDAO {
         if (playListNameTakenAlready(name)){
             System.out.println("This name already exists. Please find another one for your new playlist or delete the old one.");
         }
-     else {   try (Connection connection = databaseConnector.getConnection()) {
+      {   try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, name);
             preparedStatement.executeUpdate();
@@ -37,11 +38,11 @@ public class PlayListsDAO implements IPlayListDAO {
     }
 
     @Override
-    public void deletePlayList(String name) throws SQLException {
+    public void deletePlayList(PlayList playList) throws SQLException {
         String sql = "DELETE FROM playlists WHERE Name =?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, name);
+            preparedStatement.setString(1, playList.getName());
             preparedStatement.executeUpdate();
         }
     }
@@ -63,6 +64,25 @@ public class PlayListsDAO implements IPlayListDAO {
         }
         return allPlayLists;
     }
+
+    @Override
+    public PlayList getPlayListById(int id) throws SQLException {
+            PlayList playList= null;
+            String sql= "SELECT *  FROM playlists WHERE Id=?";
+            try (Connection connection = databaseConnector.getConnection()){
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setInt(1,id);
+                preparedStatement.execute();
+                ResultSet resultSet = preparedStatement.getResultSet();
+                if(resultSet.next()){
+                    String name = resultSet.getString("Name");
+                    playList=new PlayList(id,name);}
+
+            }
+            return playList;
+        }
+
+
     private boolean playListNameTakenAlready(String name)throws SQLException{
         String sql ="SELECT * FROM playlists WHERE Name= ?";
         try (Connection connection = databaseConnector.getConnection()){

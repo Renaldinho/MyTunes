@@ -8,11 +8,11 @@ import java.sql.SQLException;
 public interface ICategoriesDAO {
     int createNewCategory(String name) throws SQLException;
 
-    void deleteCategory(int id) throws SQLServerException, SQLException;
+    void deleteCategory(Category category) throws SQLServerException, SQLException;
 
-    int categoryOccurrences(int categoryId) throws SQLException;
+    int categoryOccurrences(Category category) throws SQLException;
 
     Category getCategoryById(int categoryId) throws SQLException;
 
-    void updateCategory(int id, String name) throws SQLException;
+    void updateCategory(Category category, String name) throws SQLException;
 }

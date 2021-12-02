@@ -1,5 +1,7 @@
 package dal;
 
+import be.PlayList;
+import be.Song;
 import dal.dao.*;
 
 import java.sql.SQLException;
@@ -22,8 +24,18 @@ public class TestClass {
         //song_playListDAO.removeSongFromPlayList(32,3,2);
         //System.out.println(song_playListDAO.lastRank(3));
         //songDAO.deleteSong(31,song_playListDAO,artistsDAO,categoriesDAO);
-        songDAO.updateSong("kiki",33,"pppppppp","xxx",artistsDAO,categoriesDAO);
+        //songDAO.updateSong("kiki",33,"pppppppp","xxx",artistsDAO,categoriesDAO);
+        //songDAO.createSong("sidlasyed","kiki","sidi","sidlasyed",artistsDAO,categoriesDAO);
+        //Song song =songDAO.getSongById(35,artistsDAO,categoriesDAO);
+       // songDAO.deleteSong(song,song_playListDAO,artistsDAO,categoriesDAO);
+       // playListsDAO.createPlayList("sisi");
+       // song_playListDAO.addSongToPlayList(songDAO.getSongById(37,artistsDAO,categoriesDAO), playListsDAO.getPlayListById(7));
+//        playListsDAO.createPlayList("silamine");
+       // song_playListDAO.addSongToPlayList(songDAO.getSongById(38,artistsDAO,categoriesDAO), playListsDAO.getPlayListById(8) );
+        //song_playListDAO.addSongToPlayList(songDAO.getSongById(39  ,artistsDAO,categoriesDAO), playListsDAO.getPlayListById(8) );
+       // song_playListDAO.addSongToPlayList(songDAO.getSongById(40,artistsDAO,categoriesDAO), playListsDAO.getPlayListById(8) );
 
+        //song_playListDAO.moveSongUp(playListsDAO.getPlayListById(8),3);
 
     }
 }
