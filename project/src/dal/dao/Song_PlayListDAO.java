@@ -63,25 +63,17 @@ public class Song_PlayListDAO implements ISong_PlayListDAO {
     }
 
     @Override
-    public List<Song> getAllSongsForGivenPlayList(int playListID, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
+    public List<Song> getAllSongsForGivenPlayList(PlayList playList, SongDAO songDAO,ArtistsDAO artistsDAO,CategoriesDAO categoriesDAO) throws SQLException {
         List<Song> allSongsFromSamePlayList = new ArrayList<>();
-        String sql = "SELECT FROM song_playlist WHERE PlayListId=? ORDERED BY Rank ASC";
+        String sql = "SELECT * FROM song_playlist WHERE [PlayList Id]=? ORDER BY Rank ASC";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, playListID);
+            preparedStatement.setInt(1, playList.getId());
             preparedStatement.execute();
             ResultSet resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {
-                int artistId = resultSet.getInt("Artist");
-                String artist = artistsDAO.getArtistById(artistId).getName();
-                int categoryId = resultSet.getInt("Category");
-                String category = categoriesDAO.getCategoryById(categoryId).getCategoryName();
-                int time = resultSet.getInt("Time");
-                String title = resultSet.getString("Title");
-                int id = resultSet.getInt("Id");
-                String filePath = resultSet.getString("FilePath");
-                Song song = new Song(id, title, artist, category, time, filePath);
-                allSongsFromSamePlayList.add(song);
+                int songId = resultSet.getInt("Song Id");
+                allSongsFromSamePlayList.add(songDAO.getSongById(songId,artistsDAO,categoriesDAO));
             }
         }
         return allSongsFromSamePlayList;

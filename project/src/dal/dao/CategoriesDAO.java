@@ -7,6 +7,8 @@ import dal.DatabaseConnector;
 import dal.Interfaces.ICategoriesDAO;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CategoriesDAO implements ICategoriesDAO {
     DatabaseConnector databaseConnector;
@@ -57,7 +59,7 @@ public class CategoriesDAO implements ICategoriesDAO {
      * this method returns how many songs a category is involved in. We need this to check while deleting a song.
      * If a category only belongs to one song that we want to delete, we just clear it from database.
      */
-    @Override
+
     public int categoryOccurrences(Category category) throws SQLException {
         int occurrences = 0;
         String sql = "SELECT *  FROM songs WHERE Category = ?";
@@ -101,5 +103,23 @@ public class CategoriesDAO implements ICategoriesDAO {
             preparedStatement.executeUpdate();
 
         }
+    }
+
+    @Override
+    public List<Category> getAllCategories()throws SQLException {
+        List<Category>allCategories= new ArrayList<>();
+        String sql="SELECT * FROM categories";
+        try (Connection connection = databaseConnector.getConnection()){
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+            ResultSet resultSet = statement.getResultSet();
+            while (resultSet.next()){
+                int id = resultSet.getInt("Id");
+                String name = resultSet.getString("Category");
+                Category category = new Category(id,name);
+                allCategories.add(category);
+            }
+        }
+        return allCategories;
     }
 }

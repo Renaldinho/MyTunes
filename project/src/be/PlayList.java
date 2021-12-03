@@ -15,4 +15,12 @@ public class PlayList {
     public int getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "PlayList{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

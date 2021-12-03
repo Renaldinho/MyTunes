@@ -51,4 +51,15 @@ public class Song {
     public void setTime(int time) {
         this.time = time;
     }
+
+    @Override
+    public String toString() {
+        return "Song{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", artist='" + artist + '\'' +
+                ", category='" + category + '\'' +
+                ", time=" + time +
+                '}';
+    }
 }

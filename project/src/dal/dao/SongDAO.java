@@ -32,7 +32,7 @@ public class SongDAO implements ISongDAO {
                 int time = resultSet.getInt("Time");
                 String title = resultSet.getString("Title");
                 int id = resultSet.getInt("Id");
-                String filePath = resultSet.getString("FilePath");
+                String filePath = resultSet.getString("Path");
                 Song song = new Song(id, title, artist, category, time, filePath);
                 allSongs.add(song);
             }
