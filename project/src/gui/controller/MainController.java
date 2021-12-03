@@ -42,9 +42,7 @@ public class MainController implements Initializable {
     ChangeListener<Duration> changeListener;
 
     public TableView songTable;
-    public List<Song> songs = new ArrayList<>(Arrays.asList(new Song(1,"Dreams","Fleetwood mac","Jazz",430,"file:/C:/Users/Bruger/Desktop/MyTunes/Resources/audiofiles/dreams.wav"),
-            (new Song(1,"still beating","Mac DeMarco","Alternative",420,"file:/C:/Users/Bruger/Desktop/MyTunes/Resources/audiofiles/still_beating.mp3")),
-            (new Song(1,"Crazy Train", "Ozzy Osbourne","Rock'n Roll, Baby",278,"file:/C:/Users/Bruger/Desktop/crazy_train.mp3"))));
+
 
 
     public TableColumn titleColumn;
@@ -113,8 +111,6 @@ public class MainController implements Initializable {
         artistColumn.setCellValueFactory(new PropertyValueFactory<>("artist"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
-
-        songTable.setItems(FXCollections.observableArrayList(songs));
 
 
 
