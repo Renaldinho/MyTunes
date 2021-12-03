@@ -2,6 +2,8 @@ package bll;
 
 import dal.dao.*;
 
+import java.sql.SQLException;
+
 public class MyTunesManager {
 
     ArtistsDAO artistsDAO;
@@ -22,6 +24,7 @@ public class MyTunesManager {
         playListDAO.createPlayList(playlistName);
     }
 
-    public void createSong(String songName, String songArtist, String category, String songFile) {
+    public void createSong(String songName, String songArtist, String category, String songFile) throws SQLException {
+        songDAO.createSong(songName,songArtist,category,songFile,artistsDAO,categoriesDAO);
     }
 }

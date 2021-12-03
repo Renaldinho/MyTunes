@@ -57,7 +57,7 @@ public class SongDAO implements ISongDAO {
             statement.setString(1, title);
             statement.setInt(2, artistId);
             statement.setInt(3, categoryId);
-            statement.setInt(4, getSongTime(Path.of(filePath)));
+            statement.setInt(4, 0);
             statement.setString(5, filePath);
             int created = statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
@@ -65,7 +65,7 @@ public class SongDAO implements ISongDAO {
                 id = resultSet.getInt(1);
             }
             if (created != 0) {
-                song = new Song(id, title, artist, category, getSongTime(Path.of(filePath)), filePath);
+                song = new Song(id, title, artist, category,0, filePath);
             }
         }}
         return song;

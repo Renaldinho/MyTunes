@@ -1,10 +1,15 @@
 package gui.controller;
 
 import be.Song;
+import dal.dao.ArtistsDAO;
+import dal.dao.CategoriesDAO;
+import dal.dao.SongDAO;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
@@ -21,6 +27,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.*;
 
 public class MainController implements Initializable {
@@ -34,6 +41,8 @@ public class MainController implements Initializable {
     public MenuItem rythmAndBlues;
     public Button logoutButton;
     public AnchorPane anchorPane;
+    public TextField keywordTextField;
+    public Button searchCleanButton;
 
     MediaPlayer player;
 
@@ -50,10 +59,16 @@ public class MainController implements Initializable {
 
 
 
-    public TableColumn titleColumn;
-    public TableColumn artistColumn;
-    public TableColumn categoryColumn;
-    public TableColumn timeColumn;
+    public TableColumn<Object, Object> titleColumn;
+    public TableColumn<Object, Object> artistColumn;
+    public TableColumn<Object, Object> categoryColumn;
+    public TableColumn<Object, Object> timeColumn;
+
+
+    ObservableList<Song> songObservableList = FXCollections.observableArrayList();
+    SongDAO songDAO = new SongDAO();
+    ArtistsDAO artistsDAO = new ArtistsDAO();
+    CategoriesDAO categoriesDAO = new CategoriesDAO();
 
 
 
@@ -112,19 +127,62 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-        artistColumn.setCellValueFactory(new PropertyValueFactory<>("artist"));
-        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
-        timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
-
-
-
         songTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             Song selectedSong = ((Song) newValue);
             player = new MediaPlayer(new Media(selectedSong.getFilePath()));
 
             player.volumeProperty().bind(volumeSlider.valueProperty());
         });
+
+        //DatabaseConnector connectNow = new DatabaseConnector();
+        try {
+            songObservableList.addAll(songDAO.getAllSongs(artistsDAO,categoriesDAO));
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        //PropertyValueFactory corresponds to the new ProductSearchModel fields
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        artistColumn.setCellValueFactory(new PropertyValueFactory<>("artist"));
+        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
+        timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
+
+        songTable.setItems(songObservableList);
+
+        // Wrap the ObservableList in a FilteredList (initially display all data).
+        FilteredList<Song> filteredData = new FilteredList<>(songObservableList, b -> true);
+
+
+        // 2. Set the filter Predicate whenever the filter changes.
+        keywordTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(song -> {
+                // If filter text is empty, display all persons.
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (song.getTitle().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches first name.
+                } else // Does not match.
+                    if (song.getArtist().toLowerCase().contains(lowerCaseFilter)) {
+                        return true; // Filter matches last name.
+                    }
+                    else return false;
+            });
+        });
+
+        // 3. Wrap the FilteredList in a SortedList.
+        SortedList<Song> sortedData = new SortedList<>(filteredData);
+
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        //       Otherwise, sorting the TableView would have no effect.
+        sortedData.comparatorProperty().bind(songTable.comparatorProperty());
+
+        // 5. Add sorted (and filtered) data to the table.
+        songTable.setItems(sortedData);
     }
 
     public void moveProgressSlider(MouseEvent mouseEvent) {
@@ -149,5 +207,14 @@ public class MainController implements Initializable {
             stage = (Stage) anchorPane.getScene().getWindow();
             stage.close();
         }
+    }
+
+    public void cleanFilter(ActionEvent actionEvent) {
+        keywordTextField.clear();
+        searchCleanButton.setText("Search");
+    }
+
+    public void textFieldAction(KeyEvent keyEvent) {
+        searchCleanButton.setText("Clean");
     }
 }
