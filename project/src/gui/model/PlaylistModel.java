@@ -9,7 +9,7 @@ public class PlaylistModel {
         manager = new MyTunesManager();
     }
 
-    public void createPlaylist(String playlistName) throws Exception {
-        manager.createPlaylist(playlistName);
+    public void createPlaylist(String name) throws Exception {
+        manager.createPlayList(name);
     }
 }

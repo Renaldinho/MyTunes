@@ -20,7 +20,7 @@ public class Song_PlayListDAO implements ISong_PlayListDAO {
     }
 
     @Override
-    public void addSongToPlayList(Song song, PlayList playList) throws SQLException {
+    public void addSongToPlayList(Song song, PlayList playList,PlayListsDAO playListsDAO) throws SQLException {
         String sql = "INSERT INTO song_playlist VALUES(?,?,?)";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -28,6 +28,7 @@ public class Song_PlayListDAO implements ISong_PlayListDAO {
             preparedStatement.setInt(2, playList.getId());
             preparedStatement.setInt(3, lastRank(playList) + 1);
             preparedStatement.executeUpdate();
+            playListsDAO.updatePlayList(playList,playList.getSong()+1,playList.getTime()+song.getTime());
         }
     }
 
@@ -142,9 +143,10 @@ public class Song_PlayListDAO implements ISong_PlayListDAO {
         }
     }
 
-    List<Integer> getRankSongInPlayList(int songId, int playListId) throws SQLException {
-        List<Integer> allRankings = new ArrayList<>();
-        String sql = "SELECT FROM song_playlist WHERE songId=? AND [playList Id]=?";
+    public int getRankSongInPlayList(int songId, int playListId) throws SQLException {
+        int ranking =0;
+        //List<Integer> allRankings = new ArrayList<>();
+        String sql = "SELECT * FROM song_playlist WHERE [song Id]=? AND [playList Id]=?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, songId);
@@ -152,11 +154,11 @@ public class Song_PlayListDAO implements ISong_PlayListDAO {
             preparedStatement.execute();
             ResultSet resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {
-                int ranking = resultSet.getInt(2);
-                allRankings.add(ranking);
+                 ranking = resultSet.getInt(3);
+               // allRankings.add(ranking);
             }
         }
-        return allRankings;
+        return ranking;
     }
 
 }

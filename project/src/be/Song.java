@@ -56,13 +56,7 @@ public class Song {
 
     @Override
     public String toString() {
-        return "Song{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", artist='" + artist + '\'' +
-                ", category='" + category + '\'' +
-                ", time=" + time +
-                '}';
+        return title + " by "+ artist+" from " +category;
     }
 
     public String getFilePath() {

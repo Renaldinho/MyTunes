@@ -1,6 +1,7 @@
 package gui.controller;
 
 import gui.model.MainModel;
+import gui.model.SongModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -19,6 +20,7 @@ public class SongController {
     public Button cancelSongBtn;
 
     MainModel model;
+    SongModel songModel;
 
     @FXML
     private TextField pathField;
@@ -43,7 +45,7 @@ public class SongController {
     private TextField songArtistField;
 
     public SongController(){
-        model = new MainModel();
+        songModel = new SongModel();
     }
 
     public void rockMusic(ActionEvent actionEvent) {
@@ -104,25 +106,10 @@ public class SongController {
         //String filePath = ("file:/"+pathField.getText().replace("\\","/"));
         String time = songTimeField.getText();
 
-        model.createSong(title,artist,songCategory,time,filePath);
+        songModel.createSong(title,artist,songCategory,time,filePath);
 
 
 
 
-
-        //model.createSong(title,artist,songCategory,time,filePath);
-
-
-
-        //MediaPlayer player = new MediaPlayer(new Media(filePath));
-
-        //MediaPlayer player = new MediaPlayer(new Media(new File(filePath).toURI().toString()));
-        //player.play();
-
-        //MediaPlayer player = new MediaPlayer(new Media(("file:/"+filePath.replace("\\","/"))));
-        //player.play();
-
-
-        //model.createSong(title,artist,songCategory,filePath);
     }
 }

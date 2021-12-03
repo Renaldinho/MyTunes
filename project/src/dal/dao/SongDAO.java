@@ -42,7 +42,7 @@ public class SongDAO implements ISongDAO {
 
 
     @Override
-    public Song createSong(String title, String artist, String category, String filePath, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
+    public Song createSong(String title, String artist, String category, String filePath, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO,String time) throws SQLException {
         Song song=null;
         int id = 0;
         int artistId = artistsDAO.createArtist(artist);
@@ -57,7 +57,7 @@ public class SongDAO implements ISongDAO {
             statement.setString(1, title);
             statement.setInt(2, artistId);
             statement.setInt(3, categoryId);
-            statement.setInt(4, 0);
+            statement.setString(4, time);
             statement.setString(5, filePath);
             int created = statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
@@ -119,12 +119,6 @@ public class SongDAO implements ISongDAO {
             categoriesDAO.deleteCategory(categoriesDAO.getCategoryById(oldCategoryId));
     }
 
-    @Override
-    public int getSongTime(Path filePath) {
-        //to be implemented
-        return 0;
-
-    }
 
     //Given a song id this method returns the id of the artist associated to the song.
     private int songArtistId(int id) throws SQLException {
