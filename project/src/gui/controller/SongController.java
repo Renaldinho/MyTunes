@@ -1,26 +1,25 @@
 package gui.controller;
 
-import be.Song;
 import gui.model.MainModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.File;
 import java.sql.SQLException;
 
-import static java.lang.Math.pow;
-import static java.lang.Math.toIntExact;
-
 public class SongController {
 
 
+    public Button cancelSongBtn;
 
     MainModel model;
 
@@ -66,6 +65,12 @@ public class SongController {
         category.setText("Jazz");
     }
 
+
+    @FXML
+    public void handleCancelSongBtn(ActionEvent actionEvent) throws Exception {
+        Stage stage = (Stage) cancelSongBtn.getScene().getWindow();
+        stage.close();
+    }
 
 
     public void handleChooseFile(ActionEvent actionEvent) {
