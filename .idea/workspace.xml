@@ -4,34 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/be/Artist.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/be/Artist.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/be/Category.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/be/Category.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/be/PlayList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/be/PlayList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/be/Song.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/be/Song.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/IArtistsDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/IArtistsDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/ICategoriesDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/ICategoriesDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/IPlayListDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/IPlayListDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/ISongDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/ISongDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/ISong_PlayListDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/ISong_PlayListDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/TestClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/TestClass.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/ArtistsDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/ArtistsDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/CategoriesDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/CategoriesDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/PlayListsDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/PlayListsDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/SongDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/SongDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/Song_PlayListDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/Song_PlayListDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/be/Artist.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/be/Artist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/be/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/be/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/be/PlayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/be/PlayList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/be/Song.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/be/Song.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/dal/Interfaces/ICategoriesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/Interfaces/ICategoriesDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/dal/Interfaces/ISong_PlayListDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/Interfaces/ISong_PlayListDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/dal/TestClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/TestClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/CategoriesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/CategoriesDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/SongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/SongDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/Song_PlayListDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/Song_PlayListDAO.java" afterDir="false" />
-    </list>
+    <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="DAL ready done and tested you can work on it includes all features needed. You can also test it and if something goes wrong i will fix it ;)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,7 +49,7 @@
     <property name="project.structure.side.proportion" value="0.38045976" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
-  <component name="RunManager" selected="Application.TestClass">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="DatabaseConnector" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dal.db.DatabaseConnector" />
       <module name="MyTunes" />
@@ -112,8 +85,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TestClass" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.TestClass" />
         <item itemvalue="Application.DatabaseConnector" />
       </list>
     </recent_temporary>
@@ -136,6 +109,7 @@
       <workItem from="1638183012117" duration="2196000" />
       <workItem from="1638359570021" duration="36438000" />
       <workItem from="1638451446842" duration="8286000" />
+      <workItem from="1638524972005" duration="689000" />
     </task>
     <task id="LOCAL-00001" summary="dal 95% done still few more tests to be done">
       <created>1638404507856</created>

@@ -6,6 +6,7 @@ public class Song {
     private String artist;
     private String category;
     private int time;
+    private String filePath;
 
     public Song(int id,String title, String artist, String category, int time, String filePath){
         this.id = id;
@@ -13,6 +14,7 @@ public class Song {
         this.artist = artist;
         this.category = category;
         this.time = time;
+        this.filePath = filePath;
     }
 
 
@@ -61,5 +63,9 @@ public class Song {
                 ", category='" + category + '\'' +
                 ", time=" + time +
                 '}';
+    }
+
+    public String getFilePath() {
+        return filePath;
     }
 }
