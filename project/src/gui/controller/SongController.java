@@ -3,10 +3,7 @@ package gui.controller;
 import gui.model.MainModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SplitMenuButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
@@ -68,8 +65,15 @@ public class SongController {
 
     @FXML
     public void handleCancelSongBtn(ActionEvent actionEvent) throws Exception {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Alert window");
+        alert.setHeaderText("Do you want to close this window?");
+
+
+        if(alert.showAndWait().get() == ButtonType.OK ) {
         Stage stage = (Stage) cancelSongBtn.getScene().getWindow();
         stage.close();
+        }
     }
 
 
@@ -100,7 +104,7 @@ public class SongController {
         //String filePath = ("file:/"+pathField.getText().replace("\\","/"));
         String time = songTimeField.getText();
 
-        //model.createSong(title,artist,songCategory,time,filePath);
+        model.createSong(title,artist,songCategory,time,filePath);
 
 
 

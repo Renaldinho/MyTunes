@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -31,6 +32,8 @@ public class MainController implements Initializable {
     public MenuItem reggae;
     public MenuItem jazz;
     public MenuItem rythmAndBlues;
+    public Button logoutButton;
+    public AnchorPane anchorPane;
 
     MediaPlayer player;
 
@@ -42,6 +45,8 @@ public class MainController implements Initializable {
     ChangeListener<Duration> changeListener;
 
     public TableView songTable;
+
+    Stage stage;
 
 
 
@@ -131,5 +136,18 @@ public class MainController implements Initializable {
         player.currentTimeProperty().addListener(changeListener);
     }
 
+    //Alert window pop up in mainView
+    public void logout(ActionEvent actionEvent) {
+        //Alert window: create and basic properties
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Alert window");
+        alert.setHeaderText("Do you want to close this window?");
 
+
+        if(alert.showAndWait().get() == ButtonType.OK ){
+            //close current stage
+            stage = (Stage) anchorPane.getScene().getWindow();
+            stage.close();
+        }
+    }
 }
