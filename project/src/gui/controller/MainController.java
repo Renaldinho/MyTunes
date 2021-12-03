@@ -1,7 +1,6 @@
 package gui.controller;
 
 import be.Song;
-import gui.model.MainModel;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -11,10 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
@@ -30,6 +26,12 @@ public class MainController implements Initializable {
 
 
     public Slider progressSlider;
+    public SplitMenuButton category;
+    public MenuItem rockMusic;
+    public MenuItem reggae;
+    public MenuItem jazz;
+    public MenuItem rythmAndBlues;
+
     MediaPlayer player;
 
     public Button playBtn;
@@ -51,10 +53,10 @@ public class MainController implements Initializable {
     public TableColumn timeColumn;
 
 
-    private MainModel model;
 
     public MainController(){
-        model = new MainModel();
+
+
 
         changeListener = new ChangeListener<Duration>() {
             @Override
@@ -132,4 +134,6 @@ public class MainController implements Initializable {
         player.seek(player.getTotalDuration().multiply(progressSlider.getValue()));
         player.currentTimeProperty().addListener(changeListener);
     }
+
+
 }
