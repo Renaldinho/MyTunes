@@ -4,7 +4,6 @@ import be.Song;
 import dal.DatabaseConnector;
 import dal.Interfaces.ISongDAO;
 
-import java.nio.file.Path;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,12 +71,12 @@ public class SongDAO implements ISongDAO {
     }
 
     @Override
-    public void deleteSong(Song song, Song_PlayListDAO song_playListDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
+    public void deleteSong(Song song, JoinsDAO joinsDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
         String sql = "DELETE FROM songs WHERE Id = ?";
         int artistsId = songArtistId(song.getId());
         int categoryId = songCategoryId(song.getId());
 
-        song_playListDAO.deleteFromAllPlayLists(song);
+        joinsDAO.deleteFromAllPlayLists(song);
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, song.getId());

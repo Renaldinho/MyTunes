@@ -1,6 +1,6 @@
 package dal;
 
-import be.PlayList;
+import be.Joins;
 import be.Song;
 import dal.dao.*;
 
@@ -14,11 +14,11 @@ public class TestClass {
         SongDAO songDAO = new SongDAO();
         ArtistsDAO artistsDAO = new ArtistsDAO();
         CategoriesDAO categoriesDAO = new CategoriesDAO();
-        Song_PlayListDAO song_playListDAO = new Song_PlayListDAO();
+        JoinsDAO joinsDAO = new JoinsDAO();
         PlayListsDAO playListsDAO = new PlayListsDAO();
         //song_playListDAO.addSongToPlayList(songDAO.getSongById(67,artistsDAO,categoriesDAO), playListsDAO.getPlayListById(19),playListsDAO );
-       //songDAO.createSong("sisi","loulou","hih","zebi",artistsDAO,categoriesDAO,"02");
-        playListsDAO.createPlayList("hihi");
+       //songDAO.createSong("hojo","loulou","hih","vejo",artistsDAO,categoriesDAO,"02");
+        //playListsDAO.createPlayList("hihi");
         //song_playListDAO.addSongToPlayList(songDAO.getSongById(43,artistsDAO,categoriesDAO), playListsDAO.getPlayListById(9));
 //song_playListDAO.moveSongUp(playListsDAO.getPlayListById(9),3 );
         //playListsDAO.getAllPlayLists();
@@ -32,5 +32,9 @@ public class TestClass {
        // for(PlayList playList: playListsDAO.getAllPlayLists()){
           //  System.out.println(playList);
       //  }
+        JoinsDAO joinsDAO1 = new JoinsDAO();
+        Joins joins = new Joins(79,29,3);
+        //joinsDAO1.createJoin(songDAO.getSongById(79,artistsDAO,categoriesDAO), playListsDAO.getPlayListById(29),playListsDAO );
+        joinsDAO1.moveSongDown(joins,playListsDAO);
 }
 }

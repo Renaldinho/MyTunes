@@ -4,9 +4,8 @@ import be.Song;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.dao.ArtistsDAO;
 import dal.dao.CategoriesDAO;
-import dal.dao.Song_PlayListDAO;
+import dal.dao.JoinsDAO;
 
-import java.nio.file.Path;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -15,7 +14,7 @@ public interface ISongDAO {
 
     Song createSong(String title, String artist, String category, String filePath, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO,String time) throws SQLException;
 
-    void deleteSong(Song song, Song_PlayListDAO song_playListDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException;
+    void deleteSong(Song song, JoinsDAO joinsDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException;
 
     void updateSong(String title, Song song, String newArtist, String newCategory, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException;
 

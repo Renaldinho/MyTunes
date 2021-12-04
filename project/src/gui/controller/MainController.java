@@ -1,5 +1,6 @@
 package gui.controller;
 
+import be.Joins;
 import be.PlayList;
 import be.Song;
 import bll.MyTunesManager;
@@ -7,8 +8,6 @@ import dal.dao.*;
 import gui.model.MainModel;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
@@ -57,6 +56,16 @@ public class MainController implements Initializable {
     PlayList playList;
     Song song;
 
+    public Joins getJoins() {
+        return joins;
+    }
+
+    public void setJoins(Joins joins) {
+        this.joins = joins;
+    }
+
+    Joins joins;
+
     public Slider progressSlider;
     public SplitMenuButton category;
     public Button logoutButton;
@@ -95,7 +104,7 @@ public class MainController implements Initializable {
     ArtistsDAO artistsDAO = new ArtistsDAO();
     CategoriesDAO categoriesDAO = new CategoriesDAO();
     PlayListsDAO playListsDAO =new PlayListsDAO();
-    Song_PlayListDAO song_playListDAO= new Song_PlayListDAO();
+    JoinsDAO joinsDAO = new JoinsDAO();
 
 
 
@@ -248,11 +257,13 @@ public class MainController implements Initializable {
                 setSong(song);
             }});
 
+
+
         songsOnPlayList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                Song song = (Song) newValue;
-                setSong(song);
+                Joins joins = (Joins) newValue;
+                setJoins(joins);
             }
         });
 
@@ -300,23 +311,23 @@ public class MainController implements Initializable {
         lstPlayLists.refresh();
     }
 
-    public void deleteSongFromPlayList(ActionEvent actionEvent) {
-        mainModel.deleteSongFromGivenPlayList();
+    public void deleteSongFromPlayList(ActionEvent actionEvent) throws SQLException {
+        mainModel.deleteSongFromGivenPlayList(joins,playList,playListsDAO,songDAO);
     }
 
     public void deleteSong(ActionEvent actionEvent) throws SQLException {
         Song song = (Song)  songTable.getSelectionModel().getSelectedItem();
-        mainModel.deleteSong(song,song_playListDAO,artistsDAO,categoriesDAO);
+        mainModel.deleteSong(song, joinsDAO,artistsDAO,categoriesDAO);
 
 
     }
 
     public void moveSongUp(ActionEvent actionEvent) throws SQLException {
-        mainModel.moveSongUp(playList,song_playListDAO.getRankSongInPlayList(song.getId(),playList.getId()));
+        mainModel.moveSongUp(joins,playListsDAO);
     }
 
     public void moveSongDown(ActionEvent actionEvent) throws SQLException {
-        mainModel.moveSongDown(playList,song_playListDAO.getRankSongInPlayList(song.getId(),playList.getId()));
+        mainModel.moveSongDown(joins,playListsDAO);
     }
 
 

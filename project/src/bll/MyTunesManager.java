@@ -1,5 +1,6 @@
 package bll;
 
+import be.Joins;
 import be.PlayList;
 import be.Song;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
@@ -13,14 +14,14 @@ public class MyTunesManager implements OwsLogicFacade {
     ArtistsDAO artistsDAO;
     CategoriesDAO categoriesDAO;
     PlayListsDAO playListDAO;
-    Song_PlayListDAO song_playListDAO;
+    JoinsDAO joinsDAO;
     SongDAO songDAO;
 
     public MyTunesManager(){
         artistsDAO = new ArtistsDAO();
         categoriesDAO = new CategoriesDAO();
         playListDAO = new PlayListsDAO();
-        song_playListDAO = new Song_PlayListDAO();
+        joinsDAO = new JoinsDAO();
         songDAO = new SongDAO();
     }
 
@@ -42,27 +43,26 @@ public class MyTunesManager implements OwsLogicFacade {
 
     @Override
     public void addSongToPlayList(Song song, PlayList playList) throws SQLException {
-    song_playListDAO.addSongToPlayList(song,playList, playListDAO);
+    joinsDAO.createJoin(song,playList, playListDAO);
     }
 
     @Override
-    public void removeSongFromPlayList(Song song, PlayList playList, int rank) throws SQLException {
-    song_playListDAO.removeSongFromPlayList(song,playList,rank);
+    public void removeSongFromPlayList(Joins joins,PlayListsDAO playListsDAO,PlayList playList,SongDAO songDAO) throws SQLException {
+    joinsDAO.removeJoins(joins,playListsDAO,playList,songDAO);
+    }
+
+    public List<Joins> getAllJoinsPlayList(PlayList playList) throws SQLException {
+        return joinsDAO.getAllJoinsPlayList(playList);
     }
 
     @Override
-    public List<Song> getAllSongsForGivenPlayList(PlayList playList, SongDAO songDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDA) throws SQLException {
-        return song_playListDAO.getAllSongsForGivenPlayList(playList,songDAO,artistsDAO,categoriesDAO);
+    public void moveSongUp(Joins joins, PlayListsDAO playListsDAO) throws SQLException {
+    joinsDAO.moveSongUp(joins,playListsDAO);
     }
 
     @Override
-    public void moveSongUp(PlayList playList, int songRank) throws SQLException {
-    song_playListDAO.moveSongUp(playList,songRank);
-    }
-
-    @Override
-    public void moveSongDown(PlayList playList, int songRank) throws SQLException {
-    song_playListDAO.moveSongDown(playList,songRank);
+    public void moveSongDown(Joins joins,PlayListsDAO playListsDAO) throws SQLException {
+    joinsDAO.moveSongDown(joins,playListsDAO);
     }
 
     @Override
@@ -76,12 +76,13 @@ public class MyTunesManager implements OwsLogicFacade {
     }
 
     @Override
-    public void deleteSong(Song song, Song_PlayListDAO song_playListDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
-    songDAO.deleteSong(song,song_playListDAO,artistsDAO,categoriesDAO);
+    public void deleteSong(Song song, JoinsDAO joinsDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
+    songDAO.deleteSong(song, joinsDAO,artistsDAO,categoriesDAO);
     }
 
     @Override
     public void updateSong(String title, Song song, String newArtist, String newCategory, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
     songDAO.updateSong(title,song,newArtist,newCategory,artistsDAO,categoriesDAO);
     }
+
 }
