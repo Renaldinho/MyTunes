@@ -5,12 +5,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="dal 95% done still few more tests to be done">
+      <change afterPath="$PROJECT_DIR$/project/src/gui/controller/MainController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/src/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_11_2021_01_05__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_11_2021_01_05__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_11_2021_01_12__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_11_2021_01_12__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_11_2021_01_14__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_11_2021_01_14__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_11_2021_01_18__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_11_2021_01_18__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_11_2021_01_25__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_11_2021_01_25__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/view/Main.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/view/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/GUI/view/mainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/view/newPlaylist.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/GUI/view/newPlaylist.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/view/newSong.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/GUI/view/newSong.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/be/Artist.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/be/Category.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/be/PlayList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/be/Song.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/DatabaseConnector.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/IArtistsDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/ICategoriesDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/IPlayListDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/ISongDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/ISong_PlayListDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/TestClass.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/ArtistsDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/CategoriesDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/PlayListsDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/SongDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/Song_PlayListDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongController.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/be/Song.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/be/Song.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/gui/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/controller/SongController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/SongController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/gui/view/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/view/mainView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/module-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/view/newPlayList.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/view/newPlayList.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/view/newSong.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/view/newSong.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +150,7 @@
       <workItem from="1638183012117" duration="2196000" />
       <workItem from="1638359570021" duration="36438000" />
       <workItem from="1638451446842" duration="3815000" />
-      <workItem from="1638456537447" duration="17675000" />
+      <workItem from="1638456537447" duration="11542000" />
     </task>
     <task id="LOCAL-00001" summary="dal 95% done still few more tests to be done">
       <created>1638404507856</created>

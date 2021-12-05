@@ -1,17 +1,15 @@
 package gui.controller;
 
 import be.Song;
+//import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.DatabaseConnector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -89,54 +87,20 @@ public class MainController implements Initializable {
             }
 
             //PropertyValueFactory corresponds to the new ProductSearchModel fields
-            titleTableColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-            artistTableColumn.setCellValueFactory(new PropertyValueFactory<>("artist"));
-            categoryTableColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
-            timeTableColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
+            titleTableColumn.setCellValueFactory(new PropertyValueFactory<>("Title"));
+            artistTableColumn.setCellValueFactory(new PropertyValueFactory<>("Artist"));
+            categoryTableColumn.setCellValueFactory(new PropertyValueFactory<>("Category"));
+            timeTableColumn.setCellValueFactory(new PropertyValueFactory<>("Time"));
 
             songTableView.setItems(songObservableList);
-
-            // Wrap the ObservableList in a FilteredList (initially display all data).
-            FilteredList<Song> filteredData = new FilteredList<>(songObservableList, b -> true);
-
-
-            // 2. Set the filter Predicate whenever the filter changes.
-            keywordTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-                filteredData.setPredicate(employee -> {
-                    // If filter text is empty, display all persons.
-
-                    if (newValue == null || newValue.isEmpty()) {
-                        return true;
-                    }
-
-                    // Compare first name and last name of every person with filter text.
-                    String lowerCaseFilter = newValue.toLowerCase();
-
-                    if (employee.getTitle().toLowerCase().contains(lowerCaseFilter)) {
-                        return true; // Filter matches first name.
-                    } else // Does not match.
-                        if (employee.getArtist().toLowerCase().contains(lowerCaseFilter)) {
-                            return true; // Filter matches last name.
-                        }
-                        else return false;
-                });
-            });
-
-            // 3. Wrap the FilteredList in a SortedList.
-            SortedList<Song> sortedData = new SortedList<>(filteredData);
-
-            // 4. Bind the SortedList comparator to the TableView comparator.
-            // 	  Otherwise, sorting the TableView would have no effect.
-            sortedData.comparatorProperty().bind(songTableView.comparatorProperty());
-
-            // 5. Add sorted (and filtered) data to the table.
-            songTableView.setItems(sortedData);
 
 
         } catch (SQLException e) {
             Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, e);
             e.printStackTrace();
         }
+
+
     }
 
     public void rockMusic(ActionEvent actionEvent) {
@@ -202,16 +166,5 @@ public class MainController implements Initializable {
             filePath.setText(file.getAbsolutePath());
             //System.out.println(file.getAbsolutePath());
         }
-    }
-
-    public void cleanFilter(ActionEvent actionEvent) {
-        keywordTextField.setText("");
-        searchCleanButton.setText("Search");
-    }
-
-
-    public void textFieldAction(KeyEvent inputMethodEvent) {
-        searchCleanButton.setText("Clean");
-        System.out.println("Vajco");
     }
 }
