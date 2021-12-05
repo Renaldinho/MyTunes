@@ -132,7 +132,12 @@ public class MainController implements Initializable {
 
     public void newPlayList(ActionEvent actionEvent) throws IOException {
         Parent root;
-        root = FXMLLoader.load(getClass().getResource("/gui/view/newPlayList.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/gui/view/newPlayList.fxml"));
+        root = loader.load();
+        PlaylistController playlistController = loader.getController();
+        System.out.println("In maincontroller:"+this);
+        playlistController.setController(this);
         Stage stage = new Stage();
         stage.setTitle("Create a playlist");
         stage.setScene(new Scene(root));
@@ -160,9 +165,7 @@ public class MainController implements Initializable {
 
         player.pause();
     }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void updateSongTableView() {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("Time"));
         songsColumn.setCellValueFactory(new PropertyValueFactory<>("Song"));
@@ -177,9 +180,8 @@ public class MainController implements Initializable {
 
             player.volumeProperty().bind(volumeSlider.valueProperty());
         });
-
-        //DatabaseConnector connectNow = new DatabaseConnector();
-
+    }
+    public void updatePlayListTableView() {
         //PropertyValueFactory corresponds to the new ProductSearchModel fields
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         artistColumn.setCellValueFactory(new PropertyValueFactory<>("artist"));
@@ -191,6 +193,14 @@ public class MainController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        updateSongTableView();
+        updatePlayListTableView();
+        //DatabaseConnector connectNow = new DatabaseConnector();
+
+
 
         // Wrap the ObservableList in a FilteredList (initially display all data).
         FilteredList<Song> filteredData = null;

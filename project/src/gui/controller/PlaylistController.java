@@ -21,7 +21,7 @@ public class PlaylistController {
 
     @FXML
     private Button cancelPlaylistBtn;
-
+    MainController mainController;
 
     public PlaylistController(){
         model = new PlaylistModel();
@@ -31,6 +31,7 @@ public class PlaylistController {
     public void handleSavePlaylistBtn(javafx.scene.input.MouseEvent actionEvent) throws Exception {
         String playlistName = playlistNameTxt.getText();
         model.createPlaylist(playlistName);
+        mainController.updateSongTableView();
     }
 
     @FXML
@@ -44,5 +45,10 @@ public class PlaylistController {
             Stage stage = (Stage) cancelPlaylistBtn.getScene().getWindow();
             stage.close();
         }
+    }
+
+    public void setController(MainController mainController) {
+        this.mainController=mainController;
+        System.out.println("In playlistController: "+this.mainController);
     }
 }

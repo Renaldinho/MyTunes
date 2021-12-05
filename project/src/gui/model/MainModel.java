@@ -70,6 +70,7 @@ public class MainModel {
         return allPlayLists;
     }
     public ObservableList getAllSongs() throws SQLException{
+        //allSongs.clear();
         allSongs=FXCollections.observableArrayList();
         allSongs.addAll(manager.getAllSongs(artistsDAO,categoriesDAO));
         return allSongs;
