@@ -33,9 +33,44 @@ import java.util.*;
 
 public class MainController implements Initializable {
     @FXML
-    private ListView songsOnPlayList;
+    public TableColumn<Song, String> titleColumn;
     @FXML
-    private TableView lstPlayLists;
+    public TableColumn<Song, String> artistColumn;
+    @FXML
+    public TableColumn<Song, String> categoryColumn;
+    @FXML
+    public TableColumn<Song, Integer> timeColumn;
+    @FXML
+    public TableColumn<PlayList, String> nameColumn;
+    @FXML
+    public TableColumn<PlayList, String> songsColumn;
+    @FXML
+    public TableColumn<PlayList, String> totalTimeColumn;
+    @FXML
+    private ListView<Song> songsOnPlayList;
+    @FXML
+    private TableView<PlayList> lstPlayLists;
+    @FXML
+    public Slider progressSlider;
+    @FXML
+    public SplitMenuButton category;
+    @FXML
+    public Button logoutButton;
+    @FXML
+    public AnchorPane anchorPane;
+    @FXML
+    public TextField keywordTextField;
+    @FXML
+    public Button searchCleanButton;
+    @FXML
+    public Button playBtn;
+    @FXML
+    public Button stopBtn;
+    @FXML
+    public Slider volumeSlider;
+    @FXML
+    private TableView<Song> songTable;
+
     MyTunesManager manager = new MyTunesManager();
     public PlayList getPlayList() {
         return playList;
@@ -53,9 +88,6 @@ public class MainController implements Initializable {
         this.song = song;
     }
 
-    PlayList playList;
-    Song song;
-
     public Joins getJoins() {
         return joins;
     }
@@ -65,47 +97,18 @@ public class MainController implements Initializable {
     }
 
     Joins joins;
-
-    public Slider progressSlider;
-    public SplitMenuButton category;
-    public Button logoutButton;
-    public AnchorPane anchorPane;
-    public TextField keywordTextField;
-    public Button searchCleanButton;
-    MainModel mainModel;
-
-    MediaPlayer player;
-
-    public Button playBtn;
-    public Button stopBtn;
-
-    public Slider volumeSlider;
-
-    ChangeListener<Duration> changeListener;
-    @FXML
-    private TableView songTable;
-
     Stage stage;
-
-
-
-    public TableColumn<Song, String> titleColumn;
-    public TableColumn<Song, String> artistColumn;
-    public TableColumn<Song, String> categoryColumn;
-    public TableColumn<Song, Integer> timeColumn;
-    public TableColumn  <PlayList, String> nameColumn;
-    public TableColumn<PlayList, String> songsColumn;
-    public TableColumn<PlayList, String> totalTimeColumn;
-
-
-    //ObservableList<Song> so = FXCollections.observableArrayList();
+    PlayList playList;
+    Song song;
+    MainModel mainModel;
+    MediaPlayer player;
+    ChangeListener<Duration> changeListener;
 
     SongDAO songDAO = new SongDAO();
     ArtistsDAO artistsDAO = new ArtistsDAO();
     CategoriesDAO categoriesDAO = new CategoriesDAO();
     PlayListsDAO playListsDAO =new PlayListsDAO();
     JoinsDAO joinsDAO = new JoinsDAO();
-
 
 
     public MainController(){
@@ -178,8 +181,6 @@ public class MainController implements Initializable {
             player.volumeProperty().bind(volumeSlider.valueProperty());
         });
 
-        //DatabaseConnector connectNow = new DatabaseConnector();
-
         //PropertyValueFactory corresponds to the new ProductSearchModel fields
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         artistColumn.setCellValueFactory(new PropertyValueFactory<>("artist"));
@@ -217,10 +218,7 @@ public class MainController implements Initializable {
                 if (song.getTitle().toLowerCase().contains(lowerCaseFilter)) {
                     return true; // Filter matches first name.
                 } else // Does not match.
-                    if (song.getArtist().toLowerCase().contains(lowerCaseFilter)) {
-                        return true; // Filter matches last name.
-                    }
-                    else return false;
+                    return song.getArtist().toLowerCase().contains(lowerCaseFilter); // Filter matches last name.
             });
         });
 
