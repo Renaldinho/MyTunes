@@ -6,10 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/bll/MyTunesManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/bll/MyTunesManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/MainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/PlaylistController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/PlaylistController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/model/MainModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/GUI/model/MainModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/gui/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/gui/controller/PlaylistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/PlaylistController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/gui/model/MainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/model/MainModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/controller/SongController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/SongController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,6 +134,7 @@
       <workItem from="1638451446842" duration="8286000" />
       <workItem from="1638524972005" duration="689000" />
       <workItem from="1638531855698" duration="3416000" />
+      <workItem from="1638713707606" duration="2366000" />
     </task>
     <task id="LOCAL-00001" summary="dal 95% done still few more tests to be done">
       <created>1638404507856</created>
@@ -198,7 +202,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/project/src/gui/controller/MainController.java</url>
-          <line>335</line>
+          <line>338</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

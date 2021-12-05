@@ -11,12 +11,13 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+
 import java.io.File;
 import java.sql.SQLException;
 
 public class SongController {
 
-
+    MainController mainController;
     public Button cancelSongBtn;
 
     MainModel model;
@@ -107,9 +108,14 @@ public class SongController {
         String time = songTimeField.getText();
 
         songModel.createSong(title,artist,songCategory,time,filePath);
+        mainController.updateSongTableView();
 
 
 
 
+    }
+    public void setController(MainController mainController) {
+        this.mainController=mainController;
+        // System.out.println("In playlistController: "+this.mainController);
     }
 }

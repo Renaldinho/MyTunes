@@ -122,7 +122,11 @@ public class MainController implements Initializable {
 
     public void newSong(ActionEvent actionEvent) throws IOException {
         Parent root;
-        root = FXMLLoader.load(getClass().getResource("/gui/view/newSong.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/gui/view/newSong.fxml"));
+        root= loader.load();
+        SongController songController = loader.getController();
+        songController.setController(this);
         Stage stage = new Stage();
         stage.setTitle("Create a song");
         stage.setScene(new Scene(root));
@@ -136,7 +140,6 @@ public class MainController implements Initializable {
         loader.setLocation(getClass().getResource("/gui/view/newPlayList.fxml"));
         root = loader.load();
         PlaylistController playlistController = loader.getController();
-        System.out.println("In maincontroller:"+this);
         playlistController.setController(this);
         Stage stage = new Stage();
         stage.setTitle("Create a playlist");
@@ -165,7 +168,7 @@ public class MainController implements Initializable {
 
         player.pause();
     }
-    public void updateSongTableView() {
+    public void updatePlayListTableView() {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("Time"));
         songsColumn.setCellValueFactory(new PropertyValueFactory<>("Song"));
@@ -181,7 +184,7 @@ public class MainController implements Initializable {
             player.volumeProperty().bind(volumeSlider.valueProperty());
         });
     }
-    public void updatePlayListTableView() {
+    public void updateSongTableView() {
         //PropertyValueFactory corresponds to the new ProductSearchModel fields
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         artistColumn.setCellValueFactory(new PropertyValueFactory<>("artist"));
