@@ -6,10 +6,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="230.0" prefWidth="386.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.SongController">
+
+<AnchorPane prefHeight="230.0" prefWidth="386.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.SongController">
    <children>
       <Button layoutX="320.0" layoutY="196.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="51.0" text="Save" />
-      <Button fx:id="cancelButton" layoutX="260.0" layoutY="196.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+      <Button layoutX="260.0" layoutY="196.0" mnemonicParsing="false" text="Cancel" />
       <Label layoutX="26.0" layoutY="51.0" text="Name">
          <font>
             <Font size="18.0" />
