@@ -1,5 +1,6 @@
 package gui.controller;
 
+import bll.exceptions.SongException;
 import gui.model.MainModel;
 import gui.model.SongModel;
 import javafx.event.ActionEvent;
@@ -98,7 +99,7 @@ public class SongController {
         });
     }
 
-    public void handleSaveNewSong(ActionEvent actionEvent) throws SQLException {
+    public void handleSaveNewSong(ActionEvent actionEvent) throws SongException {
         String title = songTitleField.getText();
         String artist = songArtistField.getText();
         String songCategory = category.getText();

@@ -19,7 +19,7 @@ public class CategoriesDAO implements ICategoriesDAO {
     //looks for a given category and return its id, if not found just creates a new one and returns the generated key associated to it.
 
     @Override
-    public int createNewCategory(String category) throws SQLException {
+    public int createNewCategory(String category) throws Exception {
         String sql0 = "SELECT * FROM categories WHERE Category = ?";
         int id = 0;
         try (Connection connection = databaseConnector.getConnection()) {
@@ -45,7 +45,7 @@ public class CategoriesDAO implements ICategoriesDAO {
     }
 
     @Override
-    public void deleteCategory(Category category) throws SQLException {
+    public void deleteCategory(Category category) throws Exception {
         String sql = "DELETE FROM categories WHERE Id = ?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -60,7 +60,7 @@ public class CategoriesDAO implements ICategoriesDAO {
      * If a category only belongs to one song that we want to delete, we just clear it from database.
      */
 
-    public int categoryOccurrences(Category category) throws SQLException {
+    public int categoryOccurrences(Category category) throws Exception {
         int occurrences = 0;
         String sql = "SELECT *  FROM songs WHERE Category = ?";
         try (Connection connection = databaseConnector.getConnection()) {
@@ -76,7 +76,7 @@ public class CategoriesDAO implements ICategoriesDAO {
     }
 
     @Override
-    public Category getCategoryById(int categoryId) throws SQLException {
+    public Category getCategoryById(int categoryId) throws Exception {
         String sql = "SELECT *  FROM categories WHERE Id=?";
         Category category = null;
         try (Connection connection = databaseConnector.getConnection()) {
@@ -94,7 +94,7 @@ public class CategoriesDAO implements ICategoriesDAO {
     }
 
     @Override
-    public void updateCategory(Category category, String name) throws SQLException {
+    public void updateCategory(Category category, String name) throws Exception {
         String sql = "UPDATE categories SET Category=? WHERE Id = ?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -106,7 +106,7 @@ public class CategoriesDAO implements ICategoriesDAO {
     }
 
     @Override
-    public List<Category> getAllCategories()throws SQLException {
+    public List<Category> getAllCategories()throws Exception {
         List<Category>allCategories= new ArrayList<>();
         String sql="SELECT * FROM categories";
         try (Connection connection = databaseConnector.getConnection()){

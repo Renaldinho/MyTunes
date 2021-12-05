@@ -4,6 +4,9 @@ import be.Joins;
 import be.PlayList;
 import be.Song;
 import bll.MyTunesManager;
+import bll.exceptions.JoinsException;
+import bll.exceptions.PlayListException;
+import bll.exceptions.SongException;
 import dal.dao.*;
 import gui.model.MainModel;
 import javafx.beans.value.ChangeListener;
@@ -171,7 +174,7 @@ public class MainController implements Initializable {
         songsColumn.setCellValueFactory(new PropertyValueFactory<>("Song"));
         try {
             lstPlayLists.setItems(mainModel.getAllPlayLists());
-        } catch (SQLException e) {
+        } catch (PlayListException e) {
             e.printStackTrace();
         }
         songTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -189,7 +192,7 @@ public class MainController implements Initializable {
 
         try {
             songTable.setItems(mainModel.getAllSongs());
-        } catch (SQLException e) {
+        } catch (SongException e) {
             e.printStackTrace();
         }
 
@@ -197,7 +200,7 @@ public class MainController implements Initializable {
         FilteredList<Song> filteredData = null;
         try {
             filteredData = new FilteredList<>(mainModel.getAllSongs(), b -> true);
-        } catch (SQLException e) {
+        } catch (SongException e) {
             e.printStackTrace();
         }
 
@@ -217,7 +220,7 @@ public class MainController implements Initializable {
 
                 if (song.getTitle().toLowerCase().contains(lowerCaseFilter)) {
                     return true; // Filter matches first name.
-                } else // Does not match.
+                }// Does not match.
                     return song.getArtist().toLowerCase().contains(lowerCaseFilter); // Filter matches last name.
             });
         });
@@ -232,8 +235,6 @@ public class MainController implements Initializable {
         // 5. Add sorted (and filtered) data to the table.
         songTable.setItems(sortedData);
 
-
-
         lstPlayLists.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
@@ -241,10 +242,10 @@ public class MainController implements Initializable {
                  setPlayList(playList);
                 try {
                     songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }catch (NullPointerException e){
+                } catch (NullPointerException e){
                     songsOnPlayList.getItems().clear();
+                } catch (JoinsException e) {
+                    e.printStackTrace();
                 }
             }
         });
@@ -303,34 +304,34 @@ public class MainController implements Initializable {
         searchCleanButton.setText("Clean");
     }
 
-    public void deletePlayList(ActionEvent actionEvent) throws SQLException {
+    public void deletePlayList(ActionEvent actionEvent) throws PlayListException {
         PlayList playList =(PlayList)lstPlayLists.getSelectionModel().getSelectedItem();
         mainModel.deletePlayList(playList);
         lstPlayLists.refresh();
     }
 
-    public void deleteSongFromPlayList(ActionEvent actionEvent) throws SQLException {
+    public void deleteSongFromPlayList(ActionEvent actionEvent) throws SongException {
         mainModel.deleteSongFromGivenPlayList(joins,playList,playListsDAO,songDAO);
     }
 
-    public void deleteSong(ActionEvent actionEvent) throws SQLException {
+    public void deleteSong(ActionEvent actionEvent) throws SongException {
         Song song = (Song)  songTable.getSelectionModel().getSelectedItem();
         mainModel.deleteSong(song, joinsDAO,artistsDAO,categoriesDAO);
 
 
     }
 
-    public void moveSongUp(ActionEvent actionEvent) throws SQLException {
+    public void moveSongUp(ActionEvent actionEvent) throws SongException {
         mainModel.moveSongUp(joins,playListsDAO);
     }
 
-    public void moveSongDown(ActionEvent actionEvent) throws SQLException {
+    public void moveSongDown(ActionEvent actionEvent) throws SongException {
         mainModel.moveSongDown(joins,playListsDAO);
     }
 
 
 
-    public void moveSongToPlayList(ActionEvent actionEvent) throws SQLException {
+    public void moveSongToPlayList(ActionEvent actionEvent) throws SongException {
 
         mainModel.addSongToGivenPlayList(song,playList);
     }

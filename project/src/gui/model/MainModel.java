@@ -4,6 +4,9 @@ import be.Joins;
 import be.PlayList;
 import be.Song;
 import bll.MyTunesManager;
+import bll.exceptions.JoinsException;
+import bll.exceptions.PlayListException;
+import bll.exceptions.SongException;
 import dal.dao.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,15 +35,15 @@ public class MainModel {
 
 
 
-    public void moveSongDown(Joins joins, PlayListsDAO playListsDAO) throws SQLException {
+    public void moveSongDown(Joins joins, PlayListsDAO playListsDAO) throws SongException {
         manager.moveSongDown(joins,playListsDAO);
     }
 
-    public void moveSongUp(Joins joins, PlayListsDAO playListsDAO) throws SQLException {
+    public void moveSongUp(Joins joins, PlayListsDAO playListsDAO) throws SongException {
         manager.moveSongUp(joins,playListsDAO);
     }
 
-    public void deleteSong(Song song, JoinsDAO joinsDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
+    public void deleteSong(Song song, JoinsDAO joinsDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SongException {
         manager.deleteSong(song, joinsDAO,artistsDAO,categoriesDAO);
         Song search=null;
         for(Song song1: allSongs){
@@ -51,7 +54,7 @@ public class MainModel {
         allSongs.remove(search);
     }
 
-    public void deleteSongFromGivenPlayList(Joins joins,PlayList playList,PlayListsDAO playListsDAO,SongDAO songDAO) throws SQLException {
+    public void deleteSongFromGivenPlayList(Joins joins,PlayList playList,PlayListsDAO playListsDAO,SongDAO songDAO) throws SongException {
         manager.removeSongFromPlayList(joins,playListsDAO,playList,songDAO);
         Joins search = null;
         for (Joins joins1 : allSongsForGivenPlayList) {
@@ -64,18 +67,18 @@ public class MainModel {
     }
 
 
-    public ObservableList getAllPlayLists() throws SQLException {
+    public ObservableList getAllPlayLists() throws PlayListException {
         allPlayLists= FXCollections.observableArrayList();
         allPlayLists.addAll(manager.getAllPlayLists());
         return allPlayLists;
     }
-    public ObservableList getAllSongs() throws SQLException{
+    public ObservableList getAllSongs() throws SongException{
         allSongs=FXCollections.observableArrayList();
         allSongs.addAll(manager.getAllSongs(artistsDAO,categoriesDAO));
         return allSongs;
     }
 
-    public void deletePlayList(PlayList playList) throws SQLException {
+    public void deletePlayList(PlayList playList) throws PlayListException {
         PlayList search=null;
         manager.deletePlayList(playList);
         for(PlayList playList0 : allPlayLists){
@@ -86,17 +89,17 @@ public class MainModel {
         allPlayLists.remove(search);
     }
 
-    public ObservableList getAllSongsForGivenPlayList(PlayList playList) throws SQLException {
+    public ObservableList getAllSongsForGivenPlayList(PlayList playList) throws JoinsException {
         allSongsForGivenPlayList=FXCollections.observableArrayList();
         allSongsForGivenPlayList.addAll(manager.getAllJoinsPlayList(playList));
         return allSongsForGivenPlayList;
     }
 
-    public void addSongToGivenPlayList(Song song, PlayList playList) throws SQLException {
+    public void addSongToGivenPlayList(Song song, PlayList playList) throws SongException {
         manager.addSongToPlayList(song,playList);
     }
 
-    public void moveSongDown(Joins joins) throws SQLException {
+    public void moveSongDown(Joins joins) throws SongException {
         //manager.moveSongDown(joins);
     }
 }

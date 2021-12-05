@@ -1,5 +1,7 @@
 package gui.controller;
 
+import bll.exceptions.PlayListException;
+import bll.exceptions.SongException;
 import gui.model.PlaylistModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,7 +30,7 @@ public class PlaylistController {
     }
 
     @FXML
-    public void handleSavePlaylistBtn(javafx.scene.input.MouseEvent actionEvent) throws Exception {
+    public void handleSavePlaylistBtn(javafx.scene.input.MouseEvent actionEvent) throws  PlayListException, SongException {
         String playlistName = playlistNameTxt.getText();
         model.createPlaylist(playlistName);
     }

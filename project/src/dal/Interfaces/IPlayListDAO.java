@@ -7,11 +7,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface IPlayListDAO {
-    PlayList createPlayList(String name) throws SQLException;
+    PlayList createPlayList(String name) throws Exception;
 
-    void deletePlayList(PlayList playList) throws SQLException;
+    void deletePlayList(PlayList playList) throws Exception;
 
-    List<PlayList> getAllPlayLists() throws SQLException;
+    List<PlayList> getAllPlayLists() throws Exception;
 
-    PlayList getPlayListById(int id) throws SQLException;
+    PlayList getPlayListById(int id) throws Exception;
 }

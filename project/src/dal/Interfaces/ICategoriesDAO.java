@@ -7,13 +7,13 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface ICategoriesDAO {
-    int createNewCategory(String name) throws SQLException;
+    int createNewCategory(String name) throws Exception;
 
-    void deleteCategory(Category category) throws SQLServerException, SQLException;
+    void deleteCategory(Category category) throws Exception;
 
-    Category getCategoryById(int categoryId) throws SQLException;
+    Category getCategoryById(int categoryId) throws Exception;
 
-    void updateCategory(Category category, String name) throws SQLException;
+    void updateCategory(Category category, String name) throws Exception;
 
-    List<Category> getAllCategories() throws SQLException;
+    List<Category> getAllCategories() throws Exception;
 }

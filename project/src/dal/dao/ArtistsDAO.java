@@ -18,7 +18,7 @@ public class ArtistsDAO implements IArtistsDAO {
 
     //looks for a given artist and return his/her id, if not found just creates a new one and returns the generated key associated to it.
     @Override
-    public int createArtist(String name) throws SQLException {
+    public int createArtist(String name) throws Exception{
         int id = 0;
         String sql0 = "SELECT * FROM artists WHERE Name = ?";
         try (Connection connection = databaseConnector.getConnection()) {

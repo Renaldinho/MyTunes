@@ -16,7 +16,7 @@ public class SongDAO implements ISongDAO {
     }
 
     @Override
-    public List<Song> getAllSongs(ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
+    public List<Song> getAllSongs(ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws Exception {
         List<Song> allSongs = new ArrayList<>();
         String sql = "SELECT * FROM songs";
         try (Connection connection = databaseConnector.getConnection()) {
@@ -41,7 +41,7 @@ public class SongDAO implements ISongDAO {
 
 
     @Override
-    public Song createSong(String title, String artist, String category, String filePath, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO,String time) throws SQLException {
+    public Song createSong(String title, String artist, String category, String filePath, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO,String time) throws Exception {
         Song song=null;
         int id = 0;
         int artistId = artistsDAO.createArtist(artist);
@@ -71,7 +71,7 @@ public class SongDAO implements ISongDAO {
     }
 
     @Override
-    public void deleteSong(Song song, JoinsDAO joinsDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
+    public void deleteSong(Song song, JoinsDAO joinsDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws Exception {
         String sql = "DELETE FROM songs WHERE Id = ?";
         int artistsId = songArtistId(song.getId());
         int categoryId = songCategoryId(song.getId());
@@ -91,7 +91,7 @@ public class SongDAO implements ISongDAO {
     }
 
     @Override
-    public void updateSong(String title, Song song, String artist, String category, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
+    public void updateSong(String title, Song song, String artist, String category, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws Exception {
         //old ids are used for deletion from database
         int oldArtistsId = songArtistId(song.getId());
         int oldCategoryId = songCategoryId(song.getId());
@@ -120,7 +120,7 @@ public class SongDAO implements ISongDAO {
 
 
     //Given a song id this method returns the id of the artist associated to the song.
-    private int songArtistId(int id) throws SQLException {
+    private int songArtistId(int id) throws Exception {
         int artistId = 0;
         String sql = "SELECT * FROM songs WHERE Id = ?";
         try (Connection connection = databaseConnector.getConnection()) {
@@ -136,7 +136,7 @@ public class SongDAO implements ISongDAO {
     }
 
     //Given a song id this method returns the id of the category associated to the song.
-    private int songCategoryId(int id) throws SQLException {
+    private int songCategoryId(int id) throws Exception {
         int songCategoryId = 0;
         String sql = "SELECT * FROM songs WHERE Id = ?";
         try (Connection connection = databaseConnector.getConnection()) {
@@ -150,7 +150,7 @@ public class SongDAO implements ISongDAO {
         }
         return songCategoryId;
     }
-    public Song getSongById(int id,ArtistsDAO artistsDAO,CategoriesDAO categoriesDAO)throws SQLException{
+    public Song getSongById(int id,ArtistsDAO artistsDAO,CategoriesDAO categoriesDAO)throws Exception{
         Song song= null;
         String sql= "SELECT *  FROM songs WHERE Id=?";
         try (Connection connection = databaseConnector.getConnection()){
@@ -171,7 +171,7 @@ public class SongDAO implements ISongDAO {
         return song;
     }
     //controlling update
-    private boolean pathAlreadyUsed(String filePath)throws SQLException{
+    private boolean pathAlreadyUsed(String filePath)throws Exception{
         String sql = " SELECT  * FROM songs WHERE Path = ?  ";
         try (Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);

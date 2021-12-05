@@ -12,17 +12,17 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface IJoins {
-    Joins createJoin(Song song, PlayList playList, PlayListsDAO playListsDAO) throws SQLException;
+    Joins createJoin(Song song, PlayList playList, PlayListsDAO playListsDAO) throws Exception;
 
-    void removeJoins(Joins joins,PlayListsDAO playListsDAO,PlayList playList,SongDAO songDAO) throws SQLException;
+    void removeJoins(Joins joins,PlayListsDAO playListsDAO,PlayList playList,SongDAO songDAO) throws Exception;
 
-     List<Joins> getAllJoinsPlayList(PlayList playList) throws SQLException ;
+     List<Joins> getAllJoinsPlayList(PlayList playList) throws Exception ;
 
-    void moveSongUp(Joins joins,PlayListsDAO playListsDAO) throws SQLException;
+    void moveSongUp(Joins joins,PlayListsDAO playListsDAO) throws Exception;
 
-    void moveSongDown(Joins joins,PlayListsDAO playListsDAO) throws SQLException;
+    void moveSongDown(Joins joins,PlayListsDAO playListsDAO) throws Exception;
 
-    void deleteFromAllPlayLists(Song song) throws SQLException;
+    void deleteFromAllPlayLists(Song song) throws Exception;
 
 
 }

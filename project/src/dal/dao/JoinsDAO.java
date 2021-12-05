@@ -21,7 +21,7 @@ public class JoinsDAO implements IJoins {
     }
 
     @Override
-    public Joins createJoin(Song song, PlayList playList, PlayListsDAO playListsDAO) throws SQLException {
+    public Joins createJoin(Song song, PlayList playList, PlayListsDAO playListsDAO) throws Exception {
         Joins joins;
         String sql = "INSERT INTO song_playlist VALUES(?,?,?)";
         try (Connection connection = databaseConnector.getConnection()) {
@@ -42,7 +42,7 @@ public class JoinsDAO implements IJoins {
      * returns the rank of a song we add to a given playList
      * we need the rank for moving songs up and down.
      */
-    public int lastRank(PlayList playList) throws SQLException {
+    public int lastRank(PlayList playList) throws Exception {
         int rank =0;
         String sql = "SELECT Rank FROM song_playlist where [PlayList Id] = ? ORDER BY Rank ASC";
         try (Connection connection = databaseConnector.getConnection()) {
@@ -58,7 +58,7 @@ public class JoinsDAO implements IJoins {
     }
 
     @Override
-    public void removeJoins(Joins joins,PlayListsDAO playListsDAO,PlayList playList,SongDAO songDAO) throws SQLException {
+    public void removeJoins(Joins joins,PlayListsDAO playListsDAO,PlayList playList,SongDAO songDAO) throws Exception {
         String sql = "DELETE FROM song_playlist WHERE [Song Id]=? AND [PlayList Id]=? AND Rank= ?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -70,7 +70,7 @@ public class JoinsDAO implements IJoins {
         }
     }
 
-    public List<Joins> getAllJoinsPlayList(PlayList playList) throws SQLException {
+    public List<Joins> getAllJoinsPlayList(PlayList playList) throws Exception {
         List<Joins> allSongsFromSamePlayList = new ArrayList<>();
         String sql = "SELECT * FROM song_playlist WHERE [PlayList Id]=? ORDER BY Rank ASC";
         try (Connection connection = databaseConnector.getConnection()) {
@@ -89,7 +89,7 @@ public class JoinsDAO implements IJoins {
     }
 
     @Override
-    public void moveSongDown(Joins joins,PlayListsDAO playListsDAO) throws SQLException {
+    public void moveSongDown(Joins joins,PlayListsDAO playListsDAO) throws Exception {
         if(joins.getRank()==1)
             switchFirstLast(playListsDAO.getPlayListById(joins.getPlayListId()));
         else {
@@ -107,7 +107,7 @@ public class JoinsDAO implements IJoins {
     }
 
     @Override
-    public void moveSongUp(Joins joins,PlayListsDAO playListsDAO) throws SQLException {
+    public void moveSongUp(Joins joins,PlayListsDAO playListsDAO) throws Exception {
         if (joins.getRank() == lastRank(playListsDAO.getPlayListById(joins.getPlayListId()))) {
             switchFirstLast(playListsDAO.getPlayListById(joins.getPlayListId()));
         } else {
@@ -125,7 +125,7 @@ public class JoinsDAO implements IJoins {
     }
 
     @Override
-    public void deleteFromAllPlayLists(Song song) throws SQLException {
+    public void deleteFromAllPlayLists(Song song) throws Exception {
         String sql = "DELETE FROM song_playlist WHERE [Song Id]=?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -139,7 +139,7 @@ public class JoinsDAO implements IJoins {
      * or first song up.
      * It switches between them.
      */
-    public void switchFirstLast( PlayList playList) throws SQLException {
+    public void switchFirstLast( PlayList playList) throws Exception {
         String sql ="UPDATE song_playlist SET Rank = CASE Rank WHEN ? THEN ? WHEN ? THEN ? ELSE Rank END WHERE [playList Id]=?";
         try (Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -152,7 +152,7 @@ public class JoinsDAO implements IJoins {
         }
     }
 
-    public int getRankSongInPlayList(int songId, int playListId) throws SQLException {
+    public int getRankSongInPlayList(int songId, int playListId) throws Exception {
         int ranking =0;
         //List<Integer> allRankings = new ArrayList<>();
         String sql = "SELECT * FROM song_playlist WHERE [song Id]=? AND [playList Id]=?";

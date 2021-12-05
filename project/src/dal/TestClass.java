@@ -35,6 +35,6 @@ public class TestClass {
         JoinsDAO joinsDAO1 = new JoinsDAO();
         Joins joins = new Joins(79,29,3);
         //joinsDAO1.createJoin(songDAO.getSongById(79,artistsDAO,categoriesDAO), playListsDAO.getPlayListById(29),playListsDAO );
-        joinsDAO1.moveSongDown(joins,playListsDAO);
+        //joinsDAO1.moveSongDown(joins,playListsDAO);
 }
 }

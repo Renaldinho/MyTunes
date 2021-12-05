@@ -17,7 +17,7 @@ public class PlayListsDAO implements IPlayListDAO {
     }
 
     @Override
-    public PlayList createPlayList(String name) throws SQLException {
+    public PlayList createPlayList(String name) throws Exception {
         PlayList playList = null;
         String sql = "INSERT INTO playlists VALUES (?,?,?) ";
         if (playListNameTakenAlready(name)){
@@ -40,7 +40,7 @@ public class PlayListsDAO implements IPlayListDAO {
     }
 
     @Override
-    public void deletePlayList(PlayList playList) throws SQLException {
+    public void deletePlayList(PlayList playList) throws Exception {
         deleteSongFromSong_PlayList(playList);
         String sql = "DELETE FROM playlists WHERE Name =?";
         try (Connection connection = databaseConnector.getConnection()) {
@@ -51,7 +51,7 @@ public class PlayListsDAO implements IPlayListDAO {
     }
 
     @Override
-    public List<PlayList> getAllPlayLists() throws SQLException {
+    public List<PlayList> getAllPlayLists() throws Exception {
         List<PlayList> allPlayLists = new ArrayList<>();
         String sql = "SELECT * FROM playlists";
         try (Connection connection = databaseConnector.getConnection()) {
@@ -71,7 +71,7 @@ public class PlayListsDAO implements IPlayListDAO {
     }
 
     @Override
-    public PlayList getPlayListById(int id) throws SQLException {
+    public PlayList getPlayListById(int id) throws Exception {
             PlayList playList= null;
             String sql= "SELECT *  FROM playlists WHERE Id=?";
             try (Connection connection = databaseConnector.getConnection()){
@@ -90,7 +90,7 @@ public class PlayListsDAO implements IPlayListDAO {
         }
 
 
-    private boolean playListNameTakenAlready(String name)throws SQLException{
+    private boolean playListNameTakenAlready(String name)throws Exception{
         String sql ="SELECT * FROM playlists WHERE Name= ?";
         try (Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -100,7 +100,7 @@ public class PlayListsDAO implements IPlayListDAO {
             return resultSet.next();
         }
     }
-    public void updatePlayList(PlayList playList,int song, int time) throws SQLException{
+    public void updatePlayList(PlayList playList,int song, int time) throws Exception{
         String sql = "UPDATE playlists SET Songs=?,Time=? WHERE Id = ?";
         try (Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -110,7 +110,7 @@ public class PlayListsDAO implements IPlayListDAO {
             preparedStatement.executeUpdate();
         }
     }
-    private void deleteSongFromSong_PlayList(PlayList playList) throws SQLException{
+    private void deleteSongFromSong_PlayList(PlayList playList) throws Exception{
         String sql ="DELETE FROM song_playlist WHERE [PlayList Id]=?";
         try (Connection connection  = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);

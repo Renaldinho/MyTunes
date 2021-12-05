@@ -40,9 +40,12 @@ public class Joins {
     public String toString() {
         String toString= null;
         try {
-            toString=   songDAO.getSongById(songId,artistsDAO,categoriesDAO)+" "+ playListsDAO.getPlayListById(playListId);
+            toString = songDAO.getSongById(songId,artistsDAO,categoriesDAO)+" "+ playListsDAO.getPlayListById(playListId);
         } catch (SQLException e) {
             e.printStackTrace();
-        }return toString;
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+        return toString;
     }
 }

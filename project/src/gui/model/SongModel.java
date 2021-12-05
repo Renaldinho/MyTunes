@@ -2,6 +2,7 @@ package gui.model;
 
 import be.Song;
 import bll.MyTunesManager;
+import bll.exceptions.SongException;
 import dal.dao.ArtistsDAO;
 import dal.dao.CategoriesDAO;
 import dal.dao.SongDAO;
@@ -27,7 +28,7 @@ public class SongModel {
         mainModel=new MainModel();
     }
 
-    public void createSong(String title, String artist, String songCategory, String time, String filePath) throws SQLException {
+    public void createSong(String title, String artist, String songCategory, String time, String filePath) throws SongException {
         Song song = manager.createSong(title,artist,songCategory,filePath,artistsDAO,categoriesDAO,time);
         mainModel.getAllSongs().add(song);
 
