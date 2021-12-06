@@ -60,7 +60,7 @@ public class CategoriesDAO implements ICategoriesDAO {
      * If a category only belongs to one song that we want to delete, we just clear it from database.
      */
 
-    public int categoryOccurrences(Category category) throws SQLException {
+    /*public int categoryOccurrences(Category category) throws SQLException {
         int occurrences = 0;
         String sql = "SELECT *  FROM songs WHERE Category = ?";
         try (Connection connection = databaseConnector.getConnection()) {
@@ -73,7 +73,7 @@ public class CategoriesDAO implements ICategoriesDAO {
             }
         }
         return occurrences;
-    }
+    }*/
 
     @Override
     public Category getCategoryById(int categoryId) throws SQLException {

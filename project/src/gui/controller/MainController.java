@@ -92,13 +92,12 @@ public class MainController implements Initializable {
     public TableColumn<Song, String> titleColumn;
     public TableColumn<Song, String> artistColumn;
     public TableColumn<Song, String> categoryColumn;
-    public TableColumn<Song, Integer> timeColumn;
+    public TableColumn<Song, String> timeColumn;
     public TableColumn  <PlayList, String> nameColumn;
-    public TableColumn<PlayList, String> songsColumn;
+    public TableColumn<PlayList, Integer> songsColumn;
     public TableColumn<PlayList, String> totalTimeColumn;
 
 
-    //ObservableList<Song> so = FXCollections.observableArrayList();
 
     SongDAO songDAO = new SongDAO();
     ArtistsDAO artistsDAO = new ArtistsDAO();
@@ -170,8 +169,8 @@ public class MainController implements Initializable {
     }
     public void updatePlayListTableView() {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        timeColumn.setCellValueFactory(new PropertyValueFactory<>("Time"));
-        songsColumn.setCellValueFactory(new PropertyValueFactory<>("Song"));
+        timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
+        songsColumn.setCellValueFactory(new PropertyValueFactory<>("songs"));
         try {
             lstPlayLists.setItems(mainModel.getAllPlayLists());
         } catch (SQLException e) {
@@ -197,11 +196,66 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
     }
+    /*public void updateAllSongsForSelectedPlayList(){
+        lstPlayLists.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                PlayList playList = (PlayList) newValue;
+                setPlayList(playList);
+                try {
+                    songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }catch (NullPointerException e){
+                    songsOnPlayList.getItems().clear();
+                }
+            }
+        });
+    }*/
+
+    private void getSelectedSong(){
+        songTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                Song song = (Song) newValue;
+                setSong(song);
+            }});
+    }
+    private void getSelectedPlayList(){
+        lstPlayLists.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                PlayList playList = (PlayList) newValue;
+                setPlayList(playList);
+                try {
+                    songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }catch (NullPointerException e){
+                }
+            }
+        });
+
+    }
+    private void getSelectedJoin(){
+        songsOnPlayList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                Joins joins = (Joins) newValue;
+                setJoins(joins);
+            }
+        });
+
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         updateSongTableView();
         updatePlayListTableView();
-        //DatabaseConnector connectNow = new DatabaseConnector();
+       // updateAllSongsForSelectedPlayList();
+        getSelectedSong();
+        getSelectedPlayList();
+        getSelectedJoin();
 
 
 
@@ -247,42 +301,6 @@ public class MainController implements Initializable {
         // 5. Add sorted (and filtered) data to the table.
         songTable.setItems(sortedData);
 
-
-
-        lstPlayLists.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                 PlayList playList = (PlayList) newValue;
-                 setPlayList(playList);
-                try {
-                    songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }catch (NullPointerException e){
-                    songsOnPlayList.getItems().clear();
-                }
-            }
-        });
-        songTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                Song song = (Song) newValue;
-                setSong(song);
-            }});
-
-
-
-        songsOnPlayList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                Joins joins = (Joins) newValue;
-                setJoins(joins);
-            }
-        });
-
-
-
-
     }
 
     public void moveProgressSlider(MouseEvent mouseEvent) {
@@ -319,34 +337,35 @@ public class MainController implements Initializable {
     }
 
     public void deletePlayList(ActionEvent actionEvent) throws SQLException {
-        PlayList playList =(PlayList)lstPlayLists.getSelectionModel().getSelectedItem();
+        if(playList!=null)
         mainModel.deletePlayList(playList);
-        lstPlayLists.refresh();
     }
 
     public void deleteSongFromPlayList(ActionEvent actionEvent) throws SQLException {
+        if(joins!=null)
         mainModel.deleteSongFromGivenPlayList(joins,playList,playListsDAO,songDAO);
     }
 
     public void deleteSong(ActionEvent actionEvent) throws SQLException {
-        Song song = (Song)  songTable.getSelectionModel().getSelectedItem();
+        if(song!=null)
         mainModel.deleteSong(song, joinsDAO,artistsDAO,categoriesDAO);
-
 
     }
 
     public void moveSongUp(ActionEvent actionEvent) throws SQLException {
+        if(joins!=null)
         mainModel.moveSongUp(joins,playListsDAO);
     }
 
     public void moveSongDown(ActionEvent actionEvent) throws SQLException {
-        mainModel.moveSongDown(joins,playListsDAO);
+        if(joins!=null)
+        mainModel.moveSongDown(joins,playListsDAO,playList);
     }
 
 
 
     public void moveSongToPlayList(ActionEvent actionEvent) throws SQLException {
-
+        if((playList!=null)&&(song!=null))
         mainModel.addSongToGivenPlayList(song,playList);
     }
 }

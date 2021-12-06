@@ -36,7 +36,6 @@ public class Joins {
         this.songId=songId;
     }
 
-    @Override
     public String toString() {
         String toString= null;
         try {

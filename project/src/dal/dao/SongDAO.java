@@ -28,7 +28,7 @@ public class SongDAO implements ISongDAO {
                 String artist = artistsDAO.getArtistById(artistId).getName();
                 int categoryId = resultSet.getInt("Category");
                 String category = categoriesDAO.getCategoryById(categoryId).getCategoryName();
-                int time = resultSet.getInt("Time");
+                String time = resultSet.getString("Time");
                 String title = resultSet.getString("Title");
                 int id = resultSet.getInt("Id");
                 String filePath = resultSet.getString("Path");
@@ -64,7 +64,7 @@ public class SongDAO implements ISongDAO {
                 id = resultSet.getInt(1);
             }
             if (created != 0) {
-                song = new Song(id, title, artist, category,0, filePath);
+                song = new Song(id, title, artist, category,time, filePath);
             }
         }}
         return song;
@@ -83,11 +83,11 @@ public class SongDAO implements ISongDAO {
             preparedStatement.executeUpdate();
         }
         //delete artist if he only has one song that was deleted
-        if (artistsDAO.artistOccurrences(artistsDAO.getArtistById(artistsId)) ==0)
-            artistsDAO.deleteArtist(artistsDAO.getArtistById(artistsId));
+        //if (artistsDAO.artistOccurrences(artistsDAO.getArtistById(artistsId)) ==0)
+         //   artistsDAO.deleteArtist(artistsDAO.getArtistById(artistsId));
         //delete category if it only belongs to one song that was deleted
-        if (categoriesDAO.categoryOccurrences(categoriesDAO.getCategoryById(categoryId)) ==0)
-             categoriesDAO.deleteCategory(categoriesDAO.getCategoryById(categoryId));
+        //if (categoriesDAO.categoryOccurrences(categoriesDAO.getCategoryById(categoryId)) ==0)
+          //   categoriesDAO.deleteCategory(categoriesDAO.getCategoryById(categoryId));
     }
 
     @Override
@@ -112,10 +112,10 @@ public class SongDAO implements ISongDAO {
         }
         //check if the old artist still have one song at least in the list otherwise clear it.
         //same goes for category
-        if (artistsDAO.artistOccurrences(artistsDAO.getArtistById(oldArtistsId)) ==0)
-            artistsDAO.deleteArtist(artistsDAO.getArtistById(oldArtistsId));
-        if (categoriesDAO.categoryOccurrences(categoriesDAO.getCategoryById(oldCategoryId)) ==0)
-            categoriesDAO.deleteCategory(categoriesDAO.getCategoryById(oldCategoryId));
+       // if (artistsDAO.artistOccurrences(artistsDAO.getArtistById(oldArtistsId)) ==0)
+       //     artistsDAO.deleteArtist(artistsDAO.getArtistById(oldArtistsId));
+       // if (categoriesDAO.categoryOccurrences(categoriesDAO.getCategoryById(oldCategoryId)) ==0)
+          //  categoriesDAO.deleteCategory(categoriesDAO.getCategoryById(oldCategoryId));
     }
 
 
@@ -162,7 +162,7 @@ public class SongDAO implements ISongDAO {
                 String title = resultSet.getString("Title");
                 int artistId = resultSet.getInt("Artist");
                 int categoryId = resultSet.getInt("Category");
-                int time = resultSet.getInt("Time");
+                String time = resultSet.getString("Time");
                 String path = resultSet.getString("Path");
                 song = new Song(id,title,artistsDAO.getArtistById(artistId).getName(),categoriesDAO.getCategoryById(categoryId).getCategoryName(),time,path);
             }

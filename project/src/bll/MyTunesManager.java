@@ -84,5 +84,8 @@ public class MyTunesManager implements OwsLogicFacade {
     public void updateSong(String title, Song song, String newArtist, String newCategory, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
     songDAO.updateSong(title,song,newArtist,newCategory,artistsDAO,categoriesDAO);
     }
+    public Joins createJoins(Song song,PlayList playList,PlayListsDAO playListsDAO) throws SQLException {
+        return joinsDAO.createJoin(song,playList,playListDAO);
+    }
 
 }

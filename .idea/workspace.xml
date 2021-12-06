@@ -6,13 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/PlaylistController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/PlaylistController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/model/MainModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/GUI/model/MainModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/bll/MyTunesManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/bll/MyTunesManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/be/Joins.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/be/Joins.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/be/PlayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/be/PlayList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/be/Song.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/be/Song.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/bll/MyTunesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/bll/MyTunesManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/ArtistsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/ArtistsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/CategoriesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/CategoriesDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/JoinsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/JoinsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/PlayListsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/PlayListsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/SongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/SongDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/gui/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/gui/controller/PlaylistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/PlaylistController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/gui/controller/SongController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/SongController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/model/MainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/model/MainModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,14 +208,40 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/project/src/gui/controller/MainController.java</url>
-          <line>338</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/project/src/dal/TestClass.java</url>
           <line>37</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/project/src/gui/controller/MainController.java</url>
+          <line>345</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/project/src/gui/model/MainModel.java</url>
+          <line>82</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/project/src/gui/controller/MainController.java</url>
+          <line>368</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/project/src/dal/dao/JoinsDAO.java</url>
+          <line>111</line>
+          <properties class="dal.dao.JoinsDAO" method="moveSongUp">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/project/src/gui/controller/MainController.java</url>
+          <line>169</line>
+          <properties class="gui.controller.MainController" method="updatePlayListTableView">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

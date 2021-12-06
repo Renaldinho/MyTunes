@@ -23,16 +23,16 @@ public class PlayListsDAO implements IPlayListDAO {
         if (playListNameTakenAlready(name)){
             System.out.println("This name already exists. Please find another one for your new playlist or delete the old one.");
         }
-      {   try (Connection connection = databaseConnector.getConnection()) {
+        else {   try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, name);
             preparedStatement.setInt(2,0);
-            preparedStatement.setInt(3,0);
+            preparedStatement.setString(3,"00:00:00");
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             while (resultSet.next()) {
                 int id = resultSet.getInt(1);
-                playList = new PlayList(id, name,0,0);
+                playList = new PlayList(id, name,0,"00:00:00");
             }
      }
         }
@@ -62,7 +62,7 @@ public class PlayListsDAO implements IPlayListDAO {
                 int id = resultSet.getInt(1);
                 String name = resultSet.getString(2);
                 int songs= resultSet.getInt(3);
-                int time = resultSet.getInt(4);
+                String time = resultSet.getString(4);
                 PlayList playList = new PlayList(id, name,songs,time);
                 allPlayLists.add(playList);
             }
@@ -82,7 +82,7 @@ public class PlayListsDAO implements IPlayListDAO {
                 if(resultSet.next()){
                     String name = resultSet.getString("Name");
                     int songs= resultSet.getInt(3);
-                    int time = resultSet.getInt(4);
+                    String time = resultSet.getString(4);
                     playList=new PlayList(id,name,songs,time);}
 
             }
@@ -100,12 +100,12 @@ public class PlayListsDAO implements IPlayListDAO {
             return resultSet.next();
         }
     }
-    public void updatePlayList(PlayList playList,int song, int time) throws SQLException{
+    public void updatePlayList(PlayList playList,int song, String time) throws SQLException{
         String sql = "UPDATE playlists SET Songs=?,Time=? WHERE Id = ?";
         try (Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1,song);
-            preparedStatement.setInt(2,time);
+            preparedStatement.setString(2,time);
             preparedStatement.setInt(3,playList.getId());
             preparedStatement.executeUpdate();
         }

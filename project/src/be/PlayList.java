@@ -1,10 +1,15 @@
 package be;
 
 public class PlayList {
-    int id;
+    int id,songs;
     String name;
-    int songs,time;
-    public PlayList(int id, String name, int songs, int time) {
+
+    public void setSongs(int songs) {
+        this.songs = songs;
+    }
+
+    String time;
+    public PlayList(int id, String name, int songs, String time) {
     this.id=id;
     this.name=name;
     this.songs=songs;
@@ -23,17 +28,9 @@ public class PlayList {
         return songs;
     }
 
-    public int getTime() {
+    public String getTime() {
         return time;
     }
 
-    @Override
-    public String toString() {
-        return "PlayList{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", songs=" + songs +
-                ", time=" + time +
-                '}';
-    }
+
 }
