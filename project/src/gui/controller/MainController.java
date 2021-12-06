@@ -50,6 +50,8 @@ public class MainController implements Initializable {
     @FXML
     public TableColumn<PlayList, String> totalTimeColumn;
     @FXML
+    private Label currentSongLabel;
+    @FXML
     private ListView<Song> songsOnPlayList;
     @FXML
     private TableView<PlayList> lstPlayLists;
@@ -254,6 +256,7 @@ public class MainController implements Initializable {
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 Song song = (Song) newValue;
                 setSong(song);
+                currentSongLabel.setText(song.getTitle());
             }});
 
 
