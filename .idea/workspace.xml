@@ -13,8 +13,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Interface" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -126,7 +126,7 @@
       <workItem from="1638524972005" duration="689000" />
       <workItem from="1638531855698" duration="3416000" />
       <workItem from="1638717719881" duration="11699000" />
-      <workItem from="1638787337876" duration="1833000" />
+      <workItem from="1638787337876" duration="6215000" />
     </task>
     <task id="LOCAL-00001" summary="dal 95% done still few more tests to be done">
       <created>1638404507856</created>

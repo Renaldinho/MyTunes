@@ -335,4 +335,17 @@ public class MainController implements Initializable {
 
         mainModel.addSongToGivenPlayList(song,playList);
     }
+
+    public void handleEditSong(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/editSong.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Edit a song");
+        stage.setScene(new Scene(root));
+        //Get controller for the song editing window to access methods on it
+        SongEditController songEditController = loader.getController();
+        songEditController.fillFields(song);
+
+        stage.show();
+    }
 }
