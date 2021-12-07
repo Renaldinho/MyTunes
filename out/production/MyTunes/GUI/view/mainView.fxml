@@ -10,16 +10,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="548.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainController">
+<AnchorPane fx:id="anchorPane" prefHeight="548.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainController">
     <children>
-        <Button layoutX="134.0" layoutY="484.0" mnemonicParsing="false" onAction="#deletePlayList" text="Delete" />
-        <Button layoutX="351.0" layoutY="485.0" mnemonicParsing="false" onAction="#deleteSongFromPlayList" text="Delete" />
-        <Button layoutX="547.0" layoutY="485.0" mnemonicParsing="false" text="Edit" />
-        <Button layoutX="612.0" layoutY="484.0" mnemonicParsing="false" onAction="#deleteSong" text="Delete" />
-        <Button fx:id="logoutButton" layoutX="737.0" layoutY="484.0" mnemonicParsing="false" onAction="#logout" text="Close" />
-        <Button layoutX="227.0" layoutY="485.0" mnemonicParsing="false" onAction="#moveSongUp" text="Up" />
-        <Button layoutX="287.0" layoutY="485.0" mnemonicParsing="false" onAction="#moveSongDown" text="Down" />
-        <Button layoutX="435.0" layoutY="112.0" mnemonicParsing="false" onAction="#moveSongToPlayList" text="Back" />
+        <Button layoutX="134.0" layoutY="484.0" mnemonicParsing="false" onAction="#deletePlayList" style="-fx-background-radius: 100;" text="Delete" />
+        <Button layoutX="351.0" layoutY="485.0" mnemonicParsing="false" onAction="#deleteSongFromPlayList" style="-fx-background-radius: 100;" text="Delete" />
+        <Button layoutX="547.0" layoutY="485.0" mnemonicParsing="false" onAction="#handleEditSong" style="-fx-background-radius: 100;" text="Edit" />
+        <Button layoutX="612.0" layoutY="484.0" mnemonicParsing="false" onAction="#deleteSong" style="-fx-background-radius: 100;" text="Delete" />
+        <Button fx:id="logoutButton" layoutX="741.0" layoutY="484.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-radius: 100;" text="Close" />
+        <Button layoutX="227.0" layoutY="485.0" mnemonicParsing="false" onAction="#moveSongUp" style="-fx-background-radius: 100;" text="Up" />
+        <Button layoutX="287.0" layoutY="485.0" mnemonicParsing="false" onAction="#moveSongDown" style="-fx-background-radius: 100;" text="Down" />
+        <Button layoutX="421.0" layoutY="122.0" mnemonicParsing="false" onAction="#moveSongToPlayList" style="-fx-background-radius: 100;" text="Add" />
         <TextField fx:id="keywordTextField" layoutX="528.0" layoutY="50.0" onKeyPressed="#textFieldAction" prefHeight="26.0" prefWidth="200.0" />
         <Button fx:id="searchCleanButton" layoutX="737.0" layoutY="50.0" mnemonicParsing="false" onAction="#cleanFilter" text="Search" />
         <TableView fx:id="lstPlayLists" layoutX="13.0" layoutY="108.0" prefHeight="362.0" prefWidth="175.0">
@@ -44,22 +44,22 @@
             </columnResizePolicy>
         </TableView>
         <ListView fx:id="songsOnPlayList" layoutX="227.0" layoutY="106.0" prefHeight="362.0" prefWidth="175.0" />
-        <Button layoutX="22.0" layoutY="16.0" mnemonicParsing="false" text="Back" />
-        <Button fx:id="playBtn" layoutX="86.0" layoutY="16.0" mnemonicParsing="false" onAction="#handlePlayBtn" text="Play" />
-        <Button layoutX="149.0" layoutY="16.0" mnemonicParsing="false" text="Next" />
+        <Button layoutX="54.0" layoutY="18.0" mnemonicParsing="false" prefHeight="26.0" style="-fx-background-radius: 100;" text="⏪" />
+        <Button fx:id="playBtn" layoutX="93.0" layoutY="18.0" mnemonicParsing="false" onAction="#handlePlayBtn" prefHeight="26.0" prefWidth="28.0" style="-fx-background-radius: 100;" text="▶" />
+        <Button layoutX="134.0" layoutY="18.0" maxHeight="26.0" mnemonicParsing="false" style="-fx-background-radius: 100;" text="⏩" />
         <Slider fx:id="progressSlider" blockIncrement="1.0E-7" layoutX="22.0" layoutY="51.0" max="1.0" onMousePressed="#moveProgressSlider" onMouseReleased="#setProgress" prefHeight="24.0" prefWidth="182.0" />
         <Label layoutX="13.0" layoutY="91.0" text="Playlist" />
         <Label layoutX="227.0" layoutY="91.0" text="Song on playlist " />
         <Label layoutX="479.0" layoutY="91.0" text="Songs" />
-        <Label layoutX="316.0" layoutY="16.0" text="Music that is playing">
+        <Label fx:id="currentSongLabel" layoutX="316.0" layoutY="16.0" text="Music that is playing">
             <font>
                 <Font size="20.0" />
             </font>
         </Label>
         <Label layoutX="620.0" layoutY="31.0" text="Filter" />
-        <Button layoutX="14.0" layoutY="484.0" mnemonicParsing="false" onAction="#newPlayList" text="New" />
-        <Button layoutX="480.0" layoutY="484.0" mnemonicParsing="false" onAction="#newSong" text="New" />
-        <Button fx:id="stopBtn" disable="true" layoutX="84.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleStopBtn" opacity="0.0" text="Stop" />
+        <Button layoutX="14.0" layoutY="484.0" mnemonicParsing="false" onAction="#newPlayList" style="-fx-background-radius: 100;" text="New" />
+        <Button layoutX="480.0" layoutY="484.0" mnemonicParsing="false" onAction="#newSong" style="-fx-background-radius: 100;" text="New" />
+        <Button fx:id="stopBtn" disable="true" layoutX="93.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleStopBtn" opacity="0.0" prefHeight="26.0" style="-fx-background-radius: 100;" text="⏸" />
         <Slider fx:id="volumeSlider" blockIncrement="1.0E-4" layoutX="204.0" layoutY="8.0" max="1.0" orientation="VERTICAL" prefHeight="66.0" prefWidth="9.0" value="0.5" />
     </children>
 </AnchorPane>

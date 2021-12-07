@@ -211,7 +211,7 @@ public class JoinsDAO implements IJoins {
         totalSeconds %= 60;
         totalHours += totalMinutes/60;
         totalMinutes %= 60;
-        
+
         return String.format("%d:%02d:%02d",totalHours,totalMinutes,totalSeconds);
     }
 
