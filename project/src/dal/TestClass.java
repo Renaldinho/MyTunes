@@ -9,13 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestClass {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws Exception {
         List<Song>allSongsFromGivenPlaylist = new ArrayList<>();
         SongDAO songDAO = new SongDAO();
         ArtistsDAO artistsDAO = new ArtistsDAO();
         CategoriesDAO categoriesDAO = new CategoriesDAO();
         JoinsDAO joinsDAO = new JoinsDAO();
         PlayListsDAO playListsDAO = new PlayListsDAO();
+        String time1 = playListsDAO.getPlayListById(14).getTime();
+        String time2 = songDAO.getSongById(3,artistsDAO,categoriesDAO).getTime();
+        System.out.println(joinsDAO.addTime(time1,time2));
         //song_playListDAO.addSongToPlayList(songDAO.getSongById(67,artistsDAO,categoriesDAO), playListsDAO.getPlayListById(19),playListsDAO );
        //songDAO.createSong("hojo","loulou","hih","vejo",artistsDAO,categoriesDAO,"02");
         //playListsDAO.createPlayList("hihi");

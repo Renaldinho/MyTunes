@@ -5,10 +5,10 @@ public class Song {
     private String title;
     private String artist;
     private String category;
-    private int time;
+    private String time;
     private String filePath;
 
-    public Song(int id,String title, String artist, String category, int time, String filePath){
+    public Song(int id,String title, String artist, String category, String time, String filePath){
         this.id = id;
         this.title = title;
         this.artist = artist;
@@ -46,11 +46,11 @@ public class Song {
         this.category = category;
     }
 
-    public int getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(int time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

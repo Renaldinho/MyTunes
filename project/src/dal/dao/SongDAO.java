@@ -28,7 +28,7 @@ public class SongDAO implements ISongDAO {
                 String artist = artistsDAO.getArtistById(artistId).getName();
                 int categoryId = resultSet.getInt("Category");
                 String category = categoriesDAO.getCategoryById(categoryId).getCategoryName();
-                int time = resultSet.getInt("Time");
+                String time = resultSet.getString("Time");
                 String title = resultSet.getString("Title");
                 int id = resultSet.getInt("Id");
                 String filePath = resultSet.getString("Path");
@@ -64,7 +64,7 @@ public class SongDAO implements ISongDAO {
                 id = resultSet.getInt(1);
             }
             if (created != 0) {
-                song = new Song(id, title, artist, category,0, filePath);
+                song = new Song(id, title, artist, category,"", filePath);
             }
         }}
         return song;
@@ -162,7 +162,7 @@ public class SongDAO implements ISongDAO {
                 String title = resultSet.getString("Title");
                 int artistId = resultSet.getInt("Artist");
                 int categoryId = resultSet.getInt("Category");
-                int time = resultSet.getInt("Time");
+                String time = resultSet.getString("Time");
                 String path = resultSet.getString("Path");
                 song = new Song(id,title,artistsDAO.getArtistById(artistId).getName(),categoriesDAO.getCategoryById(categoryId).getCategoryName(),time,path);
             }

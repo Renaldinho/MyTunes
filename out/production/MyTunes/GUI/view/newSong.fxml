@@ -10,7 +10,7 @@
 <AnchorPane prefHeight="343.0" prefWidth="364.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.SongController">
     <children>
         <Button layoutX="282.0" layoutY="119.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="56.0" text="More" />
-        <Button layoutX="282.0" layoutY="294.0" mnemonicParsing="false" onAction="#handleSaveNewSong" prefHeight="26.0" prefWidth="56.0" text="Edit" />
+        <Button layoutX="282.0" layoutY="294.0" mnemonicParsing="false" onAction="#handleSaveNewSong" prefHeight="26.0" prefWidth="56.0" text="Save" />
         <Button fx:id="cancelSongBtn" layoutX="209.0" layoutY="294.0" mnemonicParsing="false" onAction="#handleCancelSongBtn" prefHeight="26.0" prefWidth="56.0" text="Cancel" />
         <Button layoutX="282.0" layoutY="167.0" mnemonicParsing="false" onAction="#handleChooseFile" text="Choose" />
         <Label layoutX="20.0" layoutY="31.0" text="Title" />

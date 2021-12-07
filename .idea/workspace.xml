@@ -128,6 +128,7 @@
       <workItem from="1638531855698" duration="3416000" />
       <workItem from="1638717719881" duration="11699000" />
       <workItem from="1638787337876" duration="6922000" />
+      <workItem from="1638868114136" duration="7723000" />
     </task>
     <task id="LOCAL-00001" summary="dal 95% done still few more tests to be done">
       <created>1638404507856</created>
@@ -187,8 +188,16 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/project/src/dal/TestClass.java</url>
-          <line>37</line>
+          <line>40</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/project/src/dal/dao/JoinsDAO.java</url>
+          <line>23</line>
+          <properties class="dal.dao.JoinsDAO" method="createJoin">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

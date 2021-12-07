@@ -101,6 +101,7 @@ public class MainController implements Initializable {
         this.joins = joins;
     }
 
+
     Joins joins;
     Stage stage;
     PlayList playList;
@@ -117,6 +118,8 @@ public class MainController implements Initializable {
 
 
     public MainController(){
+
+
 
         mainModel=new MainModel();
 
@@ -172,7 +175,7 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        timeColumn.setCellValueFactory(new PropertyValueFactory<>("Time"));
+        timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
         songsColumn.setCellValueFactory(new PropertyValueFactory<>("Song"));
         try {
             lstPlayLists.setItems(mainModel.getAllPlayLists());

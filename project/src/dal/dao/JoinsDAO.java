@@ -32,10 +32,39 @@ public class JoinsDAO implements IJoins {
             preparedStatement.executeUpdate();
             joins = new Joins(song.getId(),playList.getId(),lastRank(playList) + 1);
 
-            playListsDAO.updatePlayList(playList,playList.getSong()+1,playList.getTime()+song.getTime());
+            playListsDAO.updatePlayList(playList,playList.getSong()+1,addTime(playList.getTime(),song.getTime()));
+
 
         }
         return joins;
+    }
+
+    //adds current time lenght of playlist with the length of the song being added to platlist
+    public String addTime(String time, String time1) {
+        int playlistHours,songHours,newPlaylistHours;
+        int playlistMinutes,songMinutes,newPlaylistMinutes;
+        int playlistSeconds,songSeconds,newPlaylistSeconds;
+
+            playlistHours = Integer.parseInt(time.split(":")[0]);
+            playlistMinutes = Integer.parseInt(time.split(":")[1]);
+            playlistSeconds = Integer.parseInt(time.split(":")[2]);
+
+        //System.out.println(playlistHours + "\n" + playlistMinutes + "\n" + playlistSeconds);
+
+            songHours = Integer.parseInt(time1.split(":")[0]);
+            songMinutes = Integer.parseInt(time1.split(":")[1]);
+            songSeconds = Integer.parseInt(time1.split(":")[2]);
+
+        //System.out.println(songHours + "\n" + songMinutes + "\n" + songSeconds);
+
+            newPlaylistHours = playlistHours + songHours;
+            newPlaylistMinutes = playlistMinutes + songMinutes;
+            newPlaylistSeconds = playlistSeconds + songSeconds;
+
+        //System.out.println(newPlaylistHours+":"+newPlaylistMinutes+":"+newPlaylistSeconds);
+            return newPlaylistHours+":"+newPlaylistMinutes+":"+newPlaylistSeconds;
+
+
     }
 
     /**

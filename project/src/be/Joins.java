@@ -14,6 +14,7 @@ public class Joins {
  SongDAO songDAO = new SongDAO();
  ArtistsDAO artistsDAO = new ArtistsDAO();
  CategoriesDAO categoriesDAO = new CategoriesDAO();
+
     public int getSongId() {
         return songId;
     }
