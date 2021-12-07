@@ -4,25 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="...">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/MainController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/MainController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/SongController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/SongController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/model/MainModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/GUI/model/MainModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/be/PlayList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/be/PlayList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/be/Song.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/be/Song.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/ArtistsDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/ArtistsDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/CategoriesDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/CategoriesDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/PlayListsDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/PlayListsDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/SongDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/SongDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/be/PlayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/be/PlayList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/be/Song.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/be/Song.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/dal/TestClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/TestClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/JoinsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/JoinsDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/gui/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/gui/model/MainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/model/MainModel.java" afterDir="false" />
-    </list>
+    <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="..." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,10 +60,11 @@
       <recent name="C:\Users\Bruger\Documents\GitHub\MyTunes\project\src\gui" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Bruger\Documents\GitHub\MyTunes\project" />
       <recent name="C:\Users\Bruger\Documents\GitHub\MyTunes\project\src\gui\view" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.TestClass">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="DatabaseConnector" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dal.db.DatabaseConnector" />
       <module name="MyTunes" />
@@ -117,8 +100,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TestClass" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.TestClass" />
         <item itemvalue="Application.DatabaseConnector" />
       </list>
     </recent_temporary>
@@ -144,6 +127,7 @@
       <workItem from="1638524972005" duration="689000" />
       <workItem from="1638531855698" duration="3416000" />
       <workItem from="1638713707606" duration="2366000" />
+      <workItem from="1638887420002" duration="966000" />
     </task>
     <task id="LOCAL-00001" summary="dal 95% done still few more tests to be done">
       <created>1638404507856</created>

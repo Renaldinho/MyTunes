@@ -32,7 +32,7 @@ public class JoinsDAO implements IJoins {
             preparedStatement.executeUpdate();
             joins = new Joins(song.getId(),playList.getId(),lastRank(playList) + 1);
             playList.setSongs(playList.getSong()+1);
-            playListsDAO.updatePlayList(playList,playList.getSong(),playList.getTime()+song.getTime());
+            playListsDAO.updatePlayList(playList,playList.getSong(),calculateTime(getAllJoinsPlayList(playList)));
 
         }
         return joins;
@@ -69,7 +69,7 @@ public class JoinsDAO implements IJoins {
             fillRankGap(playList,joins);
             //playListsDAO.updatePlayList(playList,playList.getSong()-1,playList.getTime());
             playList.setSongs(playList.getSong()-1);
-            playListsDAO.updatePlayList(playList,playList.getSong(),playList.getTime());
+            playListsDAO.updatePlayList(playList,playList.getSong(),calculateTime(getAllJoinsPlayList(playList)));
         }
     }
 
@@ -191,6 +191,28 @@ public class JoinsDAO implements IJoins {
             }
         }
 
+    }
+
+    private String calculateTime(List<Joins> allJoinsPlayList) {
+        int totalHours = 0,totalMinutes = 0,totalSeconds = 0;
+        SongDAO songDAO = new SongDAO();
+
+        for(Joins join: allJoinsPlayList){
+            try {
+                Song song = songDAO.getSongById(join.getSongId(),new ArtistsDAO(),new CategoriesDAO());
+                totalHours += Integer.parseInt(song.getTime().split(":")[0]);
+                totalMinutes += Integer.parseInt(song.getTime().split(":")[1]);
+                totalSeconds += Integer.parseInt(song.getTime().split(":")[2]);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        totalMinutes += totalSeconds/60;
+        totalSeconds %= 60;
+        totalHours += totalMinutes/60;
+        totalMinutes %= 60;
+        
+        return String.format("%d:%02d:%02d",totalHours,totalMinutes,totalSeconds);
     }
 
 }
