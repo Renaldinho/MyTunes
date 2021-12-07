@@ -66,6 +66,7 @@ public class JoinsDAO implements IJoins {
             preparedStatement.setInt(2, joins.getPlayListId());
             preparedStatement.setInt(3, joins.getRank());
             preparedStatement.executeUpdate();
+            fillRankGap(playList,joins);
             //playListsDAO.updatePlayList(playList,playList.getSong()-1,playList.getTime());
             playList.setSongs(playList.getSong()-1);
             playListsDAO.updatePlayList(playList,playList.getSong(),playList.getTime());
@@ -171,5 +172,25 @@ public class JoinsDAO implements IJoins {
         }
         return ranking;
     }*/
+    public void fillRankGap(PlayList playList,Joins joins)throws SQLException{
+        String sql = "UPDATE song_playlist SET RANK = ? WHERE [PlayList Id]=? AND RANK>?";
+        String sql0= "SELECT * FROM song_playlist WHERE [PlayList Id]=? AND RANK>? ";
+        try (Connection connection = databaseConnector.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql0);
+            preparedStatement.setInt(1,playList.getId());
+            preparedStatement.setInt(2,joins.getRank());
+            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getResultSet();
+            while (resultSet.next()){
+                int rank = resultSet.getInt(3);
+                PreparedStatement preparedStatement1 = connection.prepareStatement(sql);
+                preparedStatement1.setInt(1,rank-1);
+                preparedStatement1.setInt(2,playList.getId());
+                preparedStatement1.setInt(3,joins.getRank());
+                preparedStatement1.executeUpdate();
+            }
+        }
+
+    }
 
 }

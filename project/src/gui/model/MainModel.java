@@ -81,5 +81,6 @@ public class MainModel {
 
     public void addSongToGivenPlayList(Song song, PlayList playList) throws SQLException {
         allSongsForGivenPlayList.add(manager.createJoins(song,playList,playListsDAO));
+
     }
 }

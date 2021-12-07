@@ -169,8 +169,8 @@ public class MainController implements Initializable {
     }
     public void updatePlayListTableView() {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
-        songsColumn.setCellValueFactory(new PropertyValueFactory<>("songs"));
+        totalTimeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
+        songsColumn.setCellValueFactory(new PropertyValueFactory<>("song"));
         try {
             lstPlayLists.setItems(mainModel.getAllPlayLists());
         } catch (SQLException e) {
@@ -251,12 +251,12 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         updateSongTableView();
-        updatePlayListTableView();
+
        // updateAllSongsForSelectedPlayList();
         getSelectedSong();
         getSelectedPlayList();
         getSelectedJoin();
-
+        updatePlayListTableView();
 
 
         // Wrap the ObservableList in a FilteredList (initially display all data).
@@ -353,19 +353,23 @@ public class MainController implements Initializable {
     }
 
     public void moveSongUp(ActionEvent actionEvent) throws SQLException {
-        if(joins!=null)
+        if(joins!=null){
         mainModel.moveSongUp(joins,playListsDAO);
+        getSelectedPlayList();}
     }
 
     public void moveSongDown(ActionEvent actionEvent) throws SQLException {
-        if(joins!=null)
+        if(joins!=null){
         mainModel.moveSongDown(joins,playListsDAO,playList);
+        getSelectedPlayList();}
+
     }
 
 
 
     public void moveSongToPlayList(ActionEvent actionEvent) throws SQLException {
-        if((playList!=null)&&(song!=null))
+        if((playList!=null)&&(song!=null)){
         mainModel.addSongToGivenPlayList(song,playList);
+        updatePlayListTableView();}
     }
 }

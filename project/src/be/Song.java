@@ -1,5 +1,7 @@
 package be;
 
+import javafx.beans.value.ObservableValue;
+
 public class Song {
     private final int id;
     private String title;
@@ -62,4 +64,6 @@ public class Song {
     public String getFilePath() {
         return filePath;
     }
+
+
 }
