@@ -207,12 +207,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/project/src/gui/controller/MainController.java</url>
-          <line>370</line>
+          <line>333</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/project/src/gui/controller/MainController.java</url>
-          <line>396</line>
+          <line>359</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">

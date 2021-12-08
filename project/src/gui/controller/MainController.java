@@ -32,73 +32,25 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class MainController implements Initializable {
+
     @FXML
     private ListView songsOnPlayList;
     @FXML
-    private TableView lstPlayLists;
-    MyTunesManager manager = new MyTunesManager();
-    public PlayList getPlayList() {
-        return playList;
-    }
-
-    public void setPlayList(PlayList playList) {
-        this.playList = playList;
-    }
-
-    public Song getSong() {
-        return song;
-    }
-
-    public void setSong(Song song) {
-        this.song = song;
-    }
-
-    PlayList playList;
-    Song song;
-
-    public Joins getJoins() {
-        return joins;
-    }
-
-    public void setJoins(Joins joins) {
-        this.joins = joins;
-    }
-
-    Joins joins;
-
-    public Slider progressSlider;
-    public SplitMenuButton category;
-    public Button logoutButton;
-    public AnchorPane anchorPane;
-    public TextField keywordTextField;
-    public Button searchCleanButton;
-    MainModel mainModel;
-
-    MediaPlayer player;
-
-    public Button playBtn;
-    public Button stopBtn;
-
-    public Slider volumeSlider;
-
-    ChangeListener<Duration> changeListener;
-    Runnable runnable;
+    private AnchorPane anchorPane;
     @FXML
-    private TableView songTable;
-
-    Stage stage;
-
-
-
-    public TableColumn<Song, String> titleColumn;
-    public TableColumn<Song, String> artistColumn;
-    public TableColumn<Song, String> categoryColumn;
-    public TableColumn<Song, String> timeColumn;
-    public TableColumn  <PlayList, String> nameColumn;
-    public TableColumn<PlayList, Integer> songsColumn;
-    public TableColumn<PlayList, String> totalTimeColumn;
-
-
+    private TextField keywordTextField;
+    @FXML
+    private Button searchCleanButton,playBtn,stopBtn;
+    @FXML
+    private Slider volumeSlider,progressSlider;
+    @FXML
+    private TableView songTable,lstPlayLists;
+    @FXML
+    private TableColumn<Song, String> titleColumn,artistColumn,categoryColumn,timeColumn;
+    @FXML
+    private TableColumn  <PlayList, String> nameColumn,totalTimeColumn;
+    @FXML
+    private TableColumn<PlayList, Integer> songsColumn;
 
     SongDAO songDAO = new SongDAO();
     ArtistsDAO artistsDAO = new ArtistsDAO();
@@ -106,9 +58,20 @@ public class MainController implements Initializable {
     PlayListsDAO playListsDAO =new PlayListsDAO();
     JoinsDAO joinsDAO = new JoinsDAO();
 
+    MainModel mainModel;
+
+    PlayList playList;
+    Song song;
+    Joins joins;
+
+    Stage stage;
+
     int playbackType = 0;
 
+    MediaPlayer player;
 
+    ChangeListener<Duration> changeListener;
+    Runnable runnable;
 
     public MainController(){
 
@@ -409,5 +372,29 @@ public class MainController implements Initializable {
         songEditController.fillFields(song);
 
         stage.show();
+    }
+
+    public PlayList getPlayList() {
+        return playList;
+    }
+
+    public void setPlayList(PlayList playList) {
+        this.playList = playList;
+    }
+
+    public Song getSong() {
+        return song;
+    }
+
+    public void setSong(Song song) {
+        this.song = song;
+    }
+
+    public Joins getJoins() {
+        return joins;
+    }
+
+    public void setJoins(Joins joins) {
+        this.joins = joins;
     }
 }

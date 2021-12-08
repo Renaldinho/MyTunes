@@ -22,7 +22,6 @@ public class MainModel {
     CategoriesDAO categoriesDAO;
     PlayListsDAO playListsDAO;
     SongDAO songDAO;
-    MainController mainController;
 
     public MainModel(){
         manager = new MyTunesManager();
