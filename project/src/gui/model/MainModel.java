@@ -41,8 +41,8 @@ public class MainModel {
         manager.moveSongUp(joins,playListsDAO);
     }
 
-    public void deleteSong(Song song, JoinsDAO joinsDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
-        manager.deleteSong(song, joinsDAO,artistsDAO,categoriesDAO,playListsDAO);
+    public void deleteSong(Song song, JoinsDAO joinsDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO,PlayListsDAO playListsDAO,SongDAO songDAO) throws SQLException {
+        manager.deleteSong(song, joinsDAO,artistsDAO,categoriesDAO,playListsDAO,songDAO);
         allSongs.remove(song);
     }
 

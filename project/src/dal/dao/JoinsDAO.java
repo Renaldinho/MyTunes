@@ -175,6 +175,9 @@ public class JoinsDAO implements IJoins {
     public void fillRankGap(PlayList playList,Joins joins)throws SQLException{
         String sql = "UPDATE song_playlist SET RANK = ? WHERE [PlayList Id]=? AND RANK>?";
         String sql0= "SELECT * FROM song_playlist WHERE [PlayList Id]=? AND RANK>? ";
+        if(joins.getRank()==1){
+        }
+        else {
         try (Connection connection = databaseConnector.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql0);
             preparedStatement.setInt(1,playList.getId());
@@ -189,7 +192,7 @@ public class JoinsDAO implements IJoins {
                 preparedStatement1.setInt(3,joins.getRank());
                 preparedStatement1.executeUpdate();
             }
-        }
+        }}
 
     }
 
@@ -213,6 +216,21 @@ public class JoinsDAO implements IJoins {
         totalMinutes %= 60;
 
         return String.format("%d:%02d:%02d",totalHours,totalMinutes,totalSeconds);
+    }
+    public void deleteAllJoins(Song song,PlayListsDAO playListsDAO,SongDAO songDAO)throws SQLException{
+        String sql0="SELECT * FROM song_playlist WHERE [Song Id]= ?";
+        try (Connection connection = databaseConnector.getConnection()){
+            PreparedStatement preparedStatement= connection.prepareStatement(sql0);
+            preparedStatement.setInt(1,song.getId());
+            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getResultSet();
+            while (resultSet.next()){
+                int playListId = resultSet.getInt("PlayList Id");
+                int rank = resultSet.getInt("Rank");
+                Joins joins = new Joins(song.getId(),playListId,rank);
+                removeJoins(joins,playListsDAO,playListsDAO.getPlayListById(playListId),songDAO);
+            }
+        }
     }
 
 }

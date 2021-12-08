@@ -313,7 +313,8 @@ public class MainController implements Initializable {
 
     public void deleteSong(ActionEvent actionEvent) throws SQLException {
         if(song!=null)
-        mainModel.deleteSong(song, joinsDAO,artistsDAO,categoriesDAO);
+        mainModel.deleteSong(song, joinsDAO,artistsDAO,categoriesDAO,playListsDAO,songDAO);
+        lstPlayLists.setItems(mainModel.getAllPlayLists());
 
     }
 

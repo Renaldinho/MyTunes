@@ -76,8 +76,8 @@ public class MyTunesManager implements OwsLogicFacade {
     }
 
     @Override
-    public void deleteSong(Song song, JoinsDAO joinsDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO,PlayListsDAO playListsDAO) throws SQLException {
-    songDAO.deleteSong(song, joinsDAO,artistsDAO,categoriesDAO);
+    public void deleteSong(Song song, JoinsDAO joinsDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO,PlayListsDAO playListsDAO,SongDAO songDAO) throws SQLException {
+    songDAO.deleteSong(song, joinsDAO,artistsDAO,categoriesDAO,playListsDAO,songDAO);
     }
 
     @Override
