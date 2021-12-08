@@ -82,6 +82,7 @@ public class MainController implements Initializable {
     public Slider volumeSlider;
 
     ChangeListener<Duration> changeListener;
+    Runnable runnable;
     @FXML
     private TableView songTable;
 
@@ -105,11 +106,31 @@ public class MainController implements Initializable {
     PlayListsDAO playListsDAO =new PlayListsDAO();
     JoinsDAO joinsDAO = new JoinsDAO();
 
+    int playbackType = 0;
+
 
 
     public MainController(){
 
         mainModel=new MainModel();
+
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                switch (playbackType){
+                    case 1:
+                        songTable.getSelectionModel().select(songTable.getSelectionModel().getFocusedIndex()+1);
+                    case 2:
+                        songsOnPlayList.getSelectionModel().select(songTable.getSelectionModel().getSelectedIndex()+1);
+                }
+
+                player.play();
+                player.setOnEndOfMedia(runnable);
+                player.currentTimeProperty().addListener(changeListener);
+
+
+            }
+        };
 
         changeListener = new ChangeListener<Duration>() {
             @Override
@@ -157,6 +178,9 @@ public class MainController implements Initializable {
         player.currentTimeProperty().addListener(changeListener);
         player.play();
 
+        player.setOnEndOfMedia(runnable);
+
+
     }
 
     public void handleStopBtn(ActionEvent actionEvent) {
@@ -179,8 +203,9 @@ public class MainController implements Initializable {
         songTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             Song selectedSong = ((Song) newValue);
             player = new MediaPlayer(new Media(selectedSong.getFilePath()));
-
             player.volumeProperty().bind(volumeSlider.valueProperty());
+            playbackType=1;
+
         });
     }
     public void updateSongTableView() {
