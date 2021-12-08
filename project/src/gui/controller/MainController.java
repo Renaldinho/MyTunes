@@ -302,7 +302,10 @@ public class MainController implements Initializable {
     public void deletePlayList(ActionEvent actionEvent) throws SQLException {
         if(playList!=null){
         mainModel.deletePlayList(playList);
-        lstPlayLists.refresh();}
+        lstPlayLists.getSelectionModel().selectPrevious();
+        setPlayList( (PlayList) lstPlayLists.getSelectionModel().getSelectedItem());
+        songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
+        }
     }
 
     public void deleteSongFromPlayList(ActionEvent actionEvent) throws SQLException {
