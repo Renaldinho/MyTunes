@@ -5,6 +5,7 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.dao.ArtistsDAO;
 import dal.dao.CategoriesDAO;
 import dal.dao.JoinsDAO;
+import dal.dao.PlayListsDAO;
 
 import java.sql.SQLException;
 import java.util.List;

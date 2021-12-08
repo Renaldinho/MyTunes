@@ -201,49 +201,24 @@ public class MainController implements Initializable {
         });
     }*/
 
-    private void getSelectedSong(){
-        songTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                Song song = (Song) newValue;
-                setSong(song);
-            }});
-    }
-    private void getSelectedPlayList(){
-        lstPlayLists.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                PlayList playList = (PlayList) newValue;
-                setPlayList(playList);
-                try {
-                    songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }catch (NullPointerException e){
-                }
-            }
-        });
 
+    @FXML
+    private void getSelectedPlayList(MouseEvent event) throws SQLException {
+        setPlayList((PlayList) lstPlayLists.getSelectionModel().selectedItemProperty().get());
+        if(playList!=null)
+        songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
     }
-    private void getSelectedJoin(){
-        songsOnPlayList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                Joins joins = (Joins) newValue;
-                setJoins(joins);
-            }
-        });
 
-    }
+    @FXML
+    private void getSelectedJoin(MouseEvent event){
+                setJoins((Joins)songsOnPlayList.getSelectionModel().selectedItemProperty().get());
+            }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         updateSongTableView();
 
        // updateAllSongsForSelectedPlayList();
-        getSelectedSong();
-        getSelectedPlayList();
-        getSelectedJoin();
         updatePlayListTableView();
 
 
@@ -325,13 +300,15 @@ public class MainController implements Initializable {
     }
 
     public void deletePlayList(ActionEvent actionEvent) throws SQLException {
-        if(playList!=null)
+        if(playList!=null){
         mainModel.deletePlayList(playList);
+        lstPlayLists.refresh();}
     }
 
     public void deleteSongFromPlayList(ActionEvent actionEvent) throws SQLException {
         if(joins!=null)
         mainModel.deleteSongFromGivenPlayList(joins,playList,playListsDAO,songDAO);
+        lstPlayLists.setItems(mainModel.getAllPlayLists());
     }
 
     public void deleteSong(ActionEvent actionEvent) throws SQLException {
@@ -343,13 +320,15 @@ public class MainController implements Initializable {
     public void moveSongUp(ActionEvent actionEvent) throws SQLException {
         if(joins!=null){
         mainModel.moveSongUp(joins,playListsDAO);
-        getSelectedPlayList();}
+            songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
+        }
     }
 
     public void moveSongDown(ActionEvent actionEvent) throws SQLException {
         if(joins!=null){
         mainModel.moveSongDown(joins,playListsDAO,playList);
-        getSelectedPlayList();}
+        songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
+        }
 
     }
 
@@ -358,10 +337,14 @@ public class MainController implements Initializable {
     public void moveSongToPlayList(ActionEvent actionEvent) throws SQLException {
         if((playList!=null)&&(song!=null)){
         mainModel.addSongToGivenPlayList(song,playList);
-        updatePlayListTableView();}
+        songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
+        lstPlayLists.setItems(mainModel.getAllPlayLists());}
     }
 
     public void handleEditSong(ActionEvent actionEvent) throws IOException {
+        if(song==null){
+        }
+        else {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/editSong.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
@@ -369,10 +352,11 @@ public class MainController implements Initializable {
         stage.setScene(new Scene(root));
         //Get controller for the song editing window to access methods on it
         SongEditController songEditController = loader.getController();
+        songEditController.setMainController(this);
         songEditController.fillFields(song);
 
         stage.show();
-    }
+    }}
 
     public PlayList getPlayList() {
         return playList;
@@ -390,11 +374,11 @@ public class MainController implements Initializable {
         this.song = song;
     }
 
-    public Joins getJoins() {
-        return joins;
-    }
-
     public void setJoins(Joins joins) {
         this.joins = joins;
+    }
+
+    public void gerSelectedSong(MouseEvent mouseEvent) {
+        setSong((Song) songTable.getSelectionModel().getSelectedItem());
     }
 }

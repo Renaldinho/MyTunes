@@ -6,9 +6,7 @@ public class PlayList {
     int id,songs;
     String name;
 
-    public void setSongs(int songs) {
-        this.songs = songs;
-    }
+
 
     String time;
     public PlayList(int id, String name, int songs, String time) {
@@ -16,6 +14,9 @@ public class PlayList {
     this.name=name;
     this.songs=songs;
     this.time=time;
+    }
+    public void setSongs(int songs) {
+        this.songs = songs;
     }
 
     public String getName() {

@@ -9,6 +9,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.sql.Statement;
+
 public class PlaylistController {
 
     private PlaylistModel model;
@@ -22,7 +24,7 @@ public class PlaylistController {
     @FXML
     private Button cancelPlaylistBtn;
     MainController mainController;
-
+    Stage stage;
     public PlaylistController(){
         model = new PlaylistModel();
     }
@@ -32,6 +34,8 @@ public class PlaylistController {
         String playlistName = playlistNameTxt.getText();
         model.createPlaylist(playlistName);
         mainController.updatePlayListTableView();
+        stage = (Stage) savePlaylistBtn.getScene().getWindow();
+        stage.close();
     }
 
     @FXML

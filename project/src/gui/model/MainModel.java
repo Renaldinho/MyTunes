@@ -14,7 +14,7 @@ import java.sql.SQLException;
 public class MainModel {
     private ObservableList<PlayList>allPlayLists;
     private ObservableList<Song>allSongs;
-    private ObservableList<Joins>allSongsForGivenPlayList;
+    private ObservableList<Joins> allSongsForGivenPlayList;
 
 
     MyTunesManager manager;
@@ -42,14 +42,12 @@ public class MainModel {
     }
 
     public void deleteSong(Song song, JoinsDAO joinsDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException {
-
-        manager.deleteSong(song, joinsDAO,artistsDAO,categoriesDAO);
+        manager.deleteSong(song, joinsDAO,artistsDAO,categoriesDAO,playListsDAO);
         allSongs.remove(song);
     }
 
     public void deleteSongFromGivenPlayList(Joins joins,PlayList playList,PlayListsDAO playListsDAO,SongDAO songDAO) throws SQLException {
-
-            manager.removeSongFromPlayList(joins,playListsDAO,playList,songDAO);
+         manager.removeSongFromPlayList(joins,playListsDAO,playList,songDAO);
             allSongsForGivenPlayList.remove(joins);
     }
 
@@ -67,7 +65,6 @@ public class MainModel {
     }
 
     public void deletePlayList(PlayList playList) throws SQLException {
-
         manager.deletePlayList(playList);
         allPlayLists.remove(playList);
     }

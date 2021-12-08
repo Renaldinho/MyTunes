@@ -84,7 +84,6 @@ public class PlayListsDAO implements IPlayListDAO {
                     int songs= resultSet.getInt(3);
                     String time = resultSet.getString(4);
                     playList=new PlayList(id,name,songs,time);}
-
             }
             return playList;
         }

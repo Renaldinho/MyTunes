@@ -4,7 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="..." />
+    <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="...">
+      <change afterPath="$PROJECT_DIR$/project/src/gui/model/SongEditModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/MainController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/MainController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/MainController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/MainController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/MainController$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/MainController$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/MainController$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/MainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/model/MainModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/GUI/model/MainModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/view/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/GUI/view/mainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/be/PlayList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/be/PlayList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/TestClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/TestClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/be/PlayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/be/PlayList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/bll/MyTunesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/bll/MyTunesManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/bll/OwsLogicFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/bll/OwsLogicFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/Interfaces/ISongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/Interfaces/ISongDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/TestClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/TestClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/PlayListsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/PlayListsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/SongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/SongDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/controller/PlaylistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/PlaylistController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/controller/SongController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/SongController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/controller/SongEditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/SongEditController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/model/MainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/model/MainModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/view/editSong.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/view/editSong.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/view/mainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/view/mainView.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -204,16 +232,6 @@
           <url>file://$PROJECT_DIR$/project/src/dal/TestClass.java</url>
           <line>37</line>
           <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/project/src/gui/controller/MainController.java</url>
-          <line>333</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/project/src/gui/controller/MainController.java</url>
-          <line>359</line>
-          <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/project/src/dal/dao/JoinsDAO.java</url>

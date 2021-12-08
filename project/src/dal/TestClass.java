@@ -33,10 +33,10 @@ public class TestClass {
           //  System.out.println(playList);
       //  }
         JoinsDAO joinsDAO1 = new JoinsDAO();
-        Joins joins = new Joins(7,40,3);
+        Joins joins = new Joins(6,14,2);
         //joinsDAO1.createJoin(songDAO.getSongById(79,artistsDAO,categoriesDAO), playListsDAO.getPlayListById(29),playListsDAO );
         //joinsDAO1.moveSongDown(joins,playListsDAO);
-        joinsDAO.moveSongDown(joins,playListsDAO);
+        joinsDAO.removeJoins(joins,playListsDAO,playListsDAO.getPlayListById(14),songDAO);
 
 }
 }

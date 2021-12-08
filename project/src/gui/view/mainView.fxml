@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="548.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainController">
+<AnchorPane fx:id="anchorPane" prefHeight="548.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainController">
     <children>
         <Button layoutX="134.0" layoutY="484.0" mnemonicParsing="false" onAction="#deletePlayList" style="-fx-background-radius: 100;" text="Delete" />
         <Button layoutX="351.0" layoutY="485.0" mnemonicParsing="false" onAction="#deleteSongFromPlayList" style="-fx-background-radius: 100;" text="Delete" />
@@ -22,7 +22,7 @@
         <Button layoutX="421.0" layoutY="122.0" mnemonicParsing="false" onAction="#moveSongToPlayList" style="-fx-background-radius: 100;" text="Add" />
         <TextField fx:id="keywordTextField" layoutX="528.0" layoutY="50.0" onKeyPressed="#textFieldAction" prefHeight="26.0" prefWidth="200.0" />
         <Button fx:id="searchCleanButton" layoutX="737.0" layoutY="50.0" mnemonicParsing="false" onAction="#cleanFilter" text="Search" />
-        <TableView fx:id="lstPlayLists" layoutX="13.0" layoutY="108.0" prefHeight="362.0" prefWidth="175.0">
+        <TableView fx:id="lstPlayLists" layoutX="13.0" layoutY="108.0" onMouseClicked="#getSelectedPlayList" prefHeight="362.0" prefWidth="175.0">
             <columns>
                 <TableColumn fx:id="nameColumn" prefWidth="56.00003242492676" text="Name" />
                 <TableColumn fx:id="songsColumn" prefWidth="58.39995574951172" text="Songs" />
@@ -32,7 +32,7 @@
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
         </TableView>
-        <TableView fx:id="songTable" fixedCellSize="0.0" layoutX="480.0" layoutY="112.0" prefHeight="362.0" prefWidth="310.0">
+        <TableView fx:id="songTable" fixedCellSize="0.0" layoutX="480.0" layoutY="112.0" onMouseClicked="#gerSelectedSong" prefHeight="362.0" prefWidth="310.0">
             <columns>
                 <TableColumn fx:id="titleColumn" prefWidth="99.20004272460938" text="Title" />
                 <TableColumn fx:id="artistColumn" prefWidth="55.99993896484375" text="Artist" />
@@ -43,7 +43,7 @@
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
         </TableView>
-        <ListView fx:id="songsOnPlayList" layoutX="227.0" layoutY="106.0" prefHeight="362.0" prefWidth="175.0" />
+        <ListView fx:id="songsOnPlayList" layoutX="227.0" layoutY="106.0" onMouseClicked="#getSelectedJoin" prefHeight="362.0" prefWidth="175.0" />
         <Button layoutX="54.0" layoutY="18.0" mnemonicParsing="false" prefHeight="26.0" style="-fx-background-radius: 100;" text="⏪" />
         <Button fx:id="playBtn" layoutX="93.0" layoutY="18.0" mnemonicParsing="false" onAction="#handlePlayBtn" prefHeight="26.0" prefWidth="28.0" style="-fx-background-radius: 100;" text="▶" />
         <Button layoutX="134.0" layoutY="18.0" maxHeight="26.0" mnemonicParsing="false" style="-fx-background-radius: 100;" text="⏩" />

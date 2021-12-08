@@ -115,6 +115,5 @@ public class SongController {
     }
     public void setController(MainController mainController) {
         this.mainController=mainController;
-        // System.out.println("In playlistController: "+this.mainController);
     }
 }
