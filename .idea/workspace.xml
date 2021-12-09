@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/gui/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/MainController.java" afterDir="false" />
-    </list>
+    <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -131,6 +128,7 @@
       <workItem from="1638531855698" duration="3416000" />
       <workItem from="1638713707606" duration="2366000" />
       <workItem from="1638887420002" duration="1321000" />
+      <workItem from="1639043990562" duration="4747000" />
     </task>
     <task id="LOCAL-00001" summary="dal 95% done still few more tests to be done">
       <created>1638404507856</created>
@@ -239,6 +237,14 @@
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/project/src/gui/controller/MainController.java</url>
+          <line>86</line>
+          <properties method="run">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

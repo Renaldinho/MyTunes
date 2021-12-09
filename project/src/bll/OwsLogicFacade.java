@@ -35,4 +35,5 @@ public interface OwsLogicFacade {
 
     void updateSong(String title, Song song, String newArtist, String newCategory, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException;
 
+    Song getSongByID(int songId) throws SQLException;
 }

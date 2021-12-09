@@ -79,4 +79,8 @@ public class MainModel {
         allSongsForGivenPlayList.add(manager.createJoins(song,playList,playListsDAO));
 
     }
+
+    public Song getSongByID(int songId) throws SQLException {
+        return  manager.getSongByID(songId);
+    }
 }

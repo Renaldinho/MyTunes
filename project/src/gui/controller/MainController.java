@@ -66,7 +66,12 @@ public class MainController implements Initializable {
 
     Stage stage;
 
-    int playbackType = 0;
+    enum PlayBackType{
+        PLAYLIST_PLAYBACK,
+        SONGLIST_PLAYBACK
+    }
+    PlayBackType playbackType;
+    int selectedIndexInPlaylist=-1;
 
     MediaPlayer player;
 
@@ -81,17 +86,28 @@ public class MainController implements Initializable {
             @Override
             public void run() {
                 switch (playbackType){
-                    case 1:
-                        songTable.getSelectionModel().select(songTable.getSelectionModel().getFocusedIndex()+1);
-                    case 2:
-                        songsOnPlayList.getSelectionModel().select(songTable.getSelectionModel().getSelectedIndex()+1);
+                    case SONGLIST_PLAYBACK:
+                        if (songTable.getItems().size()!=songTable.getSelectionModel().getSelectedIndex()+1)
+                            songTable.getSelectionModel().select(songTable.getSelectionModel().getFocusedIndex()+1);
+                        else
+                            songTable.getSelectionModel().select(0);
+                        break;
+                    case PLAYLIST_PLAYBACK:{
+                        System.out.println(songsOnPlayList.getItems().size() + "\n" + selectedIndexInPlaylist);
+                        if (songsOnPlayList.getItems().size()-1!=selectedIndexInPlaylist){
+                            songsOnPlayList.getSelectionModel().select(selectedIndexInPlaylist+1);
+                            //selectedIndexInPlaylist+=1;
+                        }
+                        else{
+                            songsOnPlayList.getSelectionModel().select(0);
+                            selectedIndexInPlaylist=0;
+                        }
+                        break;
+                    }
                 }
-
                 player.play();
                 player.setOnEndOfMedia(runnable);
                 player.currentTimeProperty().addListener(changeListener);
-
-
             }
         };
 
@@ -163,14 +179,13 @@ public class MainController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        songTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            Song selectedSong = ((Song) newValue);
-            player = new MediaPlayer(new Media(selectedSong.getFilePath()));
-            player.volumeProperty().bind(volumeSlider.valueProperty());
-            playbackType=1;
-
-        });
     }
+
+    private void initializePlayer() {
+        player = new MediaPlayer(new Media(song.getFilePath()));
+        player.volumeProperty().bind(volumeSlider.valueProperty());
+    }
+
     public void updateSongTableView() {
         //PropertyValueFactory corresponds to the new ProductSearchModel fields
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -183,23 +198,26 @@ public class MainController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-    /*public void updateAllSongsForSelectedPlayList(){
-        lstPlayLists.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                PlayList playList = (PlayList) newValue;
-                setPlayList(playList);
-                try {
-                    songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }catch (NullPointerException e){
-                    songsOnPlayList.getItems().clear();
-                }
-            }
+        songTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            song = ((Song) newValue);
+            initializePlayer();
+            playbackType = PlayBackType.SONGLIST_PLAYBACK;
         });
-    }*/
+    }
+    public void updateAllSongsForSelectedPlayList(){
+        songsOnPlayList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            setJoins((Joins) newValue);
+            try {
+                song = mainModel.getSongByID(joins.getSongId());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            selectedIndexInPlaylist=songsOnPlayList.getSelectionModel().getSelectedIndex();
+            playbackType = PlayBackType.PLAYLIST_PLAYBACK;
+            initializePlayer();
+        });
+    }
+
 
 
     @FXML
@@ -210,16 +228,21 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    private void getSelectedJoin(MouseEvent event){
+    private void getSelectedJoin(MouseEvent event) throws SQLException {
                 setJoins((Joins)songsOnPlayList.getSelectionModel().selectedItemProperty().get());
-            }
+                song = mainModel.getSongByID(joins.getSongId());
+                initializePlayer();
+                selectedIndexInPlaylist=songsOnPlayList.getSelectionModel().getSelectedIndex();
+                playbackType = PlayBackType.PLAYLIST_PLAYBACK;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         updateSongTableView();
-
-       // updateAllSongsForSelectedPlayList();
+        // updateAllSongsForSelectedPlayList();
         updatePlayListTableView();
+
+        updateAllSongsForSelectedPlayList();
 
 
         // Wrap the ObservableList in a FilteredList (initially display all data).

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="548.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainController">
+<AnchorPane fx:id="anchorPane" prefHeight="548.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainController">
     <children>
         <Button layoutX="134.0" layoutY="484.0" mnemonicParsing="false" onAction="#deletePlayList" style="-fx-background-radius: 100;" text="Delete" />
         <Button layoutX="351.0" layoutY="485.0" mnemonicParsing="false" onAction="#deleteSongFromPlayList" style="-fx-background-radius: 100;" text="Delete" />
@@ -43,7 +43,7 @@
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
         </TableView>
-        <ListView fx:id="songsOnPlayList" layoutX="227.0" layoutY="106.0" onMouseClicked="#getSelectedJoin" prefHeight="362.0" prefWidth="175.0" />
+        <ListView fx:id="songsOnPlayList" layoutX="227.0" layoutY="106.0" prefHeight="362.0" prefWidth="175.0" />
         <Button layoutX="54.0" layoutY="18.0" mnemonicParsing="false" prefHeight="26.0" style="-fx-background-radius: 100;" text="⏪" />
         <Button fx:id="playBtn" layoutX="93.0" layoutY="18.0" mnemonicParsing="false" onAction="#handlePlayBtn" prefHeight="26.0" prefWidth="28.0" style="-fx-background-radius: 100;" text="▶" />
         <Button layoutX="134.0" layoutY="18.0" maxHeight="26.0" mnemonicParsing="false" style="-fx-background-radius: 100;" text="⏩" />
