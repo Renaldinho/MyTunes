@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/GUI/controller/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/model/MainModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/GUI/model/MainModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/ISongDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/ISongDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/gui/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/MainController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -191,7 +188,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639004153793</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="last one today">
+      <created>1639005631795</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1639005631795</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,7 +221,8 @@
     <MESSAGE value="..." />
     <MESSAGE value="everything should work fine" />
     <MESSAGE value="small change" />
-    <option name="LAST_COMMIT_MESSAGE" value="small change" />
+    <MESSAGE value="last one today" />
+    <option name="LAST_COMMIT_MESSAGE" value="last one today" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -303,8 +303,12 @@ public class MainController implements Initializable {
         if(playList!=null){
         mainModel.deletePlayList(playList);
         lstPlayLists.getSelectionModel().selectPrevious();
+
         setPlayList( (PlayList) lstPlayLists.getSelectionModel().getSelectedItem());
+            if(playList!=null)
         songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
+        else
+            songsOnPlayList.getItems().clear();
         }
     }
 
