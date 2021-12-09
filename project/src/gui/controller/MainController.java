@@ -85,29 +85,7 @@ public class MainController implements Initializable {
         runnable = new Runnable() {
             @Override
             public void run() {
-                switch (playbackType){
-                    case SONGLIST_PLAYBACK:
-                        if (songTable.getItems().size()!=songTable.getSelectionModel().getSelectedIndex()+1)
-                            songTable.getSelectionModel().select(songTable.getSelectionModel().getFocusedIndex()+1);
-                        else
-                            songTable.getSelectionModel().select(0);
-                        break;
-                    case PLAYLIST_PLAYBACK:{
-                        System.out.println(songsOnPlayList.getItems().size() + "\n" + selectedIndexInPlaylist);
-                        if (songsOnPlayList.getItems().size()-1!=selectedIndexInPlaylist){
-                            songsOnPlayList.getSelectionModel().select(selectedIndexInPlaylist+1);
-                            //selectedIndexInPlaylist+=1;
-                        }
-                        else{
-                            songsOnPlayList.getSelectionModel().select(0);
-                            selectedIndexInPlaylist=0;
-                        }
-                        break;
-                    }
-                }
-                player.play();
-                player.setOnEndOfMedia(runnable);
-                player.currentTimeProperty().addListener(changeListener);
+                selectNextSong();
             }
         };
 
@@ -411,5 +389,67 @@ public class MainController implements Initializable {
 
     public void gerSelectedSong(MouseEvent mouseEvent) {
         setSong((Song) songTable.getSelectionModel().getSelectedItem());
+    }
+
+    public void handleNextSong(ActionEvent actionEvent) {
+        selectNextSong();
+    }
+
+
+    public void handlePreviousSong(ActionEvent actionEvent) {
+        selectPreviousSong();
+    }
+
+    private void selectPreviousSong() {
+        player.stop();
+        switch (playbackType){
+            case SONGLIST_PLAYBACK:
+                if (songTable.getSelectionModel().getFocusedIndex()!=0)
+                    songTable.getSelectionModel().select(songTable.getSelectionModel().getFocusedIndex()-1);
+                else
+                    songTable.getSelectionModel().select(songTable.getItems().size()-1);
+                break;
+            case PLAYLIST_PLAYBACK:{
+                if (selectedIndexInPlaylist!=0){
+                    songsOnPlayList.getSelectionModel().select(selectedIndexInPlaylist-1);
+                }
+                else{
+                    songsOnPlayList.getSelectionModel().select(songsOnPlayList.getItems().size()-1);
+                    selectedIndexInPlaylist=songsOnPlayList.getItems().size()-1;
+                }
+                break;
+            }
+
+        }
+        player.play();
+        player.setOnEndOfMedia(runnable);
+        player.currentTimeProperty().addListener(changeListener);
+    }
+
+
+    private void selectNextSong() {
+        player.stop();
+        switch (playbackType){
+            case SONGLIST_PLAYBACK:
+                if (songTable.getItems().size()!=songTable.getSelectionModel().getSelectedIndex()+1)
+                    songTable.getSelectionModel().select(songTable.getSelectionModel().getFocusedIndex()+1);
+                else
+                    songTable.getSelectionModel().select(0);
+                break;
+            case PLAYLIST_PLAYBACK:{
+                if (songsOnPlayList.getItems().size()-1!=selectedIndexInPlaylist){
+                    songsOnPlayList.getSelectionModel().select(selectedIndexInPlaylist+1);
+                }
+                else{
+                    songsOnPlayList.getSelectionModel().select(0);
+                    selectedIndexInPlaylist=0;
+                }
+                break;
+            }
+
+        }
+        player.play();
+        player.setOnEndOfMedia(runnable);
+        player.currentTimeProperty().addListener(changeListener);
     }
 }

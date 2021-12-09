@@ -44,9 +44,9 @@
             </columnResizePolicy>
         </TableView>
         <ListView fx:id="songsOnPlayList" layoutX="227.0" layoutY="106.0" prefHeight="362.0" prefWidth="175.0" />
-        <Button layoutX="54.0" layoutY="18.0" mnemonicParsing="false" prefHeight="26.0" style="-fx-background-radius: 100;" text="⏪" />
+        <Button layoutX="54.0" layoutY="18.0" mnemonicParsing="false" onAction="#handlePreviousSong" prefHeight="26.0" style="-fx-background-radius: 100;" text="⏪" />
         <Button fx:id="playBtn" layoutX="93.0" layoutY="18.0" mnemonicParsing="false" onAction="#handlePlayBtn" prefHeight="26.0" prefWidth="28.0" style="-fx-background-radius: 100;" text="▶" />
-        <Button layoutX="134.0" layoutY="18.0" maxHeight="26.0" mnemonicParsing="false" style="-fx-background-radius: 100;" text="⏩" />
+        <Button layoutX="134.0" layoutY="18.0" maxHeight="26.0" mnemonicParsing="false" onAction="#handleNextSong" style="-fx-background-radius: 100;" text="⏩" />
         <Slider fx:id="progressSlider" blockIncrement="1.0E-7" layoutX="22.0" layoutY="51.0" max="1.0" onMousePressed="#moveProgressSlider" onMouseReleased="#setProgress" prefHeight="24.0" prefWidth="182.0" />
         <Label layoutX="13.0" layoutY="91.0" text="Playlist" />
         <Label layoutX="227.0" layoutY="91.0" text="Song on playlist " />
