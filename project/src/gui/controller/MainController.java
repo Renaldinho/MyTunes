@@ -355,8 +355,8 @@ public class MainController implements Initializable {
 
 
     public void moveSongToPlayList(ActionEvent actionEvent) throws SQLException {
-        if((playList!=null)&&(song!=null)){
-        mainModel.addSongToGivenPlayList(song,playList);
+        if((playList!=null)&&(selectedSong!=null)){
+        mainModel.addSongToGivenPlayList(selectedSong,playList);
         songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
         lstPlayLists.setItems(mainModel.getAllPlayLists());}
     }
