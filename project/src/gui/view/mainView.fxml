@@ -32,7 +32,7 @@
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
         </TableView>
-        <TableView fx:id="songTable" fixedCellSize="0.0" layoutX="480.0" layoutY="112.0" onMouseClicked="#gerSelectedSong" prefHeight="362.0" prefWidth="310.0">
+        <TableView fx:id="songTable" fixedCellSize="0.0" layoutX="480.0" layoutY="112.0" prefHeight="362.0" prefWidth="310.0">
             <columns>
                 <TableColumn fx:id="titleColumn" prefWidth="99.20004272460938" text="Title" />
                 <TableColumn fx:id="artistColumn" prefWidth="55.99993896484375" text="Artist" />
