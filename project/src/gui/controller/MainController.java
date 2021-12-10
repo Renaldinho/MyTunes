@@ -203,7 +203,6 @@ public class MainController implements Initializable {
             }
             selectedIndexInPlaylist=songsOnPlayList.getSelectionModel().getSelectedIndex();
             playbackType = PlayBackType.PLAYLIST_PLAYBACK;
-            initializePlayer();
         });
     }
 
@@ -331,8 +330,8 @@ public class MainController implements Initializable {
     }
 
     public void deleteSong(ActionEvent actionEvent) throws SQLException {
-        if(song!=null)
-        mainModel.deleteSong(song, joinsDAO,artistsDAO,categoriesDAO,playListsDAO,songDAO);
+        if(selectedSong!=null)
+        mainModel.deleteSong(selectedSong, joinsDAO,artistsDAO,categoriesDAO,playListsDAO,songDAO);
         lstPlayLists.setItems(mainModel.getAllPlayLists());
 
     }
