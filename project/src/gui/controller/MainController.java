@@ -61,7 +61,7 @@ public class MainController implements Initializable {
     MainModel mainModel;
 
     PlayList playList;
-    Song song,selectedSong;
+    Song song;
     Joins joins;
 
     Stage stage;
@@ -127,27 +127,15 @@ public class MainController implements Initializable {
 
 
     public void handlePlayBtn(ActionEvent actionEvent) {
+        playBtn.setDisable(true);
+        playBtn.setOpacity(0);
+        stopBtn.setOpacity(100);
+        stopBtn.setDisable(false);
 
-        if (song!=selectedSong){
-            if (selectedSong==null )
-                return;
-            if (song!=null)
-                player.stop();
+        player.currentTimeProperty().addListener(changeListener);
+        player.play();
 
-            song=selectedSong;
-
-            initializePlayer();
-
-            playBtn.setDisable(true);
-            playBtn.setOpacity(0);
-            stopBtn.setOpacity(100);
-            stopBtn.setDisable(false);
-
-            player.currentTimeProperty().addListener(changeListener);
-            player.play();
-
-            player.setOnEndOfMedia(runnable);
-        }
+        player.setOnEndOfMedia(runnable);
 
 
     }
@@ -189,7 +177,8 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
         songTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            selectedSong = ((Song) newValue);
+            song = ((Song) newValue);
+            initializePlayer();
             playbackType = PlayBackType.SONGLIST_PLAYBACK;
         });
     }
@@ -197,7 +186,7 @@ public class MainController implements Initializable {
         songsOnPlayList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             setJoins((Joins) newValue);
             try {
-                selectedSong = mainModel.getSongByID(joins.getSongId());
+                song = mainModel.getSongByID(joins.getSongId());
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -396,6 +385,10 @@ public class MainController implements Initializable {
 
     public void setJoins(Joins joins) {
         this.joins = joins;
+    }
+
+    public void gerSelectedSong(MouseEvent mouseEvent) {
+        setSong((Song) songTable.getSelectionModel().getSelectedItem());
     }
 
     public void handleNextSong(ActionEvent actionEvent) {

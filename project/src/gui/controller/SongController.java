@@ -83,9 +83,10 @@ public class SongController {
     public void handleChooseFile(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(pathField.getScene().getWindow());
-        if (selectedFile != null ) {
+        if (selectedFile != null) {
             pathField.setText(selectedFile.getAbsolutePath());
         }
+
         MediaPlayer player = new MediaPlayer(new Media(new File(pathField.getText()).toURI().toString()));
         player.setOnReady(new Runnable() {
             @Override
