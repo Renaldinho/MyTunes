@@ -4,6 +4,9 @@ import be.Joins;
 import be.PlayList;
 import be.Song;
 import bll.MyTunesManager;
+import bll.exceptions.JoinsException;
+import bll.exceptions.PlayListException;
+import bll.exceptions.SongException;
 import dal.dao.*;
 import gui.model.MainModel;
 import javafx.beans.value.ChangeListener;
@@ -166,9 +169,10 @@ public class MainController implements Initializable {
         songsColumn.setCellValueFactory(new PropertyValueFactory<>("song"));
         try {
             lstPlayLists.setItems(mainModel.getAllPlayLists());
-        } catch (SQLException e) {
+        } catch (PlayListException e) {
             e.printStackTrace();
         }
+
     }
 
     private void initializePlayer() {
@@ -185,7 +189,7 @@ public class MainController implements Initializable {
 
         try {
             songTable.setItems(mainModel.getAllSongs());
-        } catch (SQLException e) {
+        } catch (SongException e) {
             e.printStackTrace();
         }
         songTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -198,7 +202,7 @@ public class MainController implements Initializable {
             setJoins((Joins) newValue);
             try {
                 selectedSong = mainModel.getSongByID(joins.getSongId());
-            } catch (SQLException e) {
+            } catch (SongException e) {
                 e.printStackTrace();
             }
             selectedIndexInPlaylist=songsOnPlayList.getSelectionModel().getSelectedIndex();
@@ -211,15 +215,24 @@ public class MainController implements Initializable {
     @FXML
     private void getSelectedPlayList(MouseEvent event) throws SQLException {
         setPlayList((PlayList) lstPlayLists.getSelectionModel().selectedItemProperty().get());
-        if(playList!=null)
-        songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
+        if(playList!=null) {
+            try {
+                songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
+            } catch (JoinsException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML
     private void getSelectedJoin(MouseEvent event) throws SQLException {
                 setJoins((Joins)songsOnPlayList.getSelectionModel().selectedItemProperty().get());
-                song = mainModel.getSongByID(joins.getSongId());
-                initializePlayer();
+        try {
+            song = mainModel.getSongByID(joins.getSongId());
+        } catch (SongException e) {
+            e.printStackTrace();
+        }
+        initializePlayer();
                 selectedIndexInPlaylist=songsOnPlayList.getSelectionModel().getSelectedIndex();
                 playbackType = PlayBackType.PLAYLIST_PLAYBACK;
     }
@@ -237,7 +250,7 @@ public class MainController implements Initializable {
         FilteredList<Song> filteredData = null;
         try {
             filteredData = new FilteredList<>(mainModel.getAllSongs(), b -> true);
-        } catch (SQLException e) {
+        } catch (SongException e) {
             e.printStackTrace();
         }
 
@@ -312,12 +325,21 @@ public class MainController implements Initializable {
 
     public void deletePlayList(ActionEvent actionEvent) throws SQLException {
         if(playList!=null){
-        mainModel.deletePlayList(playList);
-        lstPlayLists.getSelectionModel().selectPrevious();
+            try {
+                mainModel.deletePlayList(playList);
+            } catch (PlayListException e) {
+                e.printStackTrace();
+            }
+            lstPlayLists.getSelectionModel().selectPrevious();
 
         setPlayList( (PlayList) lstPlayLists.getSelectionModel().getSelectedItem());
-            if(playList!=null)
-        songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
+            if(playList!=null) {
+                try {
+                    songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
+                } catch (JoinsException e) {
+                    e.printStackTrace();
+                }
+            }
         else
             songsOnPlayList.getItems().clear();
         }
@@ -325,25 +347,38 @@ public class MainController implements Initializable {
 
     public void deleteSongFromPlayList(ActionEvent actionEvent) throws SQLException {
         if(joins!=null)
-        mainModel.deleteSongFromGivenPlayList(joins,playList,playListsDAO,songDAO);
-        lstPlayLists.setItems(mainModel.getAllPlayLists());
+        try {
+            lstPlayLists.setItems(mainModel.getAllPlayLists());
+            mainModel.deleteSongFromGivenPlayList(joins,playList,playListsDAO,songDAO);
+        } catch (PlayListException e) {
+            e.printStackTrace();
+        }
     }
 
     public void deleteSong(ActionEvent actionEvent) throws SQLException {
         if(selectedSong!=null)
-        mainModel.deleteSong(selectedSong, joinsDAO,artistsDAO,categoriesDAO,playListsDAO,songDAO);
-        lstPlayLists.setItems(mainModel.getAllPlayLists());
+
+        try {
+            lstPlayLists.setItems(mainModel.getAllPlayLists());
+            mainModel.deleteSong(selectedSong, joinsDAO,artistsDAO,categoriesDAO,playListsDAO,songDAO);
+        } catch (PlayListException | SongException e) {
+            e.printStackTrace();
+        }
 
     }
 
-    public void moveSongUp(ActionEvent actionEvent) throws SQLException {
+    public void moveSongUp(ActionEvent actionEvent){
         if(joins!=null){
-        mainModel.moveSongUp(joins,playListsDAO);
-            songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
+            try {
+                songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
+                mainModel.moveSongUp(joins,playListsDAO);
+            } catch (JoinsException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    public void moveSongDown(ActionEvent actionEvent) throws SQLException {
+    public void moveSongDown(ActionEvent actionEvent) throws JoinsException {
         if(joins!=null){
         mainModel.moveSongDown(joins,playListsDAO,playList);
         songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
@@ -353,15 +388,20 @@ public class MainController implements Initializable {
 
 
 
-    public void moveSongToPlayList(ActionEvent actionEvent) throws SQLException {
-        if((playList!=null)&&(selectedSong!=null)){
-        mainModel.addSongToGivenPlayList(selectedSong,playList);
-        songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
-        lstPlayLists.setItems(mainModel.getAllPlayLists());}
+    public void moveSongToPlayList(ActionEvent actionEvent) {
+        if ((playList != null) && (selectedSong != null)) {
+            try {
+                mainModel.addSongToGivenPlayList(selectedSong, playList);
+                songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
+                lstPlayLists.setItems(mainModel.getAllPlayLists());
+            } catch (JoinsException | PlayListException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void handleEditSong(ActionEvent actionEvent) throws IOException {
-        if(song==null){
+        if(selectedSong==null){
         }
         else {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/editSong.fxml"));
@@ -372,7 +412,7 @@ public class MainController implements Initializable {
         //Get controller for the song editing window to access methods on it
         SongEditController songEditController = loader.getController();
         songEditController.setMainController(this);
-        songEditController.fillFields(song);
+        songEditController.fillFields(selectedSong);
 
         stage.show();
     }}
@@ -437,7 +477,7 @@ public class MainController implements Initializable {
         player.stop();
         switch (playbackType){
             case SONGLIST_PLAYBACK:
-                if (songTable.getItems().size()!=songTable.getSelectionModel().getSelectedIndex()+1)
+                if (songTable.getItems().size()!=songTable.getSelectionModel().getFocusedIndex()+1)
                     songTable.getSelectionModel().select(songTable.getSelectionModel().getFocusedIndex()+1);
                 else
                     songTable.getSelectionModel().select(0);
@@ -454,6 +494,8 @@ public class MainController implements Initializable {
             }
 
         }
+        song=selectedSong;
+        initializePlayer();
         player.play();
         player.setOnEndOfMedia(runnable);
         player.currentTimeProperty().addListener(changeListener);

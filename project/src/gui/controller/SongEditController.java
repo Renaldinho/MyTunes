@@ -1,6 +1,7 @@
 package gui.controller;
 
 import be.Song;
+import bll.exceptions.SongException;
 import dal.dao.ArtistsDAO;
 import dal.dao.CategoriesDAO;
 import gui.model.SongEditModel;
@@ -56,8 +57,12 @@ public class SongEditController  {
     }
 
     public void handleEditSong(ActionEvent actionEvent) throws SQLException {
-    songEditModel.updateSong(songTitleField.getText(),song,songArtistField.getText(),category.getText(),artistsDAO,categoriesDAO);
-    mainController.updateSongTableView();
+        try {
+            songEditModel.updateSong(songTitleField.getText(),song,songArtistField.getText(),category.getText(),artistsDAO,categoriesDAO);
+        } catch (SongException e) {
+            e.printStackTrace();
+        }
+        mainController.updateSongTableView();
     stage.close();
     }
 

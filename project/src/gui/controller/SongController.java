@@ -1,5 +1,6 @@
 package gui.controller;
 
+import bll.exceptions.SongException;
 import gui.model.MainModel;
 import gui.model.SongModel;
 import javafx.event.ActionEvent;
@@ -83,8 +84,8 @@ public class SongController {
     public void handleChooseFile(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
 
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("MP3 Files",".mp3"),
-                new FileChooser.ExtensionFilter("WAV Files",".wav"));
+        //fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("MP3 Files",".mp3"),
+        //        new FileChooser.ExtensionFilter("WAV Files",".wav"));
 
         File selectedFile = fileChooser.showOpenDialog(pathField.getScene().getWindow());
         if (selectedFile != null ) {
@@ -110,7 +111,11 @@ public class SongController {
         //String filePath = ("file:/"+pathField.getText().replace("\\","/"));
         String time = songTimeField.getText();
 
-        songModel.createSong(title,artist,songCategory,time,filePath);
+        try {
+            songModel.createSong(title,artist,songCategory,time,filePath);
+        } catch (SongException e) {
+            e.printStackTrace();
+        }
         mainController.updateSongTableView();
 
 
