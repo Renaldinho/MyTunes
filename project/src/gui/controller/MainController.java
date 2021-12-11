@@ -137,8 +137,6 @@ public class MainController implements Initializable {
             if (song!=null)
                 player.stop();
 
-            song=selectedSong;
-
             initializePlayer();
 
             playBtn.setDisable(true);
@@ -176,6 +174,7 @@ public class MainController implements Initializable {
     }
 
     private void initializePlayer() {
+        song=selectedSong;
         player = new MediaPlayer(new Media(song.getFilePath()));
         player.volumeProperty().bind(volumeSlider.valueProperty());
     }
@@ -224,7 +223,7 @@ public class MainController implements Initializable {
         }
     }
 
-    @FXML
+    /*@FXML
     private void getSelectedJoin(MouseEvent event) throws SQLException {
                 setJoins((Joins)songsOnPlayList.getSelectionModel().selectedItemProperty().get());
         try {
@@ -233,9 +232,11 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
         initializePlayer();
-                selectedIndexInPlaylist=songsOnPlayList.getSelectionModel().getSelectedIndex();
-                playbackType = PlayBackType.PLAYLIST_PLAYBACK;
+        selectedIndexInPlaylist=songsOnPlayList.getSelectionModel().getSelectedIndex();
+        playbackType = PlayBackType.PLAYLIST_PLAYBACK;
     }
+
+     */
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -467,6 +468,7 @@ public class MainController implements Initializable {
             }
 
         }
+        initializePlayer();
         player.play();
         player.setOnEndOfMedia(runnable);
         player.currentTimeProperty().addListener(changeListener);
@@ -494,7 +496,6 @@ public class MainController implements Initializable {
             }
 
         }
-        song=selectedSong;
         initializePlayer();
         player.play();
         player.setOnEndOfMedia(runnable);
