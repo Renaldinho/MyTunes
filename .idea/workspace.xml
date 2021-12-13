@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/be/Artist.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/be/Artist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/be/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/be/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/be/PlayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/be/PlayList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/dal/Interfaces/IArtistsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/Interfaces/IArtistsDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/dal/Interfaces/ICategoriesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/Interfaces/ICategoriesDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/dal/Interfaces/IPlayListDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/Interfaces/IPlayListDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/dal/Interfaces/ISongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/Interfaces/ISongDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/dal/Interfaces/ISong_PlayListDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/Interfaces/ISong_PlayListDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/dal/TestClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/TestClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/ArtistsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/ArtistsDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/CategoriesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/CategoriesDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/PlayListsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/PlayListsDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/SongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/SongDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/Song_PlayListDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/Song_PlayListDAO.java" afterDir="false" />
-    </list>
+    <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,6 +14,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -56,16 +41,30 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/MyTunes" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.38045976" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
-  <component name="RunManager" selected="Application.TestClass">
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="bll" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Bruger\Documents\GitHub\MyTunes\project\src\gui" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Bruger\Documents\GitHub\MyTunes\project\src\gui\view" />
+      <recent name="C:\Users\Bruger\Documents\GitHub\MyTunes\project" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
     <configuration name="DatabaseConnector" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dal.db.DatabaseConnector" />
       <module name="MyTunes" />
@@ -101,8 +100,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TestClass" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.TestClass" />
         <item itemvalue="Application.DatabaseConnector" />
       </list>
     </recent_temporary>
@@ -124,9 +123,6 @@
       <workItem from="1638181295527" duration="1196000" />
       <workItem from="1638183012117" duration="2196000" />
       <workItem from="1638359570021" duration="36438000" />
-<<<<<<< Updated upstream
-      <workItem from="1638451446842" duration="3815000" />
-=======
       <workItem from="1638451446842" duration="8286000" />
       <workItem from="1638524972005" duration="689000" />
       <workItem from="1638531855698" duration="3416000" />
@@ -134,8 +130,7 @@
       <workItem from="1638887420002" duration="1321000" />
       <workItem from="1639043990562" duration="6482000" />
       <workItem from="1639136338477" duration="577000" />
-      <workItem from="1639394181410" duration="3899000" />
->>>>>>> Stashed changes
+      <workItem from="1639399377548" duration="306000" />
     </task>
     <task id="LOCAL-00001" summary="dal 95% done still few more tests to be done">
       <created>1638404507856</created>
@@ -151,7 +146,56 @@
       <option name="project" value="LOCAL" />
       <updated>1638443080700</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="DAL ready done and tested you can work on it includes all features needed. You can also test it and if something goes wrong i will fix it ;)">
+      <created>1638455367626</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1638455367626</updated>
+    </task>
+    <task id="LOCAL-00004" summary="working on gui. Features work but i can not update the observable list while running the program i have to close it and reopen it again to see changes. I also worked on playlist so when you select it it shows all songs in this given playlist. Also you can delete and add from it.">
+      <created>1638573635001</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1638573635001</updated>
+    </task>
+    <task id="LOCAL-00005" summary="...">
+      <created>1638626235020</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1638626235020</updated>
+    </task>
+    <task id="LOCAL-00006" summary="...">
+      <created>1638833615817</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1638833615817</updated>
+    </task>
+    <task id="LOCAL-00007" summary="everything should work fine">
+      <created>1639002340143</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1639002340143</updated>
+    </task>
+    <task id="LOCAL-00008" summary="small change">
+      <created>1639004153793</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1639004153793</updated>
+    </task>
+    <task id="LOCAL-00009" summary="last one today">
+      <created>1639005631795</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1639005631795</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,6 +216,36 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="dal 95% done still few more tests to be done" />
-    <option name="LAST_COMMIT_MESSAGE" value="dal 95% done still few more tests to be done" />
+    <MESSAGE value="DAL ready done and tested you can work on it includes all features needed. You can also test it and if something goes wrong i will fix it ;)" />
+    <MESSAGE value="working on gui. Features work but i can not update the observable list while running the program i have to close it and reopen it again to see changes. I also worked on playlist so when you select it it shows all songs in this given playlist. Also you can delete and add from it." />
+    <MESSAGE value="..." />
+    <MESSAGE value="everything should work fine" />
+    <MESSAGE value="small change" />
+    <MESSAGE value="last one today" />
+    <option name="LAST_COMMIT_MESSAGE" value="last one today" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/project/src/dal/TestClass.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/project/src/gui/controller/MainController.java</url>
+          <line>482</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/project/src/dal/dao/JoinsDAO.java</url>
+          <line>112</line>
+          <properties class="dal.dao.JoinsDAO" method="moveSongUp">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
