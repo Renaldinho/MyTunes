@@ -58,7 +58,7 @@ public class Song {
 
     @Override
     public String toString() {
-        return title + " by "+ artist+" from " +category;
+        return title;
     }
 
     public String getFilePath() {
