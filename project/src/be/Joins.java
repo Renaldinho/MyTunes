@@ -10,19 +10,10 @@ import java.sql.SQLException;
 public class Joins {
     int songId;
     int playListId;
-    int rank;
-
-    PlayListsDAO playListsDAO = new PlayListsDAO();
-    SongDAO songDAO = new SongDAO();
-    ArtistsDAO artistsDAO = new ArtistsDAO();
-    CategoriesDAO categoriesDAO = new CategoriesDAO();
-
-    public Joins(int songId, int playListId, int rank){
-        this.rank=rank;
-        this.playListId=playListId;
-        this.songId=songId;
-    }
-
+ PlayListsDAO playListsDAO = new PlayListsDAO();
+ SongDAO songDAO = new SongDAO();
+ ArtistsDAO artistsDAO = new ArtistsDAO();
+ CategoriesDAO categoriesDAO = new CategoriesDAO();
     public int getSongId() {
         return songId;
     }
@@ -38,10 +29,17 @@ public class Joins {
     }
 
 
+    int rank;
+    public Joins(int songId, int playListId, int rank){
+        this.rank=rank;
+        this.playListId=playListId;
+        this.songId=songId;
+    }
+
     public String toString() {
         String toString= null;
         try {
-            toString=   songDAO.getSongById(songId,artistsDAO,categoriesDAO)+" "+ playListsDAO.getPlayListById(playListId);
+            toString=   songDAO.getSongById(songId,artistsDAO,categoriesDAO).toString();
         } catch (SQLException e) {
             e.printStackTrace();
         }return toString;

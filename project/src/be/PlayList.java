@@ -1,20 +1,22 @@
 package be;
 
-public class PlayList {
-<<<<<<< Updated upstream
-    int id;
-    String name;
-    public PlayList(int id, String name) {
-=======
+import javafx.beans.value.ObservableValue;
 
+public class PlayList {
     int id,songs;
     String name;
-    String time;
 
+
+
+    String time;
     public PlayList(int id, String name, int songs, String time) {
->>>>>>> Stashed changes
     this.id=id;
     this.name=name;
+    this.songs=songs;
+    this.time=time;
+    }
+    public void setSongs(int songs) {
+        this.songs = songs;
     }
 
     public String getName() {
@@ -24,4 +26,14 @@ public class PlayList {
     public int getId() {
         return id;
     }
+
+    public int getSong() {
+        return songs;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+
 }
