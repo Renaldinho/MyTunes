@@ -39,7 +39,7 @@ public class Joins {
     public String toString() {
         String toString= null;
         try {
-            toString=   songDAO.getSongById(songId,artistsDAO,categoriesDAO).toString();
+            toString= this.rank +" "+ songDAO.getSongById(songId).toString();
         } catch (SQLException e) {
             e.printStackTrace();
         }return toString;

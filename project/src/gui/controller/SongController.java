@@ -84,13 +84,13 @@ public class SongController {
     public void handleChooseFile(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
 
-        //fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("MP3 Files",".mp3"),
-        //        new FileChooser.ExtensionFilter("WAV Files",".wav"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("MP3 Files",".mp3"),
+                new FileChooser.ExtensionFilter("WAV Files",".wav"));
 
         File selectedFile = fileChooser.showOpenDialog(pathField.getScene().getWindow());
         if (selectedFile != null ) {
             pathField.setText(selectedFile.getAbsolutePath());
-        }
+
         MediaPlayer player = new MediaPlayer(new Media(new File(pathField.getText()).toURI().toString()));
         player.setOnReady(new Runnable() {
             @Override
@@ -101,7 +101,7 @@ public class SongController {
                 System.out.println();
             }
         });
-    }
+    }}
 
     public void handleSaveNewSong(ActionEvent actionEvent) throws SQLException {
         String title = songTitleField.getText();

@@ -58,7 +58,7 @@ public class SongEditController  {
 
     public void handleEditSong(ActionEvent actionEvent) throws SQLException {
         try {
-            songEditModel.updateSong(songTitleField.getText(),song,songArtistField.getText(),category.getText(),artistsDAO,categoriesDAO);
+            songEditModel.updateSong(songTitleField.getText(),song,songArtistField.getText(),category.getText());
         } catch (SongException e) {
             e.printStackTrace();
         }
@@ -80,10 +80,11 @@ public class SongEditController  {
 
     public void handleChooseFile(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("MP3 Files",".mp3"),
+                new FileChooser.ExtensionFilter("WAV Files",".wav"));
         File selectedFile = fileChooser.showOpenDialog(pathField.getScene().getWindow());
         if (selectedFile != null) {
             pathField.setText(selectedFile.getAbsolutePath());
-        }
 
         MediaPlayer player = new MediaPlayer(new Media(new File(pathField.getText()).toURI().toString()));
         player.setOnReady(new Runnable() {
@@ -95,7 +96,7 @@ public class SongEditController  {
                 System.out.println();
             }
         });
-    }
+    }}
 
     public void fillFields(Song song){
         songTitleField.setText(song.getTitle());

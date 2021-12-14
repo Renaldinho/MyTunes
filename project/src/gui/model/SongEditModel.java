@@ -13,7 +13,7 @@ public class SongEditModel {
     public  SongEditModel(){
         manager=new MyTunesManager();
     }
-    public void updateSong(String title, Song song, String artist, String category, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException, SongException {
-    manager.updateSong(title,song,artist,category,artistsDAO,categoriesDAO);
+    public void updateSong(String title, Song song, String artist, String category) throws SQLException, SongException {
+    manager.updateSong(title,song,artist,category);
     }
 }

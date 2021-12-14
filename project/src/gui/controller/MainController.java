@@ -200,6 +200,7 @@ public class MainController implements Initializable {
         songsOnPlayList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             setJoins((Joins) newValue);
             try {
+                if (joins!=null)
                 selectedSong = mainModel.getSongByID(joins.getSongId());
             } catch (SongException e) {
                 e.printStackTrace();
@@ -346,22 +347,22 @@ public class MainController implements Initializable {
         }
     }
 
-    public void deleteSongFromPlayList(ActionEvent actionEvent) throws SQLException {
+    public void deleteSongFromPlayList(ActionEvent actionEvent)  {
         if(joins!=null)
         try {
+            mainModel.deleteSongFromGivenPlayList(joins,playList);
             lstPlayLists.setItems(mainModel.getAllPlayLists());
-            mainModel.deleteSongFromGivenPlayList(joins,playList,playListsDAO,songDAO);
-        } catch (PlayListException e) {
+            songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
+        } catch (PlayListException | JoinsException e) {
             e.printStackTrace();
         }
     }
 
-    public void deleteSong(ActionEvent actionEvent) throws SQLException {
+    public void deleteSong(ActionEvent actionEvent)  {
         if(selectedSong!=null)
-
         try {
             lstPlayLists.setItems(mainModel.getAllPlayLists());
-            mainModel.deleteSong(selectedSong, joinsDAO,artistsDAO,categoriesDAO,playListsDAO,songDAO);
+            mainModel.deleteSong(selectedSong);
         } catch (PlayListException | SongException e) {
             e.printStackTrace();
         }
@@ -372,7 +373,7 @@ public class MainController implements Initializable {
         if(joins!=null){
             try {
                 songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
-                mainModel.moveSongUp(joins,playListsDAO);
+                mainModel.moveSongUp(joins);
             } catch (JoinsException e) {
                 e.printStackTrace();
             }
@@ -381,7 +382,7 @@ public class MainController implements Initializable {
 
     public void moveSongDown(ActionEvent actionEvent) throws JoinsException {
         if(joins!=null){
-        mainModel.moveSongDown(joins,playListsDAO,playList);
+        mainModel.moveSongDown(joins);
         songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
         }
 

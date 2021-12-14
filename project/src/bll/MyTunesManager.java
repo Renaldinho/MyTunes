@@ -59,16 +59,16 @@ public class MyTunesManager implements OwsLogicFacade {
     @Override
     public void addSongToPlayList(Song song, PlayList playList) throws PlayListException {
         try {
-            joinsDAO.createJoin(song,playList, playListDAO);
+            joinsDAO.createJoin(song,playList);
         } catch (SQLException e) {
             throw new PlayListException("Song already exists in playlist",e);
         }
     }
 
     @Override
-    public void removeSongFromPlayList(Joins joins,PlayListsDAO playListsDAO,PlayList playList,SongDAO songDAO) throws PlayListException {
+    public void removeSongFromPlayList(Joins joins,PlayList playList) throws PlayListException {
         try {
-            joinsDAO.removeJoins(joins,playListsDAO,playList,songDAO);
+            joinsDAO.removeJoins(joins,playList);
         } catch (SQLException e) {
             throw new PlayListException("Couldn't remove song from playlist",e);
         }
@@ -83,54 +83,54 @@ public class MyTunesManager implements OwsLogicFacade {
     }
 
     @Override
-    public void moveSongUp(Joins joins, PlayListsDAO playListsDAO) throws JoinsException {
+    public void moveSongUp(Joins joins) throws JoinsException {
         try {
-            joinsDAO.moveSongUp(joins,playListsDAO);
+            joinsDAO.moveSongUp(joins);
         } catch (SQLException e) {
             throw new JoinsException("Couldn't move song up",e);
         }
     }
 
     @Override
-    public void moveSongDown(Joins joins,PlayListsDAO playListsDAO) throws JoinsException {
+    public void moveSongDown(Joins joins) throws JoinsException {
         try {
-            joinsDAO.moveSongDown(joins,playListsDAO);
+            joinsDAO.moveSongDown(joins);
         } catch (SQLException e) {
             throw new JoinsException("Couldn't move song down",e);
         }
     }
 
     @Override
-    public List<Song> getAllSongs(ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SongException {
+    public List<Song> getAllSongs() throws SongException {
         try {
-            return songDAO.getAllSongs(artistsDAO,categoriesDAO);
+            return songDAO.getAllSongs();
         } catch (SQLException e) {
             throw new SongException("Couldn't get all song",e);
         }
     }
 
     @Override
-    public Song createSong(String title, String artist, String category, String filePath, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO, String time) throws SongException {
+    public Song createSong(String title, String artist, String category, String filePath, String time) throws SongException {
         try {
-            return songDAO.createSong(title,artist,category,filePath,artistsDAO,categoriesDAO,time);
+            return songDAO.createSong(title,artist,category,filePath,time);
         } catch (SQLException e) {
             throw new SongException("Song with this name already exists",e);
         }
     }
 
     @Override
-    public void deleteSong(Song song, JoinsDAO joinsDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO,PlayListsDAO playListsDAO,SongDAO songDAO) throws SongException {
+    public void deleteSong(Song song) throws SongException {
         try {
-            songDAO.deleteSong(song, joinsDAO,artistsDAO,categoriesDAO,playListsDAO,songDAO);
+            songDAO.deleteSong(song);
         } catch (SQLException e) {
             throw new SongException("Couldn't delete song",e);
         }
     }
 
     @Override
-    public void updateSong(String title, Song song, String newArtist, String newCategory, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SongException {
+    public void updateSong(String title, Song song, String newArtist, String newCategory) throws SongException {
         try {
-            songDAO.updateSong(title,song,newArtist,newCategory,artistsDAO,categoriesDAO);
+            songDAO.updateSong(title,song,newArtist,newCategory);
         } catch (SQLException e) {
             throw new SongException("Couldn't update song",e);
         }
@@ -139,15 +139,15 @@ public class MyTunesManager implements OwsLogicFacade {
     @Override
     public Song getSongByID(int songId) throws SongException {
         try {
-            return songDAO.getSongById(songId,artistsDAO,categoriesDAO);
+            return songDAO.getSongById(songId);
         } catch (SQLException e) {
             throw new SongException("Couldn't get song with this id",e);
         }
     }
 
-    public Joins createJoins(Song song,PlayList playList,PlayListsDAO playListsDAO) throws JoinsException {
+    public Joins createJoins(Song song,PlayList playList) throws JoinsException {
         try {
-            return joinsDAO.createJoin(song,playList,playListDAO);
+            return joinsDAO.createJoin(song,playList);
         } catch (SQLException e) {
             throw new JoinsException("Join already exists",e);
         }

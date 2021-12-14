@@ -8,13 +8,13 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface ISongDAO {
-    List<Song> getAllSongs(ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLServerException, SQLException;
+    List<Song> getAllSongs() throws SQLServerException, SQLException;
 
-    Song createSong(String title, String artist, String category, String filePath, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO,String time) throws SQLException;
+    Song createSong(String title, String artist, String category, String filePath,String time) throws SQLException;
 
-    void deleteSong(Song song, JoinsDAO joinsDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO,PlayListsDAO playListsDAO, SongDAO songDAO) throws SQLException;
+    void deleteSong(Song song) throws SQLException;
 
-    void updateSong(String title, Song song, String newArtist, String newCategory, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException;
+    void updateSong(String title, Song song, String newArtist, String newCategory) throws SQLException;
 
 
 }

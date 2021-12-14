@@ -29,7 +29,7 @@ public class SongModel {
     }
 
     public void createSong(String title, String artist, String songCategory, String time, String filePath) throws SQLException, SongException {
-        Song song = manager.createSong(title,artist,songCategory,filePath,artistsDAO,categoriesDAO,time);
+        Song song = manager.createSong(title,artist,songCategory,filePath,time);
         mainModel.getAllSongs().add(song);
 
     }

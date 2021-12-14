@@ -63,26 +63,6 @@ public class ArtistsDAO implements IArtistsDAO {
             preparedStatement.executeUpdate();}
     }
 
-   /**
-     * this method returns how many song an artist is involved in. We need this to check while deleting a song.
-     * If an artist has only one song that we want to delete, we clear him from database.
-     */
-/*
-    public int artistOccurrences(Artist artist) throws SQLException {
-        int occurrences = 0;
-        String sql = "SELECT * FROM songs WHERE Artist = ?";
-        try (Connection connection = databaseConnector.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, artist.getId());
-            preparedStatement.execute();
-            ResultSet resultSet = preparedStatement.getResultSet();
-            while (resultSet.next()) {
-                occurrences += 1;
-            }
-        }
-        return occurrences;
-    }*/
-
     @Override
     public Artist getArtistById(int artistId) throws SQLException {
         String sql = "SELECT * FROM artists WHERE Id=?";

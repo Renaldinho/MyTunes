@@ -55,26 +55,6 @@ public class CategoriesDAO implements ICategoriesDAO {
         }
     }
 
-    /**
-     * this method returns how many songs a category is involved in. We need this to check while deleting a song.
-     * If a category only belongs to one song that we want to delete, we just clear it from database.
-     */
-
-    /*public int categoryOccurrences(Category category) throws SQLException {
-        int occurrences = 0;
-        String sql = "SELECT *  FROM songs WHERE Category = ?";
-        try (Connection connection = databaseConnector.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, category.getId());
-            preparedStatement.execute();
-            ResultSet resultSet = preparedStatement.getResultSet();
-            while (resultSet.next()) {
-                occurrences += 1;
-            }
-        }
-        return occurrences;
-    }*/
-
     @Override
     public Category getCategoryById(int categoryId) throws SQLException {
         String sql = "SELECT *  FROM categories WHERE Id=?";

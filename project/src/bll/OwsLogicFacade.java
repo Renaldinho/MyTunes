@@ -22,21 +22,21 @@ public interface OwsLogicFacade {
 
     void addSongToPlayList(Song song, PlayList playList) throws SQLException, PlayListException;
 
-    void removeSongFromPlayList(Joins joins,PlayListsDAO playListsDAO ,PlayList playList,SongDAO songDAO) throws SQLException, PlayListException;
+    void removeSongFromPlayList(Joins joins,PlayList playList) throws SQLException, PlayListException;
 
     List<Joins> getAllJoinsPlayList(PlayList playList) throws SQLException, JoinsException;
 
-    void moveSongUp(Joins joins, PlayListsDAO playListsDAO) throws SQLException, JoinsException;
+    void moveSongUp(Joins joins) throws SQLException, JoinsException;
 
-    void moveSongDown(Joins joins, PlayListsDAO playListsDAO) throws SQLException, JoinsException;
+    void moveSongDown(Joins joins) throws SQLException, JoinsException;
 
-    List<Song> getAllSongs(ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLServerException, SQLException, SongException;
+    List<Song> getAllSongs() throws SQLServerException, SQLException, SongException;
 
-    Song createSong(String title, String artist, String category, String filePath, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO,String time) throws SQLException, SongException;
+    Song createSong(String title, String artist, String category, String filePath,String time) throws SQLException, SongException;
 
-    void deleteSong(Song song, JoinsDAO joinsDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO,PlayListsDAO playListsDAO,SongDAO songDAO) throws SQLException, SongException;
+    void deleteSong(Song song) throws SQLException, SongException;
 
-    void updateSong(String title, Song song, String newArtist, String newCategory, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO) throws SQLException, SongException;
+    void updateSong(String title, Song song, String newArtist, String newCategory) throws SQLException, SongException;
 
     Song getSongByID(int songId) throws SQLException, SongException;
 }

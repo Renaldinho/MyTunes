@@ -36,21 +36,21 @@ public class MainModel {
 
 
 
-    public void moveSongDown(Joins joins, PlayListsDAO playListsDAO,PlayList playList) throws JoinsException {
-        manager.moveSongDown(joins,playListsDAO);
+    public void moveSongDown(Joins joins) throws JoinsException {
+        manager.moveSongDown(joins);
     }
 
-    public void moveSongUp(Joins joins, PlayListsDAO playListsDAO) throws JoinsException {
-        manager.moveSongUp(joins,playListsDAO);
+    public void moveSongUp(Joins joins) throws JoinsException {
+        manager.moveSongUp(joins);
     }
 
-    public void deleteSong(Song song, JoinsDAO joinsDAO, ArtistsDAO artistsDAO, CategoriesDAO categoriesDAO,PlayListsDAO playListsDAO,SongDAO songDAO) throws SongException {
-        manager.deleteSong(song, joinsDAO,artistsDAO,categoriesDAO,playListsDAO,songDAO);
+    public void deleteSong(Song song) throws SongException {
+        manager.deleteSong(song);
         allSongs.remove(song);
     }
 
-    public void deleteSongFromGivenPlayList(Joins joins,PlayList playList,PlayListsDAO playListsDAO,SongDAO songDAO) throws PlayListException {
-         manager.removeSongFromPlayList(joins,playListsDAO,playList,songDAO);
+    public void deleteSongFromGivenPlayList(Joins joins,PlayList playList) throws PlayListException {
+         manager.removeSongFromPlayList(joins,playList);
             allSongsForGivenPlayList.remove(joins);
     }
 
@@ -63,7 +63,7 @@ public class MainModel {
     public ObservableList getAllSongs() throws SongException {
         //allSongs.clear();
         allSongs=FXCollections.observableArrayList();
-        allSongs.addAll(manager.getAllSongs(artistsDAO,categoriesDAO));
+        allSongs.addAll(manager.getAllSongs());
         return allSongs;
     }
 
@@ -79,7 +79,7 @@ public class MainModel {
     }
 
     public void addSongToGivenPlayList(Song song, PlayList playList) throws JoinsException {
-        allSongsForGivenPlayList.add(manager.createJoins(song,playList,playListsDAO));
+        allSongsForGivenPlayList.add(manager.createJoins(song,playList));
 
     }
 
