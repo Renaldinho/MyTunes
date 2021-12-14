@@ -32,7 +32,7 @@ public class PlaylistController {
     }
 
     @FXML
-    public void handleSavePlaylistBtn(javafx.scene.input.MouseEvent actionEvent) throws Exception {
+    public void handleSavePlaylistBtn(javafx.scene.input.MouseEvent actionEvent)  {
         String playlistName = playlistNameTxt.getText();
         try {
             model.createPlaylist(playlistName);

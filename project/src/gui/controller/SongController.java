@@ -68,7 +68,7 @@ public class SongController {
 
 
     @FXML
-    public void handleCancelSongBtn(ActionEvent actionEvent) throws Exception {
+    public void handleCancelSongBtn(ActionEvent actionEvent)  {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Alert window");
         alert.setHeaderText("Do you want to close this window?");
@@ -84,8 +84,8 @@ public class SongController {
     public void handleChooseFile(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
 
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("MP3 Files",".mp3"),
-                new FileChooser.ExtensionFilter("WAV Files",".wav"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("MP3 Files","*.mp3"),
+                new FileChooser.ExtensionFilter("WAV Files","*.wav"));
 
         File selectedFile = fileChooser.showOpenDialog(pathField.getScene().getWindow());
         if (selectedFile != null ) {

@@ -213,7 +213,7 @@ public class MainController implements Initializable {
 
 
     @FXML
-    private void getSelectedPlayList(MouseEvent event) throws SQLException {
+    private void getSelectedPlayList(MouseEvent event) {
         setPlayList((PlayList) lstPlayLists.getSelectionModel().selectedItemProperty().get());
         if(playList!=null) {
             try {
@@ -325,7 +325,7 @@ public class MainController implements Initializable {
         searchCleanButton.setText("Clean");
     }
 
-    public void deletePlayList(ActionEvent actionEvent) throws SQLException {
+    public void deletePlayList(ActionEvent actionEvent)  {
         if(playList!=null){
             try {
                 mainModel.deletePlayList(playList);
