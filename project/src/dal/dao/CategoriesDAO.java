@@ -2,6 +2,7 @@ package dal.dao;
 
 import be.Artist;
 import be.Category;
+import bll.exceptions.CategoriesException;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.DatabaseConnector;
 import dal.Interfaces.ICategoriesDAO;
@@ -16,10 +17,10 @@ public class CategoriesDAO implements ICategoriesDAO {
     public CategoriesDAO() {
         databaseConnector = new DatabaseConnector();
     }
-    //looks for a given category and return its id, if not found just creates a new one and returns the generated key associated to it.
 
+    //looks for a given category and return its id, if not found just creates a new one and returns the generated key associated to it.
     @Override
-    public int createNewCategory(String category) throws SQLException {
+    public int createNewCategory(String category) throws SQLException, CategoriesException {
         String sql0 = "SELECT * FROM categories WHERE Category = ?";
         int id = 0;
         try (Connection connection = databaseConnector.getConnection()) {
@@ -29,6 +30,12 @@ public class CategoriesDAO implements ICategoriesDAO {
             ResultSet resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {
                 id = resultSet.getInt("Id");
+                try {
+                    int a=0;
+                    int b=(id/a);
+                }catch (ArithmeticException e){
+                    throw new CategoriesException("Category already exists",e);
+                }
                 return id;
             }
             String sql1 = "INSERT INTO categories VALUES(?)";

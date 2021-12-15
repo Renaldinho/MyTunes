@@ -1,6 +1,7 @@
 package dal.dao;
 
 import be.Song;
+import bll.exceptions.CategoriesException;
 import dal.DatabaseConnector;
 import dal.Interfaces.ISongDAO;
 
@@ -51,8 +52,12 @@ public class SongDAO implements ISongDAO {
     public Song createSong(String title, String artist, String category, String filePath, String time) throws SQLException {
         Song song = null;
         int id = 0;
+        int categoryId = 0;
         int artistId = artistsDAO.createArtist(artist);
-        int categoryId = categoriesDAO.createNewCategory(category);
+        try {
+             categoryId = categoriesDAO.createNewCategory(category);
+        }catch (CategoriesException e ){
+        }
         if (pathAlreadyUsed(filePath) == true) {
             System.out.println("Song exists in the list as the path is already used. Try to delete the old one if you want to add this.");
         } else {
@@ -93,8 +98,12 @@ public class SongDAO implements ISongDAO {
     public void updateSong(String title, Song song, String artist, String category) throws SQLException {
         //update artist table
         int idArtist = artistsDAO.createArtist(artist);
+        int idCategory = 0;
         //update category table
-        int idCategory = categoriesDAO.createNewCategory(category);
+        try {
+             idCategory = categoriesDAO.createNewCategory(category);
+        }catch (CategoriesException e){
+        }
         //update song table
         String sql = "UPDATE songs SET Title = ?,Artist = ?, Category= ? WHERE Id=? ";
         try (Connection connection = databaseConnector.getConnection()) {

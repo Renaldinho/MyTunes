@@ -1,13 +1,14 @@
 package dal.Interfaces;
 
 import be.Category;
+import bll.exceptions.CategoriesException;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public interface ICategoriesDAO {
-    int createNewCategory(String name) throws SQLException;
+    int createNewCategory(String name) throws SQLException, CategoriesException;
 
     void deleteCategory(Category category) throws SQLServerException, SQLException;
 

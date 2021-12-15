@@ -1,6 +1,7 @@
 package gui.controller;
 
 import be.Category;
+import bll.exceptions.CategoriesException;
 import bll.exceptions.SongException;
 import gui.model.MainModel;
 import gui.model.NewCategoryModel;
@@ -121,7 +122,7 @@ public class SongController {
         stage.show();
     }
 
-    public void setMenuBar() throws SQLException {
+    public void setMenuBar() throws CategoriesException {
         for (Category cat : songModel.getAllCategories())
             category.getItems().addAll(new MenuItem(cat.toString()));
     }

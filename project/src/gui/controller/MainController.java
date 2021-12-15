@@ -3,11 +3,10 @@ package gui.controller;
 import be.Joins;
 import be.PlayList;
 import be.Song;
-import bll.MyTunesManager;
+import bll.exceptions.CategoriesException;
 import bll.exceptions.JoinsException;
 import bll.exceptions.PlayListException;
 import bll.exceptions.SongException;
-import dal.dao.*;
 import gui.model.MainModel;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -95,7 +94,7 @@ public class MainController implements Initializable {
         };
     }
 
-    public void newSong(ActionEvent actionEvent) throws IOException, SQLException {
+    public void newSong(ActionEvent actionEvent) throws IOException, CategoriesException {
         Parent root;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/gui/view/newSong.fxml"));

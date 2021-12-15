@@ -4,10 +4,10 @@ import be.Category;
 import be.Joins;
 import be.PlayList;
 import be.Song;
+import bll.exceptions.CategoriesException;
 import bll.exceptions.JoinsException;
 import bll.exceptions.PlayListException;
 import bll.exceptions.SongException;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.dao.*;
 
 import java.sql.SQLException;
@@ -141,23 +141,42 @@ public class MyTunesManager implements OwsLogicFacade {
     }
 
     @Override
-    public List<Category> getAllCategories() throws SQLException {
-        return categoriesDAO.getAllCategories();
+    public List<Category> getAllCategories() throws CategoriesException {
+        try {
+            return categoriesDAO.getAllCategories();
+        } catch (SQLException e) {
+            throw new CategoriesException("Connection failed", e);
+        }
     }
 
     @Override
-    public void updateCategory(Category category, String name) throws SQLException {
-        categoriesDAO.updateCategory(category, name);
+    public void updateCategory(Category category, String name) throws CategoriesException {
+        try {
+            categoriesDAO.updateCategory(category, name);
+        } catch (SQLException e) {
+            throw new CategoriesException("Error", e);
+        }
+
     }
 
     @Override
-    public int createNewCategory(String category) throws SQLException {
-        return categoriesDAO.createNewCategory(category);
+    public int createNewCategory(String category) throws CategoriesException {
+        try {
+            return categoriesDAO.createNewCategory(category);
+        } catch (SQLException e) {
+            throw new CategoriesException("Error", e);
+        } catch (CategoriesException e) {
+            throw e;
+        }
     }
 
     @Override
-    public void deleteCategory(Category category) throws SQLException {
-        categoriesDAO.deleteCategory(category);
+    public void deleteCategory(Category category) throws CategoriesException {
+        try {
+            categoriesDAO.deleteCategory(category);
+        } catch (SQLException e) {
+            throw new CategoriesException("Song dependency.", e);
+        }
     }
 
     public Joins createJoins(Song song, PlayList playList) throws JoinsException {

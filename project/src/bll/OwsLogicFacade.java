@@ -4,6 +4,7 @@ import be.Category;
 import be.Joins;
 import be.PlayList;
 import be.Song;
+import bll.exceptions.CategoriesException;
 import bll.exceptions.JoinsException;
 import bll.exceptions.PlayListException;
 import bll.exceptions.SongException;
@@ -39,11 +40,11 @@ public interface OwsLogicFacade {
 
     Song getSongByID(int songId) throws SQLException, SongException;
 
-    List<Category> getAllCategories() throws SQLException;
+    List<Category> getAllCategories() throws CategoriesException;
 
-    void updateCategory(Category category, String name) throws SQLException;
+    void updateCategory(Category category, String name) throws  CategoriesException;
 
-    int createNewCategory(String category) throws SQLException;
+    int createNewCategory(String category) throws CategoriesException;
 
-    void deleteCategory(Category category) throws SQLException;
+    void deleteCategory(Category category) throws CategoriesException;
 }

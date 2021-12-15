@@ -2,6 +2,7 @@ package gui.controller;
 
 import be.Category;
 import bll.MyTunesManager;
+import bll.exceptions.CategoriesException;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import gui.model.NewCategoryModel;
 import javafx.event.ActionEvent;
@@ -41,24 +42,38 @@ public class NewCategoryController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             categoriesList.setItems(newCategoryModel.getAllCategories());
-        } catch (SQLException e) {
+        } catch (CategoriesException e) {
             e.printStackTrace();
         }
     }
 
 
-    public void addCategory(ActionEvent actionEvent) throws SQLException {
+    public void addCategory(ActionEvent actionEvent) throws CategoriesException {
         if (newCategoryName == null) {
             return;
         } else {
-            newCategoryModel.addCategory(newCategoryName.getText());
-            categoriesList.setItems(newCategoryModel.getAllCategories());
-            songController.addMenuItem(newCategoryName.getText());
-            newCategoryName.setText("");
+            try {
+                newCategoryModel.addCategory(newCategoryName.getText());
+                categoriesList.setItems(newCategoryModel.getAllCategories());
+                songController.addMenuItem(newCategoryName.getText());
+                newCategoryName.setText("");
+
+
+            } catch (CategoriesException e) {
+                newCategoryName.setText("");
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText("Category already exists.");
+
+                ButtonType okButton = new ButtonType("OK");
+                alert.getButtonTypes().setAll(okButton);
+                alert.showAndWait();
+            }
+
         }
     }
 
-    public void editCategory(ActionEvent actionEvent) throws SQLException {
+    public void editCategory(ActionEvent actionEvent) throws CategoriesException {
         if (categorySelected == null) {
             return;
         } else {
@@ -89,7 +104,7 @@ public class NewCategoryController implements Initializable {
 
     }
 
-    public void deleteCategory(MouseEvent event) throws SQLException {
+    public void deleteCategory(MouseEvent event) throws CategoriesException {
         try {
             int index = categoriesList.getSelectionModel().getSelectedIndex();
             newCategoryModel.deleteCategory(categorySelected);
@@ -107,7 +122,7 @@ public class NewCategoryController implements Initializable {
             }
 
 
-        } catch (SQLServerException s) {
+        } catch (CategoriesException s) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Alert window");
             alert.setHeaderText("One or many songs are associated to this category.\n Please get rid of this dependency before you can be able to delete it.");
@@ -122,6 +137,4 @@ public class NewCategoryController implements Initializable {
         selectedCategoryName.setText(categoryName);
         selectCategory.setText(categoryName);
     }
-
-
 }

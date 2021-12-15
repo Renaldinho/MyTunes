@@ -3,6 +3,7 @@ package gui.model;
 import be.Category;
 import be.Song;
 import bll.MyTunesManager;
+import bll.exceptions.CategoriesException;
 import bll.exceptions.SongException;
 import dal.dao.ArtistsDAO;
 import dal.dao.CategoriesDAO;
@@ -34,7 +35,7 @@ public class SongModel {
         mainModel.getAllSongs().add(song);
     }
 
-    public ObservableList<Category> getAllCategories() throws SQLException {
+    public ObservableList<Category> getAllCategories() throws CategoriesException {
         allCategories = FXCollections.observableArrayList();
         allCategories.addAll(manager.getAllCategories());
         return allCategories;
