@@ -1,10 +1,16 @@
 package gui.controller;
 
+import be.Category;
 import bll.exceptions.SongException;
 import gui.model.MainModel;
+import gui.model.NewCategoryModel;
 import gui.model.SongModel;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -14,16 +20,16 @@ import javafx.util.Duration;
 
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class SongController {
 
     MainController mainController;
     public Button cancelSongBtn;
 
-    MainModel model;
     SongModel songModel;
-
     @FXML
     private TextField pathField;
 
@@ -31,39 +37,15 @@ public class SongController {
     private TextField songTimeField;
 
     @FXML
-    private SplitMenuButton category;
-    @FXML
-    private MenuItem rythmAndBlues;
-    @FXML
-    private MenuItem reggae;
-    @FXML
-    private MenuItem jazz;
-    @FXML
-    private MenuItem rockMusic;
+    private SplitMenuButton category=new SplitMenuButton();
 
     @FXML
     private TextField songTitleField;
     @FXML
     private TextField songArtistField;
 
-    public SongController(){
+    public SongController() throws SQLException {
         songModel = new SongModel();
-    }
-
-    public void rockMusic(ActionEvent actionEvent) {
-        category.setText("Rock music");
-    }
-
-    public void rythmAndBlues(ActionEvent actionEvent) {
-        category.setText("Rythm and Blues");
-    }
-
-    public void reggae(ActionEvent actionEvent) {
-        category.setText("Reggae");
-    }
-
-    public void jazz(ActionEvent actionEvent) {
-        category.setText("Jazz");
     }
 
 
@@ -124,4 +106,37 @@ public class SongController {
     public void setController(MainController mainController) {
         this.mainController=mainController;
     }
+
+    public void newCategory(ActionEvent actionEvent) throws IOException {
+        Parent root;
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/gui/view/newCategory.fxml"));
+        root= loader.load();
+        NewCategoryController newCategoryController = loader.getController();
+        newCategoryController.setController(this);
+        Stage stage = new Stage();
+        stage.setTitle("Create a song");
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    public void setMenuBar() throws SQLException {
+       for (Category cat : songModel.getAllCategories())
+        category.getItems().addAll(new MenuItem(cat.toString()));
+        }
+
+    public void clearMenuBar() {
+        category.getItems().clear();
+    }
+    public void addMenuItem(String categoryName){
+        category.getItems().add(new MenuItem(categoryName));
+    }
+    /*public void deleteMenuItem(MenuItem menuItem){
+        MenuItem search=null;
+        for(MenuItem menuItem1 : category.getItems()){
+            if (menuItem1.getText()==menuItem.getText())
+                search=menuItem1;
+        }
+        category.getItems().remove(search);
+    }*/
 }

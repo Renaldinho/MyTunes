@@ -1,5 +1,6 @@
 package bll;
 
+import be.Category;
 import be.Joins;
 import be.PlayList;
 import be.Song;
@@ -143,6 +144,26 @@ public class MyTunesManager implements OwsLogicFacade {
         } catch (SQLException e) {
             throw new SongException("Couldn't get song with this id",e);
         }
+    }
+
+    @Override
+    public List<Category> getAllCategories() throws SQLException {
+        return categoriesDAO.getAllCategories();
+    }
+
+    @Override
+    public void updateCategory(Category category, String name) throws SQLException {
+        categoriesDAO.updateCategory(category,name);
+    }
+
+    @Override
+    public int createNewCategory(String category) throws SQLException {
+        return categoriesDAO.createNewCategory(category);
+    }
+
+    @Override
+    public void deleteCategory(Category category) throws SQLException {
+        categoriesDAO.deleteCategory(category);
     }
 
     public Joins createJoins(Song song,PlayList playList) throws JoinsException {

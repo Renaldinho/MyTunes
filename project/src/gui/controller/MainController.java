@@ -55,12 +55,6 @@ public class MainController implements Initializable {
     @FXML
     private TableColumn<PlayList, Integer> songsColumn;
 
-    SongDAO songDAO = new SongDAO();
-    ArtistsDAO artistsDAO = new ArtistsDAO();
-    CategoriesDAO categoriesDAO = new CategoriesDAO();
-    PlayListsDAO playListsDAO =new PlayListsDAO();
-    JoinsDAO joinsDAO = new JoinsDAO();
-
     MainModel mainModel;
 
     PlayList playList;
@@ -100,13 +94,14 @@ public class MainController implements Initializable {
         };
     }
 
-    public void newSong(ActionEvent actionEvent) throws IOException {
+    public void newSong(ActionEvent actionEvent) throws IOException, SQLException {
         Parent root;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/gui/view/newSong.fxml"));
         root= loader.load();
         SongController songController = loader.getController();
         songController.setController(this);
+        songController.setMenuBar();
         Stage stage = new Stage();
         stage.setTitle("Create a song");
         stage.setScene(new Scene(root));

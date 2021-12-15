@@ -1,4 +1,4 @@
-package gui.view;
+package gui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("mainView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../gui/view/mainView.fxml"));
         primaryStage.setTitle("myTunes");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
