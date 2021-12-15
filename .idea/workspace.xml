@@ -257,11 +257,6 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/project/src/gui/controller/MainController.java</url>
-          <line>370</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/project/src/gui/controller/MainController.java</url>
           <line>195</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
@@ -272,6 +267,14 @@
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/project/src/gui/controller/MainController.java</url>
+          <line>366</line>
+          <properties class="gui.controller.MainController" method="moveSongUp">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

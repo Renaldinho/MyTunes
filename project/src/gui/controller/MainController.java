@@ -367,8 +367,8 @@ public class MainController implements Initializable {
     public void moveSongUp(ActionEvent actionEvent){
         if(joins!=null){
             try {
-                songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
                 mainModel.moveSongUp(joins);
+                songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
             } catch (JoinsException e) {
                 e.printStackTrace();
             }
