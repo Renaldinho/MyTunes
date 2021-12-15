@@ -54,6 +54,7 @@ public class NewCategoryController implements Initializable {
             newCategoryModel.addCategory(newCategoryName.getText());
             categoriesList.setItems(newCategoryModel.getAllCategories());
             songController.addMenuItem(newCategoryName.getText());
+            newCategoryName.setText("");
         }
     }
 
@@ -64,7 +65,9 @@ public class NewCategoryController implements Initializable {
         newCategoryModel.updateCategory(categorySelected,selectedCategoryName.getText());
         categoriesList.setItems(newCategoryModel.getAllCategories());
             songController.clearMenuBar();
-            songController.setMenuBar();    }}
+            songController.setMenuBar();
+            selectCategory.setText(selectedCategoryName.getText());
+        }}
 
     public void closeWindow(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -81,17 +84,27 @@ public class NewCategoryController implements Initializable {
 
     public void getSelectedCategory(MouseEvent event) {
         categorySelected = (Category) categoriesList.getSelectionModel().selectedItemProperty().get();
-       selectedCategoryName.setText(categorySelected.getCategoryName());
-       selectCategory.setText(categorySelected.getCategoryName());
+        populateTextField(categorySelected.getCategoryName());
 
     }
 
     public void deleteCategory(MouseEvent event) throws SQLException {
         try{
+            int index=categoriesList.getSelectionModel().getSelectedIndex();
             newCategoryModel.deleteCategory(categorySelected);
             songController.deleteMenuItem(new MenuItem(categorySelected.toString()));
             categoriesList.setItems(newCategoryModel.getAllCategories());
             newCategoryModel.getAllCategories().remove(categorySelected);
+            if(index>0){
+            categoriesList.getSelectionModel().select(index-1);
+            categorySelected =(Category) categoriesList.getItems().get(index-1);
+            populateTextField(categorySelected.getCategoryName());}
+            else {
+                categoriesList.getItems().clear();
+                selectedCategoryName.setText("");
+                selectCategory.setText("");
+            }
+
 
         }
         catch (SQLServerException s){
@@ -102,8 +115,11 @@ public class NewCategoryController implements Initializable {
             ButtonType okButton = new ButtonType("OK");
             alert.getButtonTypes().setAll(okButton);
             alert.showAndWait();
+        }}
+        private void populateTextField(String categoryName){
+            selectedCategoryName.setText(categoryName);
+            selectCategory.setText(categoryName);
         }
 
 
     }
-}
