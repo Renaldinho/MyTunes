@@ -32,7 +32,7 @@ public class ArtistsDAO implements IArtistsDAO {
             }
             String sql1 = "INSERT INTO artists VALUES (?)";
             PreparedStatement preparedStatement1 = connection.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement1.setString(1,name);
+            preparedStatement1.setString(1, name);
             preparedStatement1.executeUpdate();
             ResultSet resultSet1 = preparedStatement1.getGeneratedKeys();
             while (resultSet1.next()) {
@@ -60,7 +60,8 @@ public class ArtistsDAO implements IArtistsDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, name);
             preparedStatement.setInt(2, artist.getId());
-            preparedStatement.executeUpdate();}
+            preparedStatement.executeUpdate();
+        }
     }
 
     @Override
@@ -83,16 +84,16 @@ public class ArtistsDAO implements IArtistsDAO {
 
     @Override
     public List<Artist> getAllArtists() throws SQLException {
-        List<Artist>allArtists = new ArrayList<>();
+        List<Artist> allArtists = new ArrayList<>();
         String sql = "SELECT * FROM artists ";
-        try (Connection connection = databaseConnector.getConnection()){
+        try (Connection connection = databaseConnector.getConnection()) {
             Statement statement = connection.createStatement();
             statement.execute(sql);
             ResultSet resultSet = statement.getResultSet();
-            while (resultSet.next()){
-                int id  = resultSet.getInt("Id");
+            while (resultSet.next()) {
+                int id = resultSet.getInt("Id");
                 String name = resultSet.getString("Name");
-                Artist artist = new Artist(id,name);
+                Artist artist = new Artist(id, name);
                 allArtists.add(artist);
 
             }

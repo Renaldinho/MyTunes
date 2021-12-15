@@ -15,8 +15,8 @@ import javafx.collections.ObservableList;
 import java.sql.SQLException;
 
 public class MainModel {
-    private ObservableList<PlayList>allPlayLists;
-    private ObservableList<Song>allSongs;
+    private ObservableList<PlayList> allPlayLists;
+    private ObservableList<Song> allSongs;
     private ObservableList<Joins> allSongsForGivenPlayList;
 
 
@@ -26,14 +26,13 @@ public class MainModel {
     PlayListsDAO playListsDAO;
     SongDAO songDAO;
 
-    public MainModel(){
+    public MainModel() {
         manager = new MyTunesManager();
         artistsDAO = new ArtistsDAO();
         categoriesDAO = new CategoriesDAO();
-        playListsDAO=new PlayListsDAO();
+        playListsDAO = new PlayListsDAO();
         songDAO = new SongDAO();
     }
-
 
 
     public void moveSongDown(Joins joins) throws JoinsException {
@@ -49,20 +48,21 @@ public class MainModel {
         allSongs.remove(song);
     }
 
-    public void deleteSongFromGivenPlayList(Joins joins,PlayList playList) throws PlayListException {
-         manager.removeSongFromPlayList(joins,playList);
-            allSongsForGivenPlayList.remove(joins);
+    public void deleteSongFromGivenPlayList(Joins joins, PlayList playList) throws PlayListException {
+        manager.removeSongFromPlayList(joins, playList);
+        allSongsForGivenPlayList.remove(joins);
     }
 
 
     public ObservableList getAllPlayLists() throws PlayListException {
-        allPlayLists= FXCollections.observableArrayList();
+        allPlayLists = FXCollections.observableArrayList();
         allPlayLists.addAll(manager.getAllPlayLists());
         return allPlayLists;
     }
+
     public ObservableList getAllSongs() throws SongException {
         //allSongs.clear();
-        allSongs=FXCollections.observableArrayList();
+        allSongs = FXCollections.observableArrayList();
         allSongs.addAll(manager.getAllSongs());
         return allSongs;
     }
@@ -73,17 +73,17 @@ public class MainModel {
     }
 
     public ObservableList getAllSongsForGivenPlayList(PlayList playList) throws JoinsException {
-        allSongsForGivenPlayList=FXCollections.observableArrayList();
+        allSongsForGivenPlayList = FXCollections.observableArrayList();
         allSongsForGivenPlayList.addAll(manager.getAllJoinsPlayList(playList));
         return allSongsForGivenPlayList;
     }
 
     public void addSongToGivenPlayList(Song song, PlayList playList) throws JoinsException {
-        allSongsForGivenPlayList.add(manager.createJoins(song,playList));
+        allSongsForGivenPlayList.add(manager.createJoins(song, playList));
 
     }
 
     public Song getSongByID(int songId) throws SongException {
-        return  manager.getSongByID(songId);
+        return manager.getSongByID(songId);
     }
 }

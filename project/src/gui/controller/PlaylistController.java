@@ -27,31 +27,35 @@ public class PlaylistController {
     private Button cancelPlaylistBtn;
     MainController mainController;
     Stage stage;
-    public PlaylistController(){
+
+    public PlaylistController() {
         model = new PlaylistModel();
     }
 
     @FXML
-    public void handleSavePlaylistBtn(javafx.scene.input.MouseEvent actionEvent)  {
+    public void handleSavePlaylistBtn(javafx.scene.input.MouseEvent actionEvent) {
         String playlistName = playlistNameTxt.getText();
+        if (playlistName.isEmpty())
+            return;
+        else {
+            try {
+                model.createPlaylist(playlistName);
+                mainController.updatePlayListTableView();
+                stage = (Stage) savePlaylistBtn.getScene().getWindow();
+                stage.close();
+            } catch (PlayListException | SongException e) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText(" Playlist already exists.");
 
-        try {
-            model.createPlaylist(playlistName);
-            mainController.updatePlayListTableView();
-            stage = (Stage) savePlaylistBtn.getScene().getWindow();
-            stage.close();
-        } catch (PlayListException | SongException e) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText(" Playlist already exists.");
-
-            ButtonType okButton = new ButtonType("OK");
-            alert.getButtonTypes().setAll(okButton);
-            alert.showAndWait();
+                ButtonType okButton = new ButtonType("OK");
+                alert.getButtonTypes().setAll(okButton);
+                alert.showAndWait();
             }
 
+        }
     }
-    
+
 
     @FXML
     public void handleCancelPlaylistBtn(ActionEvent actionEvent) {
@@ -60,13 +64,13 @@ public class PlaylistController {
         alert.setHeaderText("Do you want to close this window?");
 
 
-        if(alert.showAndWait().get() == ButtonType.OK ) {
+        if (alert.showAndWait().get() == ButtonType.OK) {
             Stage stage = (Stage) cancelPlaylistBtn.getScene().getWindow();
             stage.close();
         }
     }
 
     public void setController(MainController mainController) {
-        this.mainController=mainController;
+        this.mainController = mainController;
     }
 }

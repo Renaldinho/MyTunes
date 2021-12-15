@@ -10,10 +10,12 @@ import java.sql.SQLException;
 
 public class SongEditModel {
     MyTunesManager manager;
-    public  SongEditModel(){
-        manager=new MyTunesManager();
+
+    public SongEditModel() {
+        manager = new MyTunesManager();
     }
+
     public void updateSong(String title, Song song, String artist, String category) throws SQLException, SongException {
-    manager.updateSong(title,song,artist,category);
+        manager.updateSong(title, song, artist, category);
     }
 }

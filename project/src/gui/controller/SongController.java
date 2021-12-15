@@ -37,7 +37,7 @@ public class SongController {
     private TextField songTimeField;
 
     @FXML
-    private SplitMenuButton category=new SplitMenuButton();
+    private SplitMenuButton category = new SplitMenuButton();
 
     @FXML
     private TextField songTitleField;
@@ -50,15 +50,15 @@ public class SongController {
 
 
     @FXML
-    public void handleCancelSongBtn(ActionEvent actionEvent)  {
+    public void handleCancelSongBtn(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Alert window");
         alert.setHeaderText("Do you want to close this window?");
 
 
-        if(alert.showAndWait().get() == ButtonType.OK ) {
-        Stage stage = (Stage) cancelSongBtn.getScene().getWindow();
-        stage.close();
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            Stage stage = (Stage) cancelSongBtn.getScene().getWindow();
+            stage.close();
         }
     }
 
@@ -66,24 +66,25 @@ public class SongController {
     public void handleChooseFile(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
 
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("MP3 Files","*.mp3"),
-                new FileChooser.ExtensionFilter("WAV Files","*.wav"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("MP3 Files", "*.mp3"),
+                new FileChooser.ExtensionFilter("WAV Files", "*.wav"));
 
         File selectedFile = fileChooser.showOpenDialog(pathField.getScene().getWindow());
-        if (selectedFile != null ) {
+        if (selectedFile != null) {
             pathField.setText(selectedFile.getAbsolutePath());
 
-        MediaPlayer player = new MediaPlayer(new Media(new File(pathField.getText()).toURI().toString()));
-        player.setOnReady(new Runnable() {
-            @Override
-            public void run() {
-                Duration time = player.getTotalDuration();
-                String strDuration = String.format("%d:%02d:%02d",(int)player.getTotalDuration().toSeconds()/3600,(int)player.getTotalDuration().toSeconds()/60,(int)player.getTotalDuration().toSeconds()%60);
-                songTimeField.setText(strDuration);
-                System.out.println();
-            }
-        });
-    }}
+            MediaPlayer player = new MediaPlayer(new Media(new File(pathField.getText()).toURI().toString()));
+            player.setOnReady(new Runnable() {
+                @Override
+                public void run() {
+                    Duration time = player.getTotalDuration();
+                    String strDuration = String.format("%d:%02d:%02d", (int) player.getTotalDuration().toSeconds() / 3600, (int) player.getTotalDuration().toSeconds() / 60, (int) player.getTotalDuration().toSeconds() % 60);
+                    songTimeField.setText(strDuration);
+                    System.out.println();
+                }
+            });
+        }
+    }
 
     public void handleSaveNewSong(ActionEvent actionEvent) throws SQLException {
         String title = songTitleField.getText();
@@ -94,48 +95,50 @@ public class SongController {
         String time = songTimeField.getText();
 
         try {
-            songModel.createSong(title,artist,songCategory,time,filePath);
+            songModel.createSong(title, artist, songCategory, time, filePath);
         } catch (SongException e) {
             e.printStackTrace();
         }
         mainController.updateSongTableView();
 
 
-
     }
+
     public void setController(MainController mainController) {
-        this.mainController=mainController;
+        this.mainController = mainController;
     }
 
     public void newCategory(ActionEvent actionEvent) throws IOException {
         Parent root;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/gui/view/newCategory.fxml"));
-        root= loader.load();
+        root = loader.load();
         NewCategoryController newCategoryController = loader.getController();
         newCategoryController.setController(this);
         Stage stage = new Stage();
-        stage.setTitle("Create a song");
+        stage.setTitle("Manage categories");
         stage.setScene(new Scene(root));
         stage.show();
     }
 
     public void setMenuBar() throws SQLException {
-       for (Category cat : songModel.getAllCategories())
-        category.getItems().addAll(new MenuItem(cat.toString()));
-        }
+        for (Category cat : songModel.getAllCategories())
+            category.getItems().addAll(new MenuItem(cat.toString()));
+    }
 
     public void clearMenuBar() {
         category.getItems().clear();
     }
-    public void addMenuItem(String categoryName){
+
+    public void addMenuItem(String categoryName) {
         category.getItems().add(new MenuItem(categoryName));
     }
-    public void deleteMenuItem(MenuItem menuItem){
-        MenuItem search=null;
-        for(MenuItem menuItem1 : category.getItems()){
+
+    public void deleteMenuItem(MenuItem menuItem) {
+        MenuItem search = null;
+        for (MenuItem menuItem1 : category.getItems()) {
             if (menuItem1.getText().equals(menuItem.getText())) {
-                search=menuItem1;
+                search = menuItem1;
                 break;
             }
         }

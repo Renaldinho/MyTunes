@@ -21,9 +21,7 @@ public interface OwsLogicFacade {
 
     List<PlayList> getAllPlayLists() throws SQLException, PlayListException;
 
-    void addSongToPlayList(Song song, PlayList playList) throws SQLException, PlayListException;
-
-    void removeSongFromPlayList(Joins joins,PlayList playList) throws SQLException, PlayListException;
+    void removeSongFromPlayList(Joins joins, PlayList playList) throws SQLException, PlayListException;
 
     List<Joins> getAllJoinsPlayList(PlayList playList) throws SQLException, JoinsException;
 
@@ -31,17 +29,21 @@ public interface OwsLogicFacade {
 
     void moveSongDown(Joins joins) throws SQLException, JoinsException;
 
-    List<Song> getAllSongs() throws SQLServerException, SQLException, SongException;
+    List<Song> getAllSongs() throws SQLException, SongException;
 
-    Song createSong(String title, String artist, String category, String filePath,String time) throws SQLException, SongException;
+    Song createSong(String title, String artist, String category, String filePath, String time) throws SQLException, SongException;
 
     void deleteSong(Song song) throws SQLException, SongException;
 
     void updateSong(String title, Song song, String newArtist, String newCategory) throws SQLException, SongException;
 
     Song getSongByID(int songId) throws SQLException, SongException;
-    List<Category>getAllCategories() throws SQLException;
+
+    List<Category> getAllCategories() throws SQLException;
+
     void updateCategory(Category category, String name) throws SQLException;
+
     int createNewCategory(String category) throws SQLException;
+
     void deleteCategory(Category category) throws SQLException;
 }

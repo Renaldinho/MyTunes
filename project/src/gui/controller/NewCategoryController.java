@@ -26,13 +26,15 @@ public class NewCategoryController implements Initializable {
     Category categorySelected;
     MyTunesManager manager;
     SongController songController;
+
     public NewCategoryController() throws SQLException {
-         newCategoryModel= new NewCategoryModel();
-         manager = new MyTunesManager();
-         songController = new SongController();
+        newCategoryModel = new NewCategoryModel();
+        manager = new MyTunesManager();
+        songController = new SongController();
     }
+
     public void setController(SongController songController) {
-        this.songController=songController;
+        this.songController = songController;
     }
 
     @Override
@@ -45,12 +47,10 @@ public class NewCategoryController implements Initializable {
     }
 
 
-
     public void addCategory(ActionEvent actionEvent) throws SQLException {
-        if(newCategoryName==null){
+        if (newCategoryName == null) {
             return;
-        }
-        else {
+        } else {
             newCategoryModel.addCategory(newCategoryName.getText());
             categoriesList.setItems(newCategoryModel.getAllCategories());
             songController.addMenuItem(newCategoryName.getText());
@@ -59,15 +59,16 @@ public class NewCategoryController implements Initializable {
     }
 
     public void editCategory(ActionEvent actionEvent) throws SQLException {
-        if (categorySelected==null){
+        if (categorySelected == null) {
             return;
-        }else {
-        newCategoryModel.updateCategory(categorySelected,selectedCategoryName.getText());
-        categoriesList.setItems(newCategoryModel.getAllCategories());
+        } else {
+            newCategoryModel.updateCategory(categorySelected, selectedCategoryName.getText());
+            categoriesList.setItems(newCategoryModel.getAllCategories());
             songController.clearMenuBar();
             songController.setMenuBar();
             selectCategory.setText(selectedCategoryName.getText());
-        }}
+        }
+    }
 
     public void closeWindow(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -75,11 +76,11 @@ public class NewCategoryController implements Initializable {
         alert.setHeaderText("Do you want to close this window?");
 
 
-        if(alert.showAndWait().get() == ButtonType.OK ) {
+        if (alert.showAndWait().get() == ButtonType.OK) {
             Stage stage = (Stage) cancelPlaylistBtn.getScene().getWindow();
             stage.close();
         }
-}
+    }
 
 
     public void getSelectedCategory(MouseEvent event) {
@@ -89,25 +90,24 @@ public class NewCategoryController implements Initializable {
     }
 
     public void deleteCategory(MouseEvent event) throws SQLException {
-        try{
-            int index=categoriesList.getSelectionModel().getSelectedIndex();
+        try {
+            int index = categoriesList.getSelectionModel().getSelectedIndex();
             newCategoryModel.deleteCategory(categorySelected);
             songController.deleteMenuItem(new MenuItem(categorySelected.toString()));
             categoriesList.setItems(newCategoryModel.getAllCategories());
             newCategoryModel.getAllCategories().remove(categorySelected);
-            if(index>0){
-            categoriesList.getSelectionModel().select(index-1);
-            categorySelected =(Category) categoriesList.getItems().get(index-1);
-            populateTextField(categorySelected.getCategoryName());}
-            else {
+            if (index > 0) {
+                categoriesList.getSelectionModel().select(index - 1);
+                categorySelected = (Category) categoriesList.getItems().get(index - 1);
+                populateTextField(categorySelected.getCategoryName());
+            } else {
                 categoriesList.getItems().clear();
                 selectedCategoryName.setText("");
                 selectCategory.setText("");
             }
 
 
-        }
-        catch (SQLServerException s){
+        } catch (SQLServerException s) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Alert window");
             alert.setHeaderText("One or many songs are associated to this category.\n Please get rid of this dependency before you can be able to delete it.");
@@ -115,11 +115,13 @@ public class NewCategoryController implements Initializable {
             ButtonType okButton = new ButtonType("OK");
             alert.getButtonTypes().setAll(okButton);
             alert.showAndWait();
-        }}
-        private void populateTextField(String categoryName){
-            selectedCategoryName.setText(categoryName);
-            selectCategory.setText(categoryName);
         }
-
-
     }
+
+    private void populateTextField(String categoryName) {
+        selectedCategoryName.setText(categoryName);
+        selectCategory.setText(categoryName);
+    }
+
+
+}

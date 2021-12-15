@@ -4,15 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="">
+    <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="last one">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/bll/MyTunesManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/bll/MyTunesManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/PlayListsDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/PlayListsDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/IPlayListDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/IPlayListDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/MainController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/PlaylistController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/PlaylistController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/bll/MyTunesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/bll/MyTunesManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/dal/Interfaces/IPlayListDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/Interfaces/IPlayListDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/bll/OwsLogicFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/bll/OwsLogicFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/DatabaseConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/DatabaseConnector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/TestClass.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/ArtistsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/ArtistsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/CategoriesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/CategoriesDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/JoinsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/JoinsDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/dal/dao/PlayListsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/PlayListsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/SongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/SongDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/controller/NewCategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/NewCategoryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/gui/controller/PlaylistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/PlaylistController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/controller/SongController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/SongController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/controller/SongEditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/SongEditController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/model/MainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/model/MainModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/model/NewCategoryModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/model/NewCategoryModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/model/PlaylistModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/model/PlaylistModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/model/SongEditModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/model/SongEditModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/model/SongModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/model/SongModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +160,8 @@
       <workItem from="1639490897561" duration="23020000" />
       <workItem from="1639567128092" duration="4717000" />
       <workItem from="1639600413020" duration="1054000" />
-      <workItem from="1639602013096" duration="721000" />
+      <workItem from="1639602013096" duration="877000" />
+      <workItem from="1639603214701" duration="1636000" />
     </task>
     <task id="LOCAL-00001" summary="dal 95% done still few more tests to be done">
       <created>1638404507856</created>
@@ -230,7 +247,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639569584175</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="last one">
+      <created>1639602843030</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1639602843030</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,21 +284,12 @@
     <MESSAGE value="small changes" />
     <MESSAGE value="extensions" />
     <MESSAGE value="more Categories" />
-    <option name="LAST_COMMIT_MESSAGE" value="more Categories" />
+    <MESSAGE value="last one" />
+    <option name="LAST_COMMIT_MESSAGE" value="last one" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/project/src/dal/TestClass.java</url>
-          <line>40</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/project/src/gui/controller/MainController.java</url>
-          <line>195</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/project/src/dal/dao/JoinsDAO.java</url>
           <line>62</line>
@@ -282,14 +297,6 @@
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/project/src/gui/controller/MainController.java</url>
-          <line>366</line>
-          <properties class="gui.controller.MainController" method="moveSongUp">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

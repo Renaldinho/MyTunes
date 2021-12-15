@@ -16,26 +16,26 @@ import java.util.List;
 
 
 public class SongModel {
-    private ObservableList<Category>allCategories;
+    private ObservableList<Category> allCategories;
     private final MyTunesManager manager;
     ArtistsDAO artistsDAO;
     CategoriesDAO categoriesDAO;
     MainModel mainModel;
-    SongDAO songDAO = new SongDAO();
 
     public SongModel() {
         manager = new MyTunesManager();
         artistsDAO = new ArtistsDAO();
         categoriesDAO = new CategoriesDAO();
-        mainModel=new MainModel();
+        mainModel = new MainModel();
     }
 
     public void createSong(String title, String artist, String songCategory, String time, String filePath) throws SQLException, SongException {
-        Song song = manager.createSong(title,artist,songCategory,filePath,time);
+        Song song = manager.createSong(title, artist, songCategory, filePath, time);
         mainModel.getAllSongs().add(song);
     }
-    public ObservableList<Category>getAllCategories() throws SQLException {
-        allCategories= FXCollections.observableArrayList();
+
+    public ObservableList<Category> getAllCategories() throws SQLException {
+        allCategories = FXCollections.observableArrayList();
         allCategories.addAll(manager.getAllCategories());
         return allCategories;
     }

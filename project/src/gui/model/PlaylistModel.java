@@ -1,4 +1,5 @@
 package gui.model;
+
 import be.PlayList;
 import bll.MyTunesManager;
 import bll.exceptions.PlayListException;
@@ -9,9 +10,10 @@ public class PlaylistModel {
     private MyTunesManager manager;
     MainModel mainModel;
     PlayList playList;
+
     public PlaylistModel() {
         manager = new MyTunesManager();
-         mainModel = new MainModel();
+        mainModel = new MainModel();
     }
 
     public void createPlaylist(String name) throws PlayListException, SongException {

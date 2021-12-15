@@ -86,17 +86,17 @@ public class CategoriesDAO implements ICategoriesDAO {
     }
 
     @Override
-    public List<Category> getAllCategories()throws SQLException {
-        List<Category>allCategories= new ArrayList<>();
-        String sql="SELECT * FROM categories";
-        try (Connection connection = databaseConnector.getConnection()){
+    public List<Category> getAllCategories() throws SQLException {
+        List<Category> allCategories = new ArrayList<>();
+        String sql = "SELECT * FROM categories";
+        try (Connection connection = databaseConnector.getConnection()) {
             Statement statement = connection.createStatement();
             statement.execute(sql);
             ResultSet resultSet = statement.getResultSet();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 int id = resultSet.getInt("Id");
                 String name = resultSet.getString("Category");
-                Category category = new Category(id,name);
+                Category category = new Category(id, name);
                 allCategories.add(category);
             }
         }

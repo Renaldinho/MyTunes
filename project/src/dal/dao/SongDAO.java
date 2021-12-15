@@ -48,32 +48,32 @@ public class SongDAO implements ISongDAO {
 
 
     @Override
-    public Song createSong(String title, String artist, String category, String filePath,String time) throws SQLException {
-        Song song=null;
+    public Song createSong(String title, String artist, String category, String filePath, String time) throws SQLException {
+        Song song = null;
         int id = 0;
         int artistId = artistsDAO.createArtist(artist);
         int categoryId = categoriesDAO.createNewCategory(category);
-        if(pathAlreadyUsed(filePath)==true){
-        System.out.println("Song exists in the list as the path is already used. Try to delete the old one if you want to add this.");
+        if (pathAlreadyUsed(filePath) == true) {
+            System.out.println("Song exists in the list as the path is already used. Try to delete the old one if you want to add this.");
+        } else {
+            String sql = ("INSERT INTO songs VALUES (?,?,?,?,?)");
+            try (Connection connection = databaseConnector.getConnection()) {
+                PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                statement.setString(1, title);
+                statement.setInt(2, artistId);
+                statement.setInt(3, categoryId);
+                statement.setString(4, time);
+                statement.setString(5, filePath);
+                int created = statement.executeUpdate();
+                ResultSet resultSet = statement.getGeneratedKeys();
+                if (resultSet.next()) {
+                    id = resultSet.getInt(1);
+                }
+                if (created != 0) {
+                    song = new Song(id, title, artist, category, time, filePath);
+                }
+            }
         }
-        else {
-        String sql = ("INSERT INTO songs VALUES (?,?,?,?,?)");
-        try (Connection connection = databaseConnector.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, title);
-            statement.setInt(2, artistId);
-            statement.setInt(3, categoryId);
-            statement.setString(4, time);
-            statement.setString(5, filePath);
-            int created = statement.executeUpdate();
-            ResultSet resultSet = statement.getGeneratedKeys();
-            if (resultSet.next()) {
-                id = resultSet.getInt(1);
-            }
-            if (created != 0) {
-                song = new Song(id, title, artist, category,time, filePath);
-            }
-        }}
         return song;
     }
 
@@ -94,7 +94,7 @@ public class SongDAO implements ISongDAO {
         //update artist table
         int idArtist = artistsDAO.createArtist(artist);
         //update category table
-        int idCategory = categoriesDAO.createNewCategory( category);
+        int idCategory = categoriesDAO.createNewCategory(category);
         //update song table
         String sql = "UPDATE songs SET Title = ?,Artist = ?, Category= ? WHERE Id=? ";
         try (Connection connection = databaseConnector.getConnection()) {
@@ -107,21 +107,21 @@ public class SongDAO implements ISongDAO {
         }
     }
 
-    public Song getSongById(int id)throws SQLException{
-        Song song= null;
-        String sql= "SELECT *  FROM songs WHERE Id=?";
-        try (Connection connection = databaseConnector.getConnection()){
+    public Song getSongById(int id) throws SQLException {
+        Song song = null;
+        String sql = "SELECT *  FROM songs WHERE Id=?";
+        try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1,id);
+            preparedStatement.setInt(1, id);
             preparedStatement.execute();
             ResultSet resultSet = preparedStatement.getResultSet();
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 String title = resultSet.getString("Title");
                 int artistId = resultSet.getInt("Artist");
                 int categoryId = resultSet.getInt("Category");
                 String time = resultSet.getString("Time");
                 String path = resultSet.getString("Path");
-                song = new Song(id,title,artistsDAO.getArtistById(artistId).getName(),categoriesDAO.getCategoryById(categoryId).getCategoryName(),time,path);
+                song = new Song(id, title, artistsDAO.getArtistById(artistId).getName(), categoriesDAO.getCategoryById(categoryId).getCategoryName(), time, path);
             }
 
         }
@@ -129,11 +129,11 @@ public class SongDAO implements ISongDAO {
     }
 
     //controlling update
-    private boolean pathAlreadyUsed(String filePath)throws SQLException{
+    private boolean pathAlreadyUsed(String filePath) throws SQLException {
         String sql = " SELECT  * FROM songs WHERE Path = ?  ";
-        try (Connection connection = databaseConnector.getConnection()){
+        try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1,filePath);
+            preparedStatement.setString(1, filePath);
             preparedStatement.execute();
             ResultSet resultSet = preparedStatement.getResultSet();
             return resultSet.next();

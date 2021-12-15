@@ -21,7 +21,7 @@ public class MyTunesManager implements OwsLogicFacade {
     JoinsDAO joinsDAO;
     SongDAO songDAO;
 
-    public MyTunesManager(){
+    public MyTunesManager() {
         artistsDAO = new ArtistsDAO();
         categoriesDAO = new CategoriesDAO();
         playListDAO = new PlayListsDAO();
@@ -36,8 +36,8 @@ public class MyTunesManager implements OwsLogicFacade {
 
             return playListDAO.createPlayList(name);
         } catch (SQLException e) {
-            throw new PlayListException("Playlist already exists",e);
-        }catch (PlayListException e ){
+            throw new PlayListException("Playlist already exists", e);
+        } catch (PlayListException e) {
             throw e;
         }
     }
@@ -47,7 +47,7 @@ public class MyTunesManager implements OwsLogicFacade {
         try {
             playListDAO.deletePlayList(playList);
         } catch (SQLException e) {
-            throw new PlayListException("Unable to delete playlist",e);
+            throw new PlayListException("Unable to delete playlist", e);
         }
     }
 
@@ -56,25 +56,16 @@ public class MyTunesManager implements OwsLogicFacade {
         try {
             return playListDAO.getAllPlayLists();
         } catch (SQLException e) {
-            throw new PlayListException("Couldn't get all playlists",e);
+            throw new PlayListException("Couldn't get all playlists", e);
         }
     }
 
     @Override
-    public void addSongToPlayList(Song song, PlayList playList) throws PlayListException {
+    public void removeSongFromPlayList(Joins joins, PlayList playList) throws PlayListException {
         try {
-            joinsDAO.createJoin(song,playList);
+            joinsDAO.removeJoins(joins, playList);
         } catch (SQLException e) {
-            throw new PlayListException("Song already exists in playlist",e);
-        }
-    }
-
-    @Override
-    public void removeSongFromPlayList(Joins joins,PlayList playList) throws PlayListException {
-        try {
-            joinsDAO.removeJoins(joins,playList);
-        } catch (SQLException e) {
-            throw new PlayListException("Couldn't remove song from playlist",e);
+            throw new PlayListException("Couldn't remove song from playlist", e);
         }
     }
 
@@ -82,7 +73,7 @@ public class MyTunesManager implements OwsLogicFacade {
         try {
             return joinsDAO.getAllJoinsPlayList(playList);
         } catch (SQLException e) {
-            throw new JoinsException("Couldn't get all songs in playlist",e);
+            throw new JoinsException("Couldn't get all songs in playlist", e);
         }
     }
 
@@ -91,7 +82,7 @@ public class MyTunesManager implements OwsLogicFacade {
         try {
             joinsDAO.moveSongUp(joins);
         } catch (SQLException e) {
-            throw new JoinsException("Couldn't move song up",e);
+            throw new JoinsException("Couldn't move song up", e);
         }
     }
 
@@ -100,7 +91,7 @@ public class MyTunesManager implements OwsLogicFacade {
         try {
             joinsDAO.moveSongDown(joins);
         } catch (SQLException e) {
-            throw new JoinsException("Couldn't move song down",e);
+            throw new JoinsException("Couldn't move song down", e);
         }
     }
 
@@ -109,16 +100,16 @@ public class MyTunesManager implements OwsLogicFacade {
         try {
             return songDAO.getAllSongs();
         } catch (SQLException e) {
-            throw new SongException("Couldn't get all song",e);
+            throw new SongException("Couldn't get all song", e);
         }
     }
 
     @Override
     public Song createSong(String title, String artist, String category, String filePath, String time) throws SongException {
         try {
-            return songDAO.createSong(title,artist,category,filePath,time);
+            return songDAO.createSong(title, artist, category, filePath, time);
         } catch (SQLException e) {
-            throw new SongException("Song with this name already exists",e);
+            throw new SongException("Song with this name already exists", e);
         }
     }
 
@@ -127,16 +118,16 @@ public class MyTunesManager implements OwsLogicFacade {
         try {
             songDAO.deleteSong(song);
         } catch (SQLException e) {
-            throw new SongException("Couldn't delete song",e);
+            throw new SongException("Couldn't delete song", e);
         }
     }
 
     @Override
     public void updateSong(String title, Song song, String newArtist, String newCategory) throws SongException {
         try {
-            songDAO.updateSong(title,song,newArtist,newCategory);
+            songDAO.updateSong(title, song, newArtist, newCategory);
         } catch (SQLException e) {
-            throw new SongException("Couldn't update song",e);
+            throw new SongException("Couldn't update song", e);
         }
     }
 
@@ -145,7 +136,7 @@ public class MyTunesManager implements OwsLogicFacade {
         try {
             return songDAO.getSongById(songId);
         } catch (SQLException e) {
-            throw new SongException("Couldn't get song with this id",e);
+            throw new SongException("Couldn't get song with this id", e);
         }
     }
 
@@ -156,7 +147,7 @@ public class MyTunesManager implements OwsLogicFacade {
 
     @Override
     public void updateCategory(Category category, String name) throws SQLException {
-        categoriesDAO.updateCategory(category,name);
+        categoriesDAO.updateCategory(category, name);
     }
 
     @Override
@@ -169,13 +160,13 @@ public class MyTunesManager implements OwsLogicFacade {
         categoriesDAO.deleteCategory(category);
     }
 
-    public Joins createJoins(Song song,PlayList playList) throws JoinsException {
+    public Joins createJoins(Song song, PlayList playList) throws JoinsException {
         try {
-            return joinsDAO.createJoin(song,playList);
+            return joinsDAO.createJoin(song, playList);
         } catch (SQLException e) {
-            throw new JoinsException("Join already exists",e);
+            throw new JoinsException("Join already exists", e);
         }
     }
 
-    
+
 }

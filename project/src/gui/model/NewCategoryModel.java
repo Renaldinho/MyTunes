@@ -10,15 +10,17 @@ import javafx.collections.ObservableList;
 import java.sql.SQLException;
 
 public class NewCategoryModel {
-    private ObservableList<Category>allCategories;
+    private ObservableList<Category> allCategories;
     MyTunesManager myTunesManager;
-    public NewCategoryModel(){
+
+    public NewCategoryModel() {
         myTunesManager = new MyTunesManager();
     }
+
     public ObservableList getAllCategories() throws SQLException {
-    allCategories= FXCollections.observableArrayList();
-    allCategories.addAll(myTunesManager.getAllCategories());
-    return allCategories;
+        allCategories = FXCollections.observableArrayList();
+        allCategories.addAll(myTunesManager.getAllCategories());
+        return allCategories;
     }
 
     public void addCategory(String newCategoryName) throws SQLException {
@@ -26,7 +28,7 @@ public class NewCategoryModel {
     }
 
     public void updateCategory(Category categorySelected, String newCategoryName) throws SQLException {
-        myTunesManager.updateCategory(categorySelected,newCategoryName);
+        myTunesManager.updateCategory(categorySelected, newCategoryName);
     }
 
     public void deleteCategory(Category category) throws SQLException {

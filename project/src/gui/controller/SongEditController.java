@@ -20,7 +20,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class SongEditController  {
+public class SongEditController {
     public Button cancelSongBtn;
     @FXML
     private TextField songTitleField;
@@ -35,6 +35,7 @@ public class SongEditController  {
 
 
     Stage stage;
+
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
@@ -46,10 +47,10 @@ public class SongEditController  {
     CategoriesDAO categoriesDAO;
     Song song;
 
-    public SongEditController(){
-        songEditModel=new SongEditModel();
+    public SongEditController() {
+        songEditModel = new SongEditModel();
         artistsDAO = new ArtistsDAO();
-        categoriesDAO=new CategoriesDAO();
+        categoriesDAO = new CategoriesDAO();
     }
 
     public void setSong(Song song) {
@@ -58,12 +59,12 @@ public class SongEditController  {
 
     public void handleEditSong(ActionEvent actionEvent) throws SQLException {
         try {
-            songEditModel.updateSong(songTitleField.getText(),song,songArtistField.getText(),category.getText());
+            songEditModel.updateSong(songTitleField.getText(), song, songArtistField.getText(), category.getText());
         } catch (SongException e) {
             e.printStackTrace();
         }
         mainController.updateSongTableView();
-    stage.close();
+        stage.close();
     }
 
     public void handleCancelSongBtn(ActionEvent actionEvent) {
@@ -72,7 +73,7 @@ public class SongEditController  {
         alert.setHeaderText("Do you want to close this window?");
 
 
-        if(alert.showAndWait().get() == ButtonType.OK ) {
+        if (alert.showAndWait().get() == ButtonType.OK) {
             Stage stage = (Stage) cancelSongBtn.getScene().getWindow();
             stage.close();
         }
@@ -80,32 +81,33 @@ public class SongEditController  {
 
     public void handleChooseFile(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("MP3 Files","*.mp3"),
-                new FileChooser.ExtensionFilter("WAV Files","*.wav"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("MP3 Files", "*.mp3"),
+                new FileChooser.ExtensionFilter("WAV Files", "*.wav"));
         File selectedFile = fileChooser.showOpenDialog(pathField.getScene().getWindow());
         if (selectedFile != null) {
             pathField.setText(selectedFile.getAbsolutePath());
 
-        MediaPlayer player = new MediaPlayer(new Media(new File(pathField.getText()).toURI().toString()));
-        player.setOnReady(new Runnable() {
-            @Override
-            public void run() {
-                Duration time = player.getTotalDuration();
-                String strDuration = String.format("%d:%02d:%02d",(int)player.getTotalDuration().toSeconds()/3600,(int)player.getTotalDuration().toSeconds()/60,(int)player.getTotalDuration().toSeconds()%60);
-                songTimeField.setText(strDuration);
-                System.out.println();
-            }
-        });
-    }}
+            MediaPlayer player = new MediaPlayer(new Media(new File(pathField.getText()).toURI().toString()));
+            player.setOnReady(new Runnable() {
+                @Override
+                public void run() {
+                    Duration time = player.getTotalDuration();
+                    String strDuration = String.format("%d:%02d:%02d", (int) player.getTotalDuration().toSeconds() / 3600, (int) player.getTotalDuration().toSeconds() / 60, (int) player.getTotalDuration().toSeconds() % 60);
+                    songTimeField.setText(strDuration);
+                    System.out.println();
+                }
+            });
+        }
+    }
 
-    public void fillFields(Song song){
+    public void fillFields(Song song) {
         songTitleField.setText(song.getTitle());
         songArtistField.setText(song.getArtist());
         category.setText(song.getCategory());
         pathField.setText(song.getFilePath());
         songTimeField.setText(String.valueOf(song.getTime()));
         setSong(song);
-        stage = (Stage)cancelSongBtn.getScene().getWindow();
+        stage = (Stage) cancelSongBtn.getScene().getWindow();
     }
 
     public void rockMusic(ActionEvent actionEvent) {
