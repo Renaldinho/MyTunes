@@ -2,6 +2,7 @@ package gui.controller;
 
 import be.Category;
 import bll.MyTunesManager;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import gui.model.NewCategoryModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -9,9 +10,11 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 public class NewCategoryController implements Initializable {
     public ListView categoriesList;
@@ -84,11 +87,23 @@ public class NewCategoryController implements Initializable {
     }
 
     public void deleteCategory(MouseEvent event) throws SQLException {
-        //songController.deleteMenuItem(new MenuItem(categorySelected.toString()));
-        newCategoryModel.getAllCategories().remove(categorySelected);
-        newCategoryModel.deleteCategory(categorySelected);
-        categoriesList.setItems(newCategoryModel.getAllCategories());
-        songController.deleteMenuItem(new MenuItem(categorySelected.toString()));
+        try{
+            newCategoryModel.deleteCategory(categorySelected);
+            songController.deleteMenuItem(new MenuItem(categorySelected.toString()));
+            categoriesList.setItems(newCategoryModel.getAllCategories());
+            newCategoryModel.getAllCategories().remove(categorySelected);
+
+        }
+        catch (SQLServerException s){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Alert window");
+            alert.setHeaderText("One or many songs are associated to this category.\n Please get rid of this dependency before you can be able to delete it.");
+
+            ButtonType okButton = new ButtonType("OK");
+            alert.getButtonTypes().setAll(okButton);
+            alert.showAndWait();
+        }
+
 
     }
 }
