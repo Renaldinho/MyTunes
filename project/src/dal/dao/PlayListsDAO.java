@@ -2,6 +2,7 @@ package dal.dao;
 
 import be.PlayList;
 import be.Song;
+import bll.exceptions.PlayListException;
 import dal.DatabaseConnector;
 import dal.Interfaces.IPlayListDAO;
 
@@ -17,11 +18,16 @@ public class PlayListsDAO implements IPlayListDAO {
     }
 
     @Override
-    public PlayList createPlayList(String name) throws SQLException {
+    public PlayList createPlayList(String name) throws SQLException, PlayListException {
         PlayList playList = null;
         String sql = "INSERT INTO playlists VALUES (?,?,?) ";
         if (playListNameTakenAlready(name)){
-            System.out.println("This name already exists. Please find another one for your new playlist or delete the old one.");
+            try{int a=0;
+                int b=0;
+                int c;
+                c= a/b;}catch(ArithmeticException e){
+                throw new PlayListException("Playlist already exists",e);
+            }
         }
         else {   try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);

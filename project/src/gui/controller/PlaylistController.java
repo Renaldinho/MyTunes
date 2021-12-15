@@ -34,15 +34,24 @@ public class PlaylistController {
     @FXML
     public void handleSavePlaylistBtn(javafx.scene.input.MouseEvent actionEvent)  {
         String playlistName = playlistNameTxt.getText();
+
         try {
             model.createPlaylist(playlistName);
+            mainController.updatePlayListTableView();
+            stage = (Stage) savePlaylistBtn.getScene().getWindow();
+            stage.close();
         } catch (PlayListException | SongException e) {
-            e.printStackTrace();
-        }
-        mainController.updatePlayListTableView();
-        stage = (Stage) savePlaylistBtn.getScene().getWindow();
-        stage.close();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText(" Playlist already exists.");
+
+            ButtonType okButton = new ButtonType("OK");
+            alert.getButtonTypes().setAll(okButton);
+            alert.showAndWait();
+            }
+
     }
+    
 
     @FXML
     public void handleCancelPlaylistBtn(ActionEvent actionEvent) {
@@ -59,6 +68,5 @@ public class PlaylistController {
 
     public void setController(MainController mainController) {
         this.mainController=mainController;
-       // System.out.println("In playlistController: "+this.mainController);
     }
 }

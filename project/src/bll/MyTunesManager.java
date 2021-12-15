@@ -33,9 +33,12 @@ public class MyTunesManager implements OwsLogicFacade {
     @Override
     public PlayList createPlayList(String name) throws PlayListException {
         try {
+
             return playListDAO.createPlayList(name);
         } catch (SQLException e) {
             throw new PlayListException("Playlist already exists",e);
+        }catch (PlayListException e ){
+            throw e;
         }
     }
 
