@@ -131,12 +131,14 @@ public class SongController {
     public void addMenuItem(String categoryName){
         category.getItems().add(new MenuItem(categoryName));
     }
-    /*public void deleteMenuItem(MenuItem menuItem){
+    public void deleteMenuItem(MenuItem menuItem){
         MenuItem search=null;
         for(MenuItem menuItem1 : category.getItems()){
-            if (menuItem1.getText()==menuItem.getText())
+            if (menuItem1.getText().equals(menuItem.getText())) {
                 search=menuItem1;
+                break;
+            }
         }
         category.getItems().remove(search);
-    }*/
+    }
 }

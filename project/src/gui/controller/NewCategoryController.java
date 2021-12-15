@@ -87,8 +87,8 @@ public class NewCategoryController implements Initializable {
         //songController.deleteMenuItem(new MenuItem(categorySelected.toString()));
         newCategoryModel.getAllCategories().remove(categorySelected);
         newCategoryModel.deleteCategory(categorySelected);
-
         categoriesList.setItems(newCategoryModel.getAllCategories());
+        songController.deleteMenuItem(new MenuItem(categorySelected.toString()));
 
     }
 }
