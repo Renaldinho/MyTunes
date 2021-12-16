@@ -1,6 +1,7 @@
 package gui.controller;
 
 import be.Category;
+import bll.exceptions.ArtistException;
 import bll.exceptions.CategoriesException;
 import bll.exceptions.SongException;
 import gui.model.SongModel;
@@ -94,6 +95,13 @@ public class SongController {
         try {
             songModel.createSong(title, artist, songCategory, time, filePath);
         } catch (SongException e) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText(e.getExceptionMessage());
+            ButtonType okButton = new ButtonType("OK");
+            alert.getButtonTypes().setAll(okButton);
+            alert.showAndWait();
+        }catch (ArtistException e){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Error");
             alert.setHeaderText(e.getExceptionMessage());

@@ -1,6 +1,7 @@
 package dal.dao;
 
 import be.Song;
+import bll.exceptions.ArtistException;
 import bll.exceptions.CategoriesException;
 import bll.exceptions.SongException;
 import dal.DatabaseConnector;
@@ -50,7 +51,7 @@ public class SongDAO implements ISongDAO {
 
 
     @Override
-    public Song createSong(String title, String artist, String category, String filePath, String time) throws SQLException, SongException {
+    public Song createSong(String title, String artist, String category, String filePath, String time) throws SQLException, SongException, ArtistException {
         Song song = null;
         int id = 0;
         int categoryId = 0;
@@ -102,7 +103,7 @@ public class SongDAO implements ISongDAO {
     }
 
     @Override
-    public void updateSong(String title, Song song, String artist, String category) throws SQLException {
+    public void updateSong(String title, Song song, String artist, String category) throws SQLException, ArtistException {
         //update artist table
         int idArtist = artistsDAO.createArtist(artist);
         int idCategory = 0;

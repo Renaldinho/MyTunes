@@ -3,6 +3,7 @@ package gui.model;
 import be.Category;
 import be.Song;
 import bll.MyTunesManager;
+import bll.exceptions.ArtistException;
 import bll.exceptions.CategoriesException;
 import bll.exceptions.SongException;
 import dal.dao.ArtistsDAO;
@@ -30,7 +31,7 @@ public class SongModel {
         mainModel = new MainModel();
     }
 
-    public void createSong(String title, String artist, String songCategory, String time, String filePath) throws SongException {
+    public void createSong(String title, String artist, String songCategory, String time, String filePath) throws SongException, ArtistException {
         Song song = manager.createSong(title, artist, songCategory, filePath, time);
         mainModel.getAllSongs().add(song);
     }

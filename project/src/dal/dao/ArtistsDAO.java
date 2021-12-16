@@ -2,6 +2,7 @@ package dal.dao;
 
 import be.Artist;
 import be.Song;
+import bll.exceptions.ArtistException;
 import dal.DatabaseConnector;
 import dal.Interfaces.IArtistsDAO;
 
@@ -18,8 +19,9 @@ public class ArtistsDAO implements IArtistsDAO {
 
     //looks for a given artist and return his/her id, if not found just creates a new one and returns the generated key associated to it.
     @Override
-    public int createArtist(String name) throws SQLException {
+    public int createArtist(String name) throws SQLException, ArtistException {
         int id = 0;
+        checkName(name);
         String sql0 = "SELECT * FROM artists WHERE Name = ?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql0);
@@ -43,28 +45,6 @@ public class ArtistsDAO implements IArtistsDAO {
     }
 
     @Override
-    public void deleteArtist(Artist artist) throws SQLException {
-        String sql = "DELETE FROM artists WHERE Id = ?";
-        try (Connection connection = databaseConnector.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, artist.getId());
-            preparedStatement.executeUpdate();
-        }
-
-    }
-
-    @Override
-    public void updateArtist(Artist artist, String name) throws SQLException {
-        String sql = "UPDATE artists SET Category=? WHERE Id = ?";
-        try (Connection connection = databaseConnector.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, name);
-            preparedStatement.setInt(2, artist.getId());
-            preparedStatement.executeUpdate();
-        }
-    }
-
-    @Override
     public Artist getArtistById(int artistId) throws SQLException {
         String sql = "SELECT * FROM artists WHERE Id=?";
         Artist artist = null;
@@ -82,23 +62,10 @@ public class ArtistsDAO implements IArtistsDAO {
         return artist;
     }
 
-    @Override
-    public List<Artist> getAllArtists() throws SQLException {
-        List<Artist> allArtists = new ArrayList<>();
-        String sql = "SELECT * FROM artists ";
-        try (Connection connection = databaseConnector.getConnection()) {
-            Statement statement = connection.createStatement();
-            statement.execute(sql);
-            ResultSet resultSet = statement.getResultSet();
-            while (resultSet.next()) {
-                int id = resultSet.getInt("Id");
-                String name = resultSet.getString("Name");
-                Artist artist = new Artist(id, name);
-                allArtists.add(artist);
-
-            }
-        }
-        return allArtists;
+    private void checkName(String artistName) throws ArtistException {
+        Exception exception = new Exception();
+        if(artistName.isEmpty())
+            throw new ArtistException("Please find an artist for your song.",exception);
     }
 
 }

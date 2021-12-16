@@ -4,6 +4,7 @@ import be.Category;
 import be.Joins;
 import be.PlayList;
 import be.Song;
+import bll.exceptions.ArtistException;
 import bll.exceptions.CategoriesException;
 import bll.exceptions.PlayListException;
 import bll.exceptions.SongException;
@@ -91,11 +92,13 @@ try {
     }
 
     @Override
-    public Song createSong(String title, String artist, String category, String filePath, String time) throws SongException {
+    public Song createSong(String title, String artist, String category, String filePath, String time) throws SongException, ArtistException {
         try {
             return songDAO.createSong(title, artist, category, filePath, time);
         } catch (SQLException e) {
             throw new SongException("Something wrong went in the database",e);
+        }catch (ArtistException e){
+            throw e;
         }
     }
 
@@ -110,11 +113,13 @@ try {
     }
 
     @Override
-    public void updateSong(String title, Song song, String newArtist, String newCategory) throws SongException {
+    public void updateSong(String title, Song song, String newArtist, String newCategory) throws SongException, ArtistException {
         try {
             songDAO.updateSong(title, song, newArtist, newCategory);
         } catch (SQLException e) {
             throw new SongException("Something wrong went in the database",e);
+        }catch (ArtistException e){
+            throw e;
         }
 
     }

@@ -6,12 +6,24 @@
   <component name="ChangeListManager">
     <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/bll/exceptions/SongException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/bll/exceptions/SongException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/PlaylistController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/PlaylistController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/GUI/view/newSong.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/GUI/view/newSong.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/bll/MyTunesManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/bll/MyTunesManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/IArtistsDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/IArtistsDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/ISongDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/ISongDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongEditController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongEditController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongEditController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongEditController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/bll/MyTunesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/bll/MyTunesManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/bll/OwsLogicFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/bll/OwsLogicFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/bll/exceptions/ArtistException.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/bll/exceptions/ArtistException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/Interfaces/IArtistsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/Interfaces/IArtistsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/Interfaces/ISongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/Interfaces/ISongDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/ArtistsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/ArtistsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/SongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/SongDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/gui/controller/SongController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/SongController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/gui/view/newSong.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/view/newSong.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/controller/SongEditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/SongEditController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/model/SongEditModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/model/SongEditModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/model/SongModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/model/SongModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,7 +167,7 @@
       <workItem from="1639602013096" duration="877000" />
       <workItem from="1639603214701" duration="14594000" />
       <workItem from="1639623112183" duration="440000" />
-      <workItem from="1639623585872" duration="3054000" />
+      <workItem from="1639623585872" duration="5605000" />
     </task>
     <task id="LOCAL-00001" summary="dal 95% done still few more tests to be done">
       <created>1638404507856</created>
@@ -269,7 +281,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639624160308</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="...">
+      <created>1639665104437</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1639665104437</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,7 +311,6 @@
     <MESSAGE value="dal 95% done still few more tests to be done" />
     <MESSAGE value="DAL ready done and tested you can work on it includes all features needed. You can also test it and if something goes wrong i will fix it ;)" />
     <MESSAGE value="working on gui. Features work but i can not update the observable list while running the program i have to close it and reopen it again to see changes. I also worked on playlist so when you select it it shows all songs in this given playlist. Also you can delete and add from it." />
-    <MESSAGE value="..." />
     <MESSAGE value="everything should work fine" />
     <MESSAGE value="small change" />
     <MESSAGE value="last one today" />
@@ -303,7 +321,8 @@
     <MESSAGE value="allDone" />
     <MESSAGE value="categories exception handle" />
     <MESSAGE value="almost..." />
-    <option name="LAST_COMMIT_MESSAGE" value="almost..." />
+    <MESSAGE value="..." />
+    <option name="LAST_COMMIT_MESSAGE" value="..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
