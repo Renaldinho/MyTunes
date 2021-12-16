@@ -10,6 +10,6 @@ public class SongException extends Throwable{
         System.out.println(exceptionMessage + "\n" + exception);
     }
     public String getExceptionMessage() {
-        return exceptionMessage;
+        return this.exceptionMessage;
     }
 }
