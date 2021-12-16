@@ -3,10 +3,7 @@ package gui.controller;
 import be.Category;
 import bll.exceptions.CategoriesException;
 import bll.exceptions.SongException;
-import gui.model.MainModel;
-import gui.model.NewCategoryModel;
 import gui.model.SongModel;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -130,8 +127,14 @@ public class SongController {
     }
 
     public void setMenuBar() throws CategoriesException {
-        for (Category cat : songModel.getAllCategories())
-            category.getItems().addAll(new MenuItem(cat.toString()));
+        MenuItem newMenuItem;
+        for (Category cat : songModel.getAllCategories()){
+            newMenuItem = new MenuItem(cat.toString());
+            category.getItems().addAll(newMenuItem);
+            MenuItem finalNewMenuItem = newMenuItem;
+            newMenuItem.setOnAction(event -> category.setText(finalNewMenuItem.getText()));
+        }
+
     }
 
     public void clearMenuBar() {

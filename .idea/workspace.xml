@@ -6,12 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/bll/MyTunesManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/bll/MyTunesManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/ISongDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/ISongDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/bll/exceptions/SongException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/bll/exceptions/SongException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/PlaylistController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/PlaylistController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/bll/MyTunesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/bll/MyTunesManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/bll/exceptions/SongException.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/bll/exceptions/SongException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/dal/Interfaces/ISongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/Interfaces/ISongDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/controller/SongController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/SongController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/view/newSong.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/view/newSong.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,7 +155,7 @@
       <workItem from="1639602013096" duration="877000" />
       <workItem from="1639603214701" duration="14594000" />
       <workItem from="1639623112183" duration="440000" />
-      <workItem from="1639623585872" duration="329000" />
+      <workItem from="1639623585872" duration="3054000" />
     </task>
     <task id="LOCAL-00001" summary="dal 95% done still few more tests to be done">
       <created>1638404507856</created>
@@ -262,7 +262,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639607940421</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="almost...">
+      <created>1639624160307</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1639624160308</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -295,7 +302,8 @@
     <MESSAGE value="last one" />
     <MESSAGE value="allDone" />
     <MESSAGE value="categories exception handle" />
-    <option name="LAST_COMMIT_MESSAGE" value="categories exception handle" />
+    <MESSAGE value="almost..." />
+    <option name="LAST_COMMIT_MESSAGE" value="almost..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -315,14 +323,6 @@
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/project/src/gui/controller/MainController.java</url>
-          <line>111</line>
-          <properties class="gui.controller.MainController" method="newPlayList">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
