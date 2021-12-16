@@ -45,7 +45,7 @@ public class SongController {
     @FXML
     private TextField songArtistField;
 
-    public SongController() throws SQLException {
+    public SongController() {
         songModel = new SongModel();
     }
 
@@ -87,18 +87,22 @@ public class SongController {
         }
     }
 
-    public void handleSaveNewSong(ActionEvent actionEvent) throws SQLException {
+    public void handleSaveNewSong(ActionEvent actionEvent)  {
         String title = songTitleField.getText();
         String artist = songArtistField.getText();
         String songCategory = category.getText();
         String filePath = new File(pathField.getText()).toURI().toString();
-        //String filePath = ("file:/"+pathField.getText().replace("\\","/"));
         String time = songTimeField.getText();
 
         try {
             songModel.createSong(title, artist, songCategory, time, filePath);
         } catch (SongException e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText(e.getExceptionMessage());
+            ButtonType okButton = new ButtonType("OK");
+            alert.getButtonTypes().setAll(okButton);
+            alert.showAndWait();
         }
         mainController.updateSongTableView();
 
@@ -113,13 +117,16 @@ public class SongController {
         Parent root;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/gui/view/newCategory.fxml"));
-        root = loader.load();
-        NewCategoryController newCategoryController = loader.getController();
-        newCategoryController.setController(this);
-        Stage stage = new Stage();
-        stage.setTitle("Manage categories");
-        stage.setScene(new Scene(root));
-        stage.show();
+
+            root = loader.load();
+            NewCategoryController newCategoryController = loader.getController();
+            newCategoryController.setController(this);
+            Stage stage = new Stage();
+            stage.setTitle("Manage categories");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+
     }
 
     public void setMenuBar() throws CategoriesException {

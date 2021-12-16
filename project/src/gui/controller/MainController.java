@@ -94,7 +94,7 @@ public class MainController implements Initializable {
         };
     }
 
-    public void newSong(ActionEvent actionEvent) throws IOException, CategoriesException {
+    public void newSong(ActionEvent actionEvent) throws IOException, CategoriesException, SQLException {
         Parent root;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/gui/view/newSong.fxml"));
@@ -162,7 +162,7 @@ public class MainController implements Initializable {
         songsColumn.setCellValueFactory(new PropertyValueFactory<>("song"));
         try {
             lstPlayLists.setItems(mainModel.getAllPlayLists());
-        } catch (PlayListException e) {
+        } catch (PlayListException  e) {
             e.printStackTrace();
         }
 
@@ -183,7 +183,7 @@ public class MainController implements Initializable {
 
         try {
             songTable.setItems(mainModel.getAllSongs());
-        } catch (SongException e) {
+        } catch (SongException  e) {
             e.printStackTrace();
         }
         songTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -198,7 +198,7 @@ public class MainController implements Initializable {
             try {
                 if (joins != null)
                     selectedSong = mainModel.getSongByID(joins.getSongId());
-            } catch (SongException e) {
+            } catch (SongException  e) {
                 e.printStackTrace();
             }
             selectedIndexInPlaylist = songsOnPlayList.getSelectionModel().getSelectedIndex();
@@ -213,7 +213,7 @@ public class MainController implements Initializable {
         if (playList != null) {
             try {
                 songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
-            } catch (JoinsException e) {
+            } catch (JoinsException | SQLException e) {
                 e.printStackTrace();
             }
         }
@@ -232,7 +232,7 @@ public class MainController implements Initializable {
         FilteredList<Song> filteredData = null;
         try {
             filteredData = new FilteredList<>(mainModel.getAllSongs(), b -> true);
-        } catch (SongException e) {
+        } catch (SongException  e) {
             e.printStackTrace();
         }
 
@@ -316,7 +316,7 @@ public class MainController implements Initializable {
                 setPlayList((PlayList) lstPlayLists.getItems().get(index - 1));
                 try {
                     songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
-                } catch (JoinsException e) {
+                } catch (JoinsException | SQLException e) {
                     e.printStackTrace();
                 }
             } else
@@ -330,7 +330,7 @@ public class MainController implements Initializable {
                 mainModel.deleteSongFromGivenPlayList(joins, playList);
                 lstPlayLists.setItems(mainModel.getAllPlayLists());
                 songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
-            } catch (PlayListException | JoinsException e) {
+            } catch (PlayListException | JoinsException | SQLException  e) {
                 e.printStackTrace();
             }
     }
@@ -340,7 +340,7 @@ public class MainController implements Initializable {
             try {
                 lstPlayLists.setItems(mainModel.getAllPlayLists());
                 mainModel.deleteSong(selectedSong);
-            } catch (PlayListException | SongException e) {
+            } catch (PlayListException | SongException  e) {
                 e.printStackTrace();
             }
 
@@ -351,13 +351,13 @@ public class MainController implements Initializable {
             try {
                 mainModel.moveSongUp(joins);
                 songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
-            } catch (JoinsException e) {
+            } catch (JoinsException | SQLException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public void moveSongDown(ActionEvent actionEvent) throws JoinsException {
+    public void moveSongDown(ActionEvent actionEvent) throws JoinsException, SQLException {
         if (joins != null) {
             mainModel.moveSongDown(joins);
             songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
@@ -372,7 +372,7 @@ public class MainController implements Initializable {
                 mainModel.addSongToGivenPlayList(selectedSong, playList);
                 songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
                 lstPlayLists.setItems(mainModel.getAllPlayLists());
-            } catch (JoinsException | PlayListException e) {
+            } catch (JoinsException | PlayListException | SQLException e) {
                 e.printStackTrace();
             }
         }

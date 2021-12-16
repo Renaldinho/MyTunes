@@ -42,7 +42,7 @@ public class NewCategoryController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             categoriesList.setItems(newCategoryModel.getAllCategories());
-        } catch (CategoriesException e) {
+        } catch (CategoriesException  e) {
             e.printStackTrace();
         }
     }
@@ -73,7 +73,7 @@ public class NewCategoryController implements Initializable {
         }
     }
 
-    public void editCategory(ActionEvent actionEvent) throws CategoriesException {
+    public void editCategory(ActionEvent actionEvent) throws CategoriesException, SQLException {
         if (categorySelected == null) {
             return;
         } else {
@@ -122,7 +122,7 @@ public class NewCategoryController implements Initializable {
             }
 
 
-        } catch (CategoriesException s) {
+        } catch (CategoriesException  s) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Alert window");
             alert.setHeaderText("One or many songs are associated to this category.\n Please get rid of this dependency before you can be able to delete it.");

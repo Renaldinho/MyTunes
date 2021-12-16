@@ -2,6 +2,7 @@ package dal.dao;
 
 import be.Song;
 import bll.exceptions.CategoriesException;
+import bll.exceptions.SongException;
 import dal.DatabaseConnector;
 import dal.Interfaces.ISongDAO;
 
@@ -49,34 +50,40 @@ public class SongDAO implements ISongDAO {
 
 
     @Override
-    public Song createSong(String title, String artist, String category, String filePath, String time) throws SQLException {
+    public Song createSong(String title, String artist, String category, String filePath, String time) throws SQLException, SongException {
         Song song = null;
         int id = 0;
         int categoryId = 0;
+        try {
+            checkString(title);
+        } catch (SongException e) {
+            throw e;
+        }
         int artistId = artistsDAO.createArtist(artist);
         try {
-             categoryId = categoriesDAO.createNewCategory(category);
-        }catch (CategoriesException e ){
+            categoryId = categoriesDAO.createNewCategory(category);
+        } catch (CategoriesException e) {
         }
-        if (pathAlreadyUsed(filePath) == true) {
-            System.out.println("Song exists in the list as the path is already used. Try to delete the old one if you want to add this.");
-        } else {
-            String sql = ("INSERT INTO songs VALUES (?,?,?,?,?)");
-            try (Connection connection = databaseConnector.getConnection()) {
-                PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                statement.setString(1, title);
-                statement.setInt(2, artistId);
-                statement.setInt(3, categoryId);
-                statement.setString(4, time);
-                statement.setString(5, filePath);
-                int created = statement.executeUpdate();
-                ResultSet resultSet = statement.getGeneratedKeys();
-                if (resultSet.next()) {
-                    id = resultSet.getInt(1);
-                }
-                if (created != 0) {
-                    song = new Song(id, title, artist, category, time, filePath);
-                }
+        try {
+            checkPath(filePath);
+        } catch (SongException e) {
+            throw e;
+        }
+        String sql = ("INSERT INTO songs VALUES (?,?,?,?,?)");
+        try (Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, title);
+            statement.setInt(2, artistId);
+            statement.setInt(3, categoryId);
+            statement.setString(4, time);
+            statement.setString(5, filePath);
+            int created = statement.executeUpdate();
+            ResultSet resultSet = statement.getGeneratedKeys();
+            if (resultSet.next()) {
+                id = resultSet.getInt(1);
+            }
+            if (created != 0) {
+                song = new Song(id, title, artist, category, time, filePath);
             }
         }
         return song;
@@ -101,8 +108,8 @@ public class SongDAO implements ISongDAO {
         int idCategory = 0;
         //update category table
         try {
-             idCategory = categoriesDAO.createNewCategory(category);
-        }catch (CategoriesException e){
+            idCategory = categoriesDAO.createNewCategory(category);
+        } catch (CategoriesException e) {
         }
         //update song table
         String sql = "UPDATE songs SET Title = ?,Artist = ?, Category= ? WHERE Id=? ";
@@ -146,6 +153,19 @@ public class SongDAO implements ISongDAO {
             preparedStatement.execute();
             ResultSet resultSet = preparedStatement.getResultSet();
             return resultSet.next();
+        }
+    }
+
+    static void checkString(String text) throws SongException {
+        SQLException exception = new SQLException();
+        if (text.isEmpty())
+            throw new SongException("Please find a name for your song", exception);
+    }
+
+    void checkPath(String filePath) throws SongException, SQLException {
+        Exception exception = new Exception();
+        if (pathAlreadyUsed(filePath) == true) {
+            throw new SongException("Song already exists", exception);
         }
     }
 

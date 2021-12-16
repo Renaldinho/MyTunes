@@ -30,12 +30,11 @@ public class CategoriesDAO implements ICategoriesDAO {
             ResultSet resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {
                 id = resultSet.getInt("Id");
-                try {
-                    int a=0;
-                    int b=(id/a);
-                }catch (ArithmeticException e){
-                    throw new CategoriesException("Category already exists",e);
-                }
+               try {
+                   checkCategoryName(id);
+               }catch (CategoriesException ce){
+                   throw ce;
+               }
                 return id;
             }
             String sql1 = "INSERT INTO categories VALUES(?)";
@@ -108,5 +107,10 @@ public class CategoriesDAO implements ICategoriesDAO {
             }
         }
         return allCategories;
+    }
+    void checkCategoryName(int id) throws CategoriesException {
+        Exception exception = new Exception();
+        if(id!=0)
+            throw new CategoriesException("Category already exists",exception);
     }
 }
