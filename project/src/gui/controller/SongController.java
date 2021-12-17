@@ -89,6 +89,8 @@ public class SongController {
         String title = songTitleField.getText();
         String artist = songArtistField.getText();
         String songCategory = category.getText();
+        if(songCategory.equals("Choose one"))
+            songCategory= "";
         String filePath = new File(pathField.getText()).toURI().toString();
         String time = songTimeField.getText();
 
@@ -108,7 +110,13 @@ public class SongController {
             ButtonType okButton = new ButtonType("OK");
             alert.getButtonTypes().setAll(okButton);
             alert.showAndWait();
-        }
+        } catch (CategoriesException e) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText(e.getExceptionMessage());
+            ButtonType okButton = new ButtonType("OK");
+            alert.getButtonTypes().setAll(okButton);
+            alert.showAndWait();        }
         mainController.updateSongTableView();
 
 

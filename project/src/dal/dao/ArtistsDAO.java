@@ -21,7 +21,11 @@ public class ArtistsDAO implements IArtistsDAO {
     @Override
     public int createArtist(String name) throws SQLException, ArtistException {
         int id = 0;
-        checkName(name);
+        try {
+            checkName(name);
+        }catch (ArtistException e){
+            throw e;
+        }
         String sql0 = "SELECT * FROM artists WHERE Name = ?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql0);

@@ -29,7 +29,7 @@ public interface OwsLogicFacade {
 
     List<Song> getAllSongs() throws SQLException, SongException;
 
-    Song createSong(String title, String artist, String category, String filePath, String time) throws SQLException, SongException, ArtistException;
+    Song createSong(String title, String artist, String category, String filePath, String time) throws SQLException, SongException, ArtistException, CategoriesException;
 
     void deleteSong(Song song) throws SQLException, SongException;
 

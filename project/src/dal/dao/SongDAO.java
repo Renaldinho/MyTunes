@@ -51,19 +51,32 @@ public class SongDAO implements ISongDAO {
 
 
     @Override
-    public Song createSong(String title, String artist, String category, String filePath, String time) throws SQLException, SongException, ArtistException {
+    public Song createSong(String title, String artist, String category, String filePath, String time) throws SQLException, SongException, ArtistException, CategoriesException {
         Song song = null;
         int id = 0;
         int categoryId = 0;
+        int artistId = 0;
         try {
             checkString(title);
         } catch (SongException e) {
             throw e;
         }
-        int artistId = artistsDAO.createArtist(artist);
+        try {
+            artistId = artistsDAO.createArtist(artist);
+        }catch (ArtistException e){
+            throw e;
+        }
+
         try {
             categoryId = categoriesDAO.createNewCategory(category);
         } catch (CategoriesException e) {
+            categoryId=e.getId();
+            if(e.getId()==0)
+                throw e;}
+        try {
+            checkPathNotNull(filePath);
+        }catch (SongException e){
+            throw e;
         }
         try {
             checkPath(filePath);
@@ -167,6 +180,12 @@ public class SongDAO implements ISongDAO {
         Exception exception = new Exception();
         if (pathAlreadyUsed(filePath) == true) {
             throw new SongException("Song already exists", exception);
+        }
+    }
+    void checkPathNotNull(String filePath) throws SongException {
+        Exception exception = new Exception();
+        if (filePath.isBlank()){
+            throw new SongException("Please find a path for your song.", exception);
         }
     }
 

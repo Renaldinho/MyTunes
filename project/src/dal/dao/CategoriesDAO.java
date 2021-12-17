@@ -19,8 +19,16 @@ public class CategoriesDAO implements ICategoriesDAO {
     }
 
     //looks for a given category and return its id, if not found just creates a new one and returns the generated key associated to it.
+    //the counter is used to know which exception to throw to the create song method.
     @Override
     public int createNewCategory(String category) throws SQLException, CategoriesException {
+        try {
+            categoryNameNotNull(category);
+
+        }catch (CategoriesException exception){
+
+            throw exception;
+        }
         String sql0 = "SELECT * FROM categories WHERE Category = ?";
         int id = 0;
         try (Connection connection = databaseConnector.getConnection()) {
@@ -32,10 +40,10 @@ public class CategoriesDAO implements ICategoriesDAO {
                 id = resultSet.getInt("Id");
                try {
                    checkCategoryName(id);
+
                }catch (CategoriesException ce){
                    throw ce;
                }
-                return id;
             }
             String sql1 = "INSERT INTO categories VALUES(?)";
             PreparedStatement preparedStatement1 = connection.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS);
@@ -111,6 +119,11 @@ public class CategoriesDAO implements ICategoriesDAO {
     void checkCategoryName(int id) throws CategoriesException {
         Exception exception = new Exception();
         if(id!=0)
-            throw new CategoriesException("Category already exists",exception);
+            throw new CategoriesException("Category already exists",exception,id);
     }
-}
+    void categoryNameNotNull(String name) throws CategoriesException {
+        Exception exception = new Exception();
+        if(name.isEmpty())
+            throw new CategoriesException("Please find a category for your song",exception);
+    }
+    }

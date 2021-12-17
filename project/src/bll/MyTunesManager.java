@@ -92,12 +92,14 @@ try {
     }
 
     @Override
-    public Song createSong(String title, String artist, String category, String filePath, String time) throws SongException, ArtistException {
+    public Song createSong(String title, String artist, String category, String filePath, String time) throws SongException, ArtistException, CategoriesException {
         try {
             return songDAO.createSong(title, artist, category, filePath, time);
         } catch (SQLException e) {
             throw new SongException("Something wrong went in the database",e);
         }catch (ArtistException e){
+            throw e;
+        } catch (CategoriesException e) {
             throw e;
         }
     }
@@ -161,6 +163,8 @@ try {
             return categoriesDAO.createNewCategory(category);
         } catch (SQLException e) {
             throw new CategoriesException("Something wrong went in the database",e);
+        }catch (CategoriesException e){
+            throw e;
         }
 
     }
