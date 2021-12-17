@@ -1,12 +1,7 @@
 package be;
-
-import javafx.beans.value.ObservableValue;
-
 public class PlayList {
     int id,songs;
     String name;
-
-
 
     String time;
     public PlayList(int id, String name, int songs, String time) {

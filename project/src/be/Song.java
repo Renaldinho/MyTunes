@@ -1,6 +1,5 @@
 package be;
 
-import javafx.beans.value.ObservableValue;
 
 public class Song {
     private final int id;
@@ -10,7 +9,7 @@ public class Song {
     private String time;
     private String filePath;
 
-    public Song(int id,String title, String artist, String category, String time, String filePath){
+    public Song(int id, String title, String artist, String category, String time, String filePath) {
         this.id = id;
         this.title = title;
         this.artist = artist;

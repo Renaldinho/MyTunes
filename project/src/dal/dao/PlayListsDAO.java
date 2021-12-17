@@ -21,24 +21,20 @@ public class PlayListsDAO implements IPlayListDAO {
     public PlayList createPlayList(String name) throws SQLException, PlayListException {
         PlayList playList = null;
         String sql = "INSERT INTO playlists VALUES (?,?,?) ";
-            try {
-                checkPlayListName(name);
-            }catch (PlayListException ple){
-                throw ple;
-            }
+        checkPlayListName(name);
 
-            try (Connection connection = databaseConnector.getConnection()) {
-                PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                preparedStatement.setString(1, name);
-                preparedStatement.setInt(2, 0);
-                preparedStatement.setString(3, "00:00:00");
-                preparedStatement.executeUpdate();
-                ResultSet resultSet = preparedStatement.getGeneratedKeys();
-                while (resultSet.next()) {
-                    int id = resultSet.getInt(1);
-                    playList = new PlayList(id, name, 0, "00:00:00");
-                }
+        try (Connection connection = databaseConnector.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, name);
+            preparedStatement.setInt(2, 0);
+            preparedStatement.setString(3, "00:00:00");
+            preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            while (resultSet.next()) {
+                int id = resultSet.getInt(1);
+                playList = new PlayList(id, name, 0, "00:00:00");
             }
+        }
         return playList;
     }
 
@@ -123,9 +119,10 @@ public class PlayListsDAO implements IPlayListDAO {
             preparedStatement.executeUpdate();
         }
     }
+
     void checkPlayListName(String namePlayList) throws SQLException, PlayListException {
         Exception exception = new Exception();
         if (playListNameTakenAlready(namePlayList))
-            throw new PlayListException("Name already taken.",exception);
+            throw new PlayListException("Name already taken.", exception);
     }
 }

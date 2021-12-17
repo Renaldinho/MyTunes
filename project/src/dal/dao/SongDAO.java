@@ -57,16 +57,12 @@ public class SongDAO implements ISongDAO {
 
 
     @Override
-    public Song createSong(String title, String artist, String category, String filePath, String time) throws SQLException, SongException, ArtistException, CategoriesException, URISyntaxException {
+    public Song createSong(String title, String artist, String category, String filePath, String time) throws SQLException, SongException, ArtistException, CategoriesException {
         Song song = null;
         int id = 0;
         int categoryId = 0;
         int artistId = 0;
-        try {
-            checkString(title);
-        } catch (SongException e) {
-            throw e;
-        }
+        checkString(title);
             artistId = artistsDAO.createArtist(artist);
         try {
             categoryId = categoriesDAO.createNewCategory(category);
@@ -75,11 +71,7 @@ public class SongDAO implements ISongDAO {
             if(e.getId()==0)
                 throw e;}
         checkPath0(filePath);
-        try {
-            checkPath(filePath);
-        } catch (SongException e) {
-            throw e;
-        }
+        checkPath(filePath);
         String sql = ("INSERT INTO songs VALUES (?,?,?,?,?)");
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -113,15 +105,13 @@ public class SongDAO implements ISongDAO {
     }
 
     @Override
-    public void updateSong(String title, Song song, String artist, String category) throws SQLException, ArtistException {
+    public void updateSong(String title, Song song, String artist, String category) throws SQLException, ArtistException,CategoriesException {
         //update artist table
         int idArtist = artistsDAO.createArtist(artist);
         int idCategory = 0;
         //update category table
-        try {
-            idCategory = categoriesDAO.createNewCategory(category);
-        } catch (CategoriesException e) {
-        }
+        idCategory = categoriesDAO.createNewCategory(category);
+
         //update song table
         String sql = "UPDATE songs SET Title = ?,Artist = ?, Category= ? WHERE Id=? ";
         try (Connection connection = databaseConnector.getConnection()) {
@@ -155,7 +145,6 @@ public class SongDAO implements ISongDAO {
         return song;
     }
 
-    //controlling update
     private boolean pathAlreadyUsed(String filePath) throws SQLException {
         String sql = " SELECT  * FROM songs WHERE Path = ?  ";
         try (Connection connection = databaseConnector.getConnection()) {

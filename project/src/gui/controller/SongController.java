@@ -21,8 +21,7 @@ import javafx.util.Duration;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.sql.SQLException;
-import java.util.List;
+
 
 public class SongController {
 

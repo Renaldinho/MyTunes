@@ -32,31 +32,30 @@ public class MyTunesManager implements OwsLogicFacade {
 
     @Override
     public PlayList createPlayList(String name) throws PlayListException {
-       try {
-           return playListDAO.createPlayList(name);
-       }catch (SQLException e){
-           throw new PlayListException("Something wrong went in the database",e);
-       }
+        try {
+            return playListDAO.createPlayList(name);
+        } catch (SQLException e) {
+            throw new PlayListException("Something wrong went in the database", e);
+        }
     }
 
     @Override
     public void deletePlayList(PlayList playList) throws PlayListException {
         try {
             playListDAO.deletePlayList(playList);
-        }catch (SQLException e){
-            throw new PlayListException("Something wrong went in the database",e);
+        } catch (SQLException e) {
+            throw new PlayListException("Something wrong went in the database", e);
         }
 
     }
 
     @Override
     public List<PlayList> getAllPlayLists() throws PlayListException {
-try {
-    return playListDAO.getAllPlayLists();
-
-}catch (SQLException e){
-    throw new PlayListException("Something wrong went in the database",e);
-}
+        try {
+            return playListDAO.getAllPlayLists();
+        } catch (SQLException e) {
+            throw new PlayListException("Something wrong went in the database", e);
+        }
 
     }
 
@@ -66,19 +65,19 @@ try {
 
     }
 
-    public List<Joins> getAllJoinsPlayList(PlayList playList) throws  SQLException {
+    public List<Joins> getAllJoinsPlayList(PlayList playList) throws SQLException {
         return joinsDAO.getAllJoinsPlayList(playList);
 
     }
 
     @Override
-    public void moveSongUp(Joins joins) throws  SQLException {
+    public void moveSongUp(Joins joins) throws SQLException {
         joinsDAO.moveSongUp(joins);
 
     }
 
     @Override
-    public void moveSongDown(Joins joins) throws  SQLException {
+    public void moveSongDown(Joins joins) throws SQLException {
         joinsDAO.moveSongDown(joins);
 
     }
@@ -87,23 +86,20 @@ try {
     public List<Song> getAllSongs() throws SongException {
         try {
             return songDAO.getAllSongs();
-        }catch (SQLException e){
-            throw new SongException("Something wrong went in the database",e);
+        } catch (SQLException e) {
+            throw new SongException("Something wrong went in the database", e);
         }
     }
 
     @Override
-    public Song createSong(String title, String artist, String category, String filePath, String time) throws SongException, ArtistException, CategoriesException, URISyntaxException {
+    public Song createSong(String title, String artist, String category, String filePath, String time) throws SongException, ArtistException, CategoriesException {
         try {
             return songDAO.createSong(title, artist, category, filePath, time);
         } catch (SQLException e) {
-            throw new SongException("Something wrong went in the database",e);
-        }catch (ArtistException e){
+            throw new SongException("Something wrong went in the database", e);
+        } catch (ArtistException e) {
             throw e;
         } catch (CategoriesException e) {
-            throw e;
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
             throw e;
         }
     }
@@ -113,18 +109,18 @@ try {
         try {
             songDAO.deleteSong(song);
         } catch (SQLException e) {
-            throw new SongException("Something wrong went in the database",e);
+            throw new SongException("Something wrong went in the database", e);
         }
 
     }
 
     @Override
-    public void updateSong(String title, Song song, String newArtist, String newCategory) throws SongException, ArtistException {
+    public void updateSong(String title, Song song, String newArtist, String newCategory) throws SongException, ArtistException,CategoriesException {
         try {
             songDAO.updateSong(title, song, newArtist, newCategory);
         } catch (SQLException e) {
-            throw new SongException("Something wrong went in the database",e);
-        }catch (ArtistException e){
+            throw new SongException("Something wrong went in the database", e);
+        } catch (ArtistException e) {
             throw e;
         }
 
@@ -135,7 +131,7 @@ try {
         try {
             return songDAO.getSongById(songId);
         } catch (SQLException e) {
-            throw new SongException("Something wrong went in the database",e);
+            throw new SongException("Something wrong went in the database", e);
         }
 
 
@@ -146,7 +142,7 @@ try {
         try {
             return categoriesDAO.getAllCategories();
         } catch (SQLException e) {
-            throw new CategoriesException("Something wrong went in the database",e);
+            throw new CategoriesException("Something wrong went in the database", e);
         }
 
 
@@ -157,7 +153,7 @@ try {
         try {
             categoriesDAO.updateCategory(category, name);
         } catch (SQLException e) {
-            throw new CategoriesException("Something wrong went in the database",e);
+            throw new CategoriesException("Something wrong went in the database", e);
         }
     }
 
@@ -166,8 +162,8 @@ try {
         try {
             return categoriesDAO.createNewCategory(category);
         } catch (SQLException e) {
-            throw new CategoriesException("Something wrong went in the database",e);
-        }catch (CategoriesException e){
+            throw new CategoriesException("Something wrong went in the database", e);
+        } catch (CategoriesException e) {
             throw e;
         }
 
@@ -178,12 +174,12 @@ try {
         try {
             categoriesDAO.deleteCategory(category);
         } catch (SQLException e) {
-            throw new CategoriesException("Something wrong went in the database",e);
+            throw new CategoriesException("Something wrong went in the database", e);
         }
 
     }
 
-    public Joins createJoins(Song song, PlayList playList) throws  SQLException {
+    public Joins createJoins(Song song, PlayList playList) throws SQLException {
         return joinsDAO.createJoin(song, playList);
 
     }

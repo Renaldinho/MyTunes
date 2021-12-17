@@ -11,11 +11,9 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Logger;
 
 public class NewCategoryController implements Initializable {
     public ListView categoriesList;

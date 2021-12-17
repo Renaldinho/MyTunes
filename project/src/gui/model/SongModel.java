@@ -8,14 +8,12 @@ import bll.exceptions.CategoriesException;
 import bll.exceptions.SongException;
 import dal.dao.ArtistsDAO;
 import dal.dao.CategoriesDAO;
-import dal.dao.SongDAO;
-import gui.controller.MainController;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.net.URISyntaxException;
-import java.sql.SQLException;
-import java.util.List;
+
 
 
 public class SongModel {

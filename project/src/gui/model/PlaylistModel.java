@@ -2,11 +2,9 @@ package gui.model;
 
 import be.PlayList;
 import bll.MyTunesManager;
-import bll.exceptions.CategoriesException;
 import bll.exceptions.PlayListException;
 import bll.exceptions.SongException;
 
-import java.sql.SQLException;
 
 public class PlaylistModel {
 

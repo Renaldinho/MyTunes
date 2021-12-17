@@ -1,7 +1,6 @@
 package dal.Interfaces;
 
 import be.PlayList;
-import be.Song;
 import bll.exceptions.PlayListException;
 
 import java.sql.SQLException;

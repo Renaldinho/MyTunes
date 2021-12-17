@@ -4,12 +4,10 @@ import be.Joins;
 import be.PlayList;
 import be.Song;
 import bll.MyTunesManager;
-import bll.exceptions.CategoriesException;
 import bll.exceptions.JoinsException;
 import bll.exceptions.PlayListException;
 import bll.exceptions.SongException;
 import dal.dao.*;
-import gui.controller.MainController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

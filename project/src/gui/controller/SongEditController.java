@@ -2,13 +2,13 @@ package gui.controller;
 
 import be.Song;
 import bll.exceptions.ArtistException;
+import bll.exceptions.CategoriesException;
 import bll.exceptions.SongException;
 import dal.dao.ArtistsDAO;
 import dal.dao.CategoriesDAO;
 import gui.model.SongEditModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -17,9 +17,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.File;
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
+
 
 public class SongEditController {
     public Button cancelSongBtn;
@@ -61,7 +59,7 @@ public class SongEditController {
     public void handleEditSong(ActionEvent actionEvent)  {
         try {
             songEditModel.updateSong(songTitleField.getText(), song, songArtistField.getText(), category.getText());
-        } catch (SongException | ArtistException e) {
+        } catch (SongException | ArtistException | CategoriesException e) {
             e.printStackTrace();
         }
         mainController.updateSongTableView();

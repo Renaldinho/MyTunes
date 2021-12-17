@@ -94,7 +94,7 @@ public class MainController implements Initializable {
         };
     }
 
-    public void newSong(ActionEvent actionEvent) throws IOException, CategoriesException, SQLException {
+    public void newSong(ActionEvent actionEvent) throws IOException, CategoriesException {
         Parent root;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/gui/view/newSong.fxml"));
