@@ -183,7 +183,7 @@ public class SongDAO implements ISongDAO {
         filePath = filePath.replaceFirst("file:/","");
         File file = new File(filePath).getAbsoluteFile();
         if(!(file.isFile()&& filePath.endsWith(".mp3")||filePath.endsWith(".wav")) )
-            throw new SongException("Incorrect file path",new Exception());
+            throw new SongException("Please find a correct path.",new Exception());
         }
 
     }

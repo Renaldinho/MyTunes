@@ -161,7 +161,9 @@ public class SongController {
     }
 
     public void addMenuItem(String categoryName) {
-        category.getItems().add(new MenuItem(categoryName));
+        MenuItem menuItem = new MenuItem(categoryName);
+        category.getItems().add(menuItem);
+        menuItem.setOnAction(event -> category.setText(menuItem.getText()));
     }
 
     public void deleteMenuItem(MenuItem menuItem) {
