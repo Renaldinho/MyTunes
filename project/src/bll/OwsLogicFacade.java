@@ -8,6 +8,7 @@ import bll.exceptions.*;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.dao.*;
 
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public interface OwsLogicFacade {
 
     List<Song> getAllSongs() throws SQLException, SongException;
 
-    Song createSong(String title, String artist, String category, String filePath, String time) throws SQLException, SongException, ArtistException, CategoriesException;
+    Song createSong(String title, String artist, String category, String filePath, String time) throws SQLException, SongException, ArtistException, CategoriesException, URISyntaxException;
 
     void deleteSong(Song song) throws SQLException, SongException;
 

@@ -13,6 +13,7 @@ import gui.controller.MainController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class SongModel {
         mainModel = new MainModel();
     }
 
-    public void createSong(String title, String artist, String songCategory, String time, String filePath) throws SongException, ArtistException, CategoriesException {
+    public void createSong(String title, String artist, String songCategory, String time, String filePath) throws SongException, ArtistException, CategoriesException, URISyntaxException {
         Song song = manager.createSong(title, artist, songCategory, filePath, time);
         mainModel.getAllSongs().add(song);
     }

@@ -20,6 +20,7 @@ import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -116,7 +117,9 @@ public class SongController {
             alert.setHeaderText(e.getExceptionMessage());
             ButtonType okButton = new ButtonType("OK");
             alert.getButtonTypes().setAll(okButton);
-            alert.showAndWait();        }
+            alert.showAndWait();        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
         mainController.updateSongTableView();
 
 

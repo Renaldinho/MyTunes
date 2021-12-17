@@ -10,6 +10,7 @@ import bll.exceptions.PlayListException;
 import bll.exceptions.SongException;
 import dal.dao.*;
 
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -92,7 +93,7 @@ try {
     }
 
     @Override
-    public Song createSong(String title, String artist, String category, String filePath, String time) throws SongException, ArtistException, CategoriesException {
+    public Song createSong(String title, String artist, String category, String filePath, String time) throws SongException, ArtistException, CategoriesException, URISyntaxException {
         try {
             return songDAO.createSong(title, artist, category, filePath, time);
         } catch (SQLException e) {
@@ -100,6 +101,9 @@ try {
         }catch (ArtistException e){
             throw e;
         } catch (CategoriesException e) {
+            throw e;
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
             throw e;
         }
     }

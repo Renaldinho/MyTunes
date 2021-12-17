@@ -7,6 +7,12 @@ import bll.exceptions.SongException;
 import dal.DatabaseConnector;
 import dal.Interfaces.ISongDAO;
 
+import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +57,7 @@ public class SongDAO implements ISongDAO {
 
 
     @Override
-    public Song createSong(String title, String artist, String category, String filePath, String time) throws SQLException, SongException, ArtistException, CategoriesException {
+    public Song createSong(String title, String artist, String category, String filePath, String time) throws SQLException, SongException, ArtistException, CategoriesException, URISyntaxException {
         Song song = null;
         int id = 0;
         int categoryId = 0;
@@ -68,11 +74,7 @@ public class SongDAO implements ISongDAO {
             categoryId=e.getId();
             if(e.getId()==0)
                 throw e;}
-        try {
-            checkPathNotNull(filePath);
-        }catch (SongException e){
-            throw e;
-        }
+        checkPath0(filePath);
         try {
             checkPath(filePath);
         } catch (SongException e) {
@@ -173,16 +175,17 @@ public class SongDAO implements ISongDAO {
 
     void checkPath(String filePath) throws SongException, SQLException {
         Exception exception = new Exception();
-        if (pathAlreadyUsed(filePath) == true) {
+        if (pathAlreadyUsed(filePath)) {
             throw new SongException("Song already exists", exception);
         }
     }
-    void checkPathNotNull(String filePath) throws SongException {
-        Exception exception = new Exception();
-        if (filePath.isBlank()){
-            throw new SongException("Please find a path for your song.", exception);
+    void checkPath0(String filePath) throws SongException {
+        filePath = filePath.replaceFirst("file:/","");
+        File file = new File(filePath).getAbsoluteFile();
+        if(!(file.isFile()&& filePath.endsWith(".mp3")||filePath.endsWith(".wav")) )
+            throw new SongException("Incorrect file path",new Exception());
         }
+
     }
 
 
-}
