@@ -23,4 +23,7 @@ public class CategoriesException extends Throwable{
         return id;
     }
 
+
+
+
 }

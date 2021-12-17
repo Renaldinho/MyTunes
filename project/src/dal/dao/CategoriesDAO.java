@@ -22,13 +22,7 @@ public class CategoriesDAO implements ICategoriesDAO {
     //the counter is used to know which exception to throw to the create song method.
     @Override
     public int createNewCategory(String category) throws SQLException, CategoriesException {
-        try {
-            categoryNameNotNull(category);
-
-        }catch (CategoriesException exception){
-
-            throw exception;
-        }
+        categoryNameNotNull(category);
         String sql0 = "SELECT * FROM categories WHERE Category = ?";
         int id = 0;
         try (Connection connection = databaseConnector.getConnection()) {

@@ -61,12 +61,7 @@ public class SongDAO implements ISongDAO {
         } catch (SongException e) {
             throw e;
         }
-        try {
             artistId = artistsDAO.createArtist(artist);
-        }catch (ArtistException e){
-            throw e;
-        }
-
         try {
             categoryId = categoriesDAO.createNewCategory(category);
         } catch (CategoriesException e) {

@@ -10,4 +10,5 @@ public class ArtistException extends Throwable {
     public String getExceptionMessage() {
         return exceptionMessage;
     }
+
 }
