@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/bll/MyTunesManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/bll/MyTunesManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/ISongDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/ISongDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/SongDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/SongDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/dal/dao/SongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/SongDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/gui/controller/SongController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/SongController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +152,7 @@
       <workItem from="1639623585872" duration="5605000" />
       <workItem from="1639694142669" duration="4857000" />
       <workItem from="1639703708639" duration="1567000" />
-      <workItem from="1639705342962" duration="9690000" />
+      <workItem from="1639705342962" duration="10155000" />
     </task>
     <task id="LOCAL-00001" summary="dal 95% done still few more tests to be done">
       <created>1638404507856</created>
@@ -294,7 +287,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639751339351</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="...">
+      <created>1639751860782</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1639751860782</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
