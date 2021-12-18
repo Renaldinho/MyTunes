@@ -16,13 +16,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import javafx.util.Duration;
 
-import java.io.File;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 
 
@@ -69,6 +65,7 @@ public class SongEditController {
     public void handleEditSong(ActionEvent actionEvent) {
         try {
             songEditModel.updateSong(songTitleField.getText(), song, songArtistField.getText(), category.getText());
+            stage.close();
         } catch (SongException e) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Error");
@@ -88,7 +85,6 @@ public class SongEditController {
             e.printStackTrace();
         }
         mainController.updateSongTableView();
-        stage.close();
     }
 
     public void handleCancelSongBtn(ActionEvent actionEvent) {

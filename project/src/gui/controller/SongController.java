@@ -43,6 +43,7 @@ public class SongController {
     private TextField songTitleField;
     @FXML
     private TextField songArtistField;
+    Stage stage;
 
     public SongController() {
         songModel = new SongModel();
@@ -98,6 +99,8 @@ public class SongController {
 
         try {
             songModel.createSong(title, artist, songCategory, time, filePath);
+            stage = (Stage) cancelSongBtn.getScene().getWindow();
+            stage.close();
         } catch (SongException e) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Error");
