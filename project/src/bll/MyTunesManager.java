@@ -10,7 +10,6 @@ import bll.exceptions.PlayListException;
 import bll.exceptions.SongException;
 import dal.dao.*;
 
-import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -160,7 +159,7 @@ public class MyTunesManager implements OwsLogicFacade {
     @Override
     public int createNewCategory(String category) throws CategoriesException {
         try {
-            return categoriesDAO.createNewCategory(category);
+            return categoriesDAO.createCategory(category);
         } catch (SQLException e) {
             throw new CategoriesException("Something wrong went in the database", e);
         } catch (CategoriesException e) {

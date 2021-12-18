@@ -19,5 +19,6 @@ public interface ISongDAO {
 
     void updateSong(String title, Song song, String newArtist, String newCategory) throws SQLException, ArtistException, CategoriesException;
 
-
 }
+
+

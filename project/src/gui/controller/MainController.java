@@ -4,7 +4,6 @@ import be.Joins;
 import be.PlayList;
 import be.Song;
 import bll.exceptions.CategoriesException;
-import bll.exceptions.JoinsException;
 import bll.exceptions.PlayListException;
 import bll.exceptions.SongException;
 import gui.model.MainModel;
@@ -214,7 +213,7 @@ public class MainController implements Initializable {
         if (playList != null) {
             try {
                 songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
-            } catch (JoinsException | SQLException e) {
+            } catch ( SQLException e) {
                 e.printStackTrace();
             }
         }
@@ -317,7 +316,7 @@ public class MainController implements Initializable {
                 setPlayList((PlayList) lstPlayLists.getItems().get(index - 1));
                 try {
                     songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
-                } catch (JoinsException | SQLException e) {
+                } catch ( SQLException e) {
                     e.printStackTrace();
                 }
             } else
@@ -331,7 +330,7 @@ public class MainController implements Initializable {
                 mainModel.deleteSongFromGivenPlayList(joins, playList);
                 lstPlayLists.setItems(mainModel.getAllPlayLists());
                 songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
-            } catch (PlayListException | JoinsException | SQLException  e) {
+            } catch (PlayListException |  SQLException  e) {
                 e.printStackTrace();
             }
     }
@@ -352,13 +351,13 @@ public class MainController implements Initializable {
             try {
                 mainModel.moveSongUp(joins);
                 songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
-            } catch (JoinsException | SQLException e) {
+            } catch ( SQLException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public void moveSongDown(ActionEvent actionEvent) throws JoinsException, SQLException {
+    public void moveSongDown(ActionEvent actionEvent) throws  SQLException {
         if (joins != null) {
             mainModel.moveSongDown(joins);
             songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
@@ -373,7 +372,7 @@ public class MainController implements Initializable {
                 mainModel.addSongToGivenPlayList(selectedSong, playList);
                 songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
                 lstPlayLists.setItems(mainModel.getAllPlayLists());
-            } catch (JoinsException | PlayListException | SQLException e) {
+            } catch ( PlayListException | SQLException e) {
                 e.printStackTrace();
             }
         }

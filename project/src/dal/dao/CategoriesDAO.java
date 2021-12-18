@@ -20,7 +20,7 @@ public class CategoriesDAO implements ICategoriesDAO {
 
     //looks for a given category and return its id, if not found just creates a new one and returns the generated key associated to it.
     @Override
-    public int createNewCategory(String category) throws SQLException, CategoriesException {
+    public int createCategory(String category) throws SQLException, CategoriesException {
         categoryNameNotNull(category);
         String sql0 = "SELECT * FROM categories WHERE Category = ?";
         int id = 0;
@@ -58,7 +58,7 @@ public class CategoriesDAO implements ICategoriesDAO {
     }
 
     @Override
-    public Category getCategoryById(int categoryId) throws SQLException {
+    public Category getCategory(int categoryId) throws SQLException {
         String sql = "SELECT *  FROM categories WHERE Id=?";
         Category category = null;
         try (Connection connection = databaseConnector.getConnection()) {

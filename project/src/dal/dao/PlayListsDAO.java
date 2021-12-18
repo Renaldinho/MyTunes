@@ -70,7 +70,7 @@ public class PlayListsDAO implements IPlayListDAO {
     }
 
     @Override
-    public PlayList getPlayListById(int id) throws SQLException {
+    public PlayList getPlayList(int id) throws SQLException {
         PlayList playList = null;
         String sql = "SELECT *  FROM playlists WHERE Id=?";
         try (Connection connection = databaseConnector.getConnection()) {

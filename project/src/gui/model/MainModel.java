@@ -4,7 +4,6 @@ import be.Joins;
 import be.PlayList;
 import be.Song;
 import bll.MyTunesManager;
-import bll.exceptions.JoinsException;
 import bll.exceptions.PlayListException;
 import bll.exceptions.SongException;
 import dal.dao.*;
@@ -34,11 +33,11 @@ public class MainModel {
     }
 
 
-    public void moveSongDown(Joins joins) throws JoinsException, SQLException {
+    public void moveSongDown(Joins joins) throws  SQLException {
         manager.moveSongDown(joins);
     }
 
-    public void moveSongUp(Joins joins) throws JoinsException, SQLException {
+    public void moveSongUp(Joins joins) throws SQLException {
         manager.moveSongUp(joins);
     }
 
@@ -71,13 +70,13 @@ public class MainModel {
         allPlayLists.remove(playList);
     }
 
-    public ObservableList getAllSongsForGivenPlayList(PlayList playList) throws JoinsException, SQLException {
+    public ObservableList getAllSongsForGivenPlayList(PlayList playList) throws  SQLException {
         allSongsForGivenPlayList = FXCollections.observableArrayList();
         allSongsForGivenPlayList.addAll(manager.getAllJoinsPlayList(playList));
         return allSongsForGivenPlayList;
     }
 
-    public void addSongToGivenPlayList(Song song, PlayList playList) throws JoinsException, SQLException {
+    public void addSongToGivenPlayList(Song song, PlayList playList) throws SQLException {
         allSongsForGivenPlayList.add(manager.createJoins(song, playList));
 
     }

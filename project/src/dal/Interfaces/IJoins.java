@@ -17,7 +17,9 @@ public interface IJoins {
 
     void moveSongDown(Joins joins) throws SQLException;
 
-    void deleteFromAllPlayLists(Song song) throws SQLException;
-
+    void deleteAllJoins(Song song) throws SQLException;
 
 }
+
+
+

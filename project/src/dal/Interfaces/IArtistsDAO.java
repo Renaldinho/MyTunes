@@ -9,6 +9,12 @@ import java.sql.SQLException;
 public interface IArtistsDAO {
     int createArtist(String name) throws SQLException, ArtistException;
 
-    Artist getArtistById(int artistId) throws SQLException;
+    Artist getArtist(int artistId) throws SQLException;
 
 }
+
+
+
+
+
+

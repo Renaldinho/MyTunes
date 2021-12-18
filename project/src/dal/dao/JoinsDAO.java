@@ -95,7 +95,7 @@ public class JoinsDAO implements IJoins {
     @Override
     public void moveSongDown(Joins joins) throws SQLException {
         if (joins.getRank() == 1)
-            switchFirstLast(playListsDAO.getPlayListById(joins.getPlayListId()));
+            switchFirstLast(playListsDAO.getPlayList(joins.getPlayListId()));
         else {
             String sql = "UPDATE song_playlist SET Rank = CASE Rank WHEN ? THEN ? WHEN ? THEN ? ELSE Rank END WHERE [playList Id]=?";
             try (Connection connection = databaseConnector.getConnection()) {
@@ -112,8 +112,8 @@ public class JoinsDAO implements IJoins {
 
     @Override
     public void moveSongUp(Joins joins) throws SQLException {
-        if (joins.getRank() == lastRank(playListsDAO.getPlayListById(joins.getPlayListId()))) {
-            switchFirstLast(playListsDAO.getPlayListById(joins.getPlayListId()));
+        if (joins.getRank() == lastRank(playListsDAO.getPlayList(joins.getPlayListId()))) {
+            switchFirstLast(playListsDAO.getPlayList(joins.getPlayListId()));
         } else {
             String sql = "UPDATE song_playlist SET Rank = CASE Rank WHEN ? THEN ? WHEN ? THEN ? ELSE Rank END WHERE [playList Id]=?";
             try (Connection connection = databaseConnector.getConnection()) {
@@ -125,16 +125,6 @@ public class JoinsDAO implements IJoins {
                 preparedStatement.setInt(5, joins.getPlayListId());
                 preparedStatement.executeUpdate();
             }
-        }
-    }
-
-    @Override
-    public void deleteFromAllPlayLists(Song song) throws SQLException {
-        String sql = "DELETE FROM song_playlist WHERE [Song Id]=?";
-        try (Connection connection = databaseConnector.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, song.getId());
-            preparedStatement.executeUpdate();
         }
     }
 
@@ -201,7 +191,7 @@ public class JoinsDAO implements IJoins {
 
         return String.format("%d:%02d:%02d", totalHours, totalMinutes, totalSeconds);
     }
-
+    @Override
     public void deleteAllJoins(Song song) throws SQLException {
         String sql0 = "SELECT * FROM song_playlist WHERE [Song Id]= ?";
         try (Connection connection = databaseConnector.getConnection()) {
@@ -213,7 +203,7 @@ public class JoinsDAO implements IJoins {
                 int playListId = resultSet.getInt("PlayList Id");
                 int rank = resultSet.getInt("Rank");
                 Joins joins = new Joins(song.getId(), playListId, rank);
-                removeJoins(joins, playListsDAO.getPlayListById(playListId));
+                removeJoins(joins, playListsDAO.getPlayList(playListId));
             }
         }
     }

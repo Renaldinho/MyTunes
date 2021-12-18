@@ -45,7 +45,7 @@ public class ArtistsDAO implements IArtistsDAO {
     }
 
     @Override
-    public Artist getArtistById(int artistId) throws SQLException {
+    public Artist getArtist(int artistId) throws SQLException {
         String sql = "SELECT * FROM artists WHERE Id=?";
         Artist artist = null;
         try (Connection connection = databaseConnector.getConnection()) {

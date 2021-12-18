@@ -13,5 +13,9 @@ public interface IPlayListDAO {
 
     List<PlayList> getAllPlayLists() throws SQLException;
 
-    PlayList getPlayListById(int id) throws SQLException;
+    PlayList getPlayList(int id) throws SQLException;
 }
+
+
+
+

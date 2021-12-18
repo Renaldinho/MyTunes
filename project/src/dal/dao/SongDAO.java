@@ -8,11 +8,6 @@ import dal.DatabaseConnector;
 import dal.Interfaces.ISongDAO;
 
 import java.io.File;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,9 +36,9 @@ public class SongDAO implements ISongDAO {
             ResultSet resultSet = statement.getResultSet();
             while (resultSet.next()) {
                 int artistId = resultSet.getInt("Artist");
-                String artist = artistsDAO.getArtistById(artistId).getName();
+                String artist = artistsDAO.getArtist(artistId).getName();
                 int categoryId = resultSet.getInt("Category");
-                String category = categoriesDAO.getCategoryById(categoryId).getCategoryName();
+                String category = categoriesDAO.getCategory(categoryId).getCategoryName();
                 String time = resultSet.getString("Time");
                 String title = resultSet.getString("Title");
                 int id = resultSet.getInt("Id");
@@ -65,7 +60,7 @@ public class SongDAO implements ISongDAO {
         checkString(title);
             artistId = artistsDAO.createArtist(artist);
         try {
-            categoryId = categoriesDAO.createNewCategory(category);
+            categoryId = categoriesDAO.createCategory(category);
         } catch (CategoriesException e) {
             categoryId=e.getId();
             if(e.getId()==0)
@@ -112,7 +107,7 @@ public class SongDAO implements ISongDAO {
         int idCategory = 0;
         //update category table
         try {
-            idCategory = categoriesDAO.createNewCategory(category);
+            idCategory = categoriesDAO.createCategory(category);
         } catch (CategoriesException e) {
             idCategory=e.getId();
             if(e.getId()==0)
@@ -144,7 +139,7 @@ public class SongDAO implements ISongDAO {
                 int categoryId = resultSet.getInt("Category");
                 String time = resultSet.getString("Time");
                 String path = resultSet.getString("Path");
-                song = new Song(id, title, artistsDAO.getArtistById(artistId).getName(), categoriesDAO.getCategoryById(categoryId).getCategoryName(), time, path);
+                song = new Song(id, title, artistsDAO.getArtist(artistId).getName(), categoriesDAO.getCategory(categoryId).getCategoryName(), time, path);
             }
 
         }

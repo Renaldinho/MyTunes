@@ -5,9 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongEditController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/SongEditController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/gui/controller/SongController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/SongController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/gui/controller/SongEditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/SongEditController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/bll/MyTunesManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/bll/MyTunesManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/bll/exceptions/JoinsException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/ICategoriesDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/Interfaces/ICategoriesDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/ArtistsDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/ArtistsDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/CategoriesDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/CategoriesDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/JoinsDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/JoinsDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/PlayListsDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/PlayListsDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/SongDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/dal/dao/SongDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/MainController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/MainController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/MainController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/MainController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/MainController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/MainController$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/MainController$PlayBackType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/MainController$PlayBackType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/gui/controller/MainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MyTunes/gui/model/MainModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTunes/gui/model/MainModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/bll/MyTunesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/bll/MyTunesManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/bll/exceptions/JoinsException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/Interfaces/IArtistsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/Interfaces/IArtistsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/Interfaces/ICategoriesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/Interfaces/ICategoriesDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/Interfaces/IJoins.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/Interfaces/IJoins.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/Interfaces/IPlayListDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/Interfaces/IPlayListDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/Interfaces/ISongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/Interfaces/ISongDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/ArtistsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/ArtistsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/CategoriesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/CategoriesDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/JoinsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/JoinsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/PlayListsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/PlayListsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/SongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/SongDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/model/MainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/model/MainModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +180,7 @@
       <workItem from="1639623585872" duration="5605000" />
       <workItem from="1639694142669" duration="4857000" />
       <workItem from="1639703708639" duration="1567000" />
-      <workItem from="1639705342962" duration="20321000" />
+      <workItem from="1639705342962" duration="32036000" />
     </task>
     <task id="LOCAL-00001" summary="dal 95% done still few more tests to be done">
       <created>1638404507856</created>
@@ -331,7 +357,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639793399509</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary=".">
+      <created>1639793845332</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1639793845332</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -367,22 +400,15 @@
     <MESSAGE value="before last" />
     <MESSAGE value="last one" />
     <MESSAGE value="..." />
-    <option name="LAST_COMMIT_MESSAGE" value="..." />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/project/src/dal/dao/SongDAO.java</url>
-          <line>59</line>
-          <properties class="dal.dao.SongDAO" method="createSong">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/project/src/dal/dao/SongDAO.java</url>
-          <line>180</line>
+          <line>175</line>
           <properties class="dal.dao.SongDAO" method="checkTime">
             <option name="EMULATED" value="true" />
           </properties>
