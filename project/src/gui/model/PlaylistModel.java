@@ -6,6 +6,7 @@ import bll.exceptions.PlayListException;
 import bll.exceptions.SongException;
 
 
+
 public class PlaylistModel {
 
     private MyTunesManager manager;
@@ -23,4 +24,8 @@ public class PlaylistModel {
         mainModel.getAllSongs().addAll(manager.getAllPlayLists());
     }
 
+
+    public void updatePlayList(PlayList playList,String name,int song,String time) throws  PlayListException {
+        manager.updatePlayList(playList,name,song,time);
+    }
 }

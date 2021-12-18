@@ -3,6 +3,7 @@ package dal.dao;
 import be.Joins;
 import be.PlayList;
 import be.Song;
+import bll.exceptions.PlayListException;
 import dal.DatabaseConnector;
 import dal.Interfaces.IJoins;
 
@@ -23,7 +24,7 @@ public class JoinsDAO implements IJoins {
     }
 
     @Override
-    public Joins createJoin(Song song, PlayList playList) throws SQLException {
+    public Joins createJoin(Song song, PlayList playList) throws SQLException, PlayListException {
         Joins joins;
         String sql = "INSERT INTO song_playlist VALUES(?,?,?)";
         try (Connection connection = databaseConnector.getConnection()) {
@@ -34,7 +35,7 @@ public class JoinsDAO implements IJoins {
             preparedStatement.executeUpdate();
             joins = new Joins(song.getId(), playList.getId(), lastRank(playList) + 1);
             playList.setSongs(playList.getSong() + 1);
-            playListsDAO.updatePlayList(playList, playList.getSong(), calculateTime(getAllJoinsPlayList(playList)));
+            playListsDAO.updatePlayList(playList, playList.getName(), playList.getSong(), calculateTime(getAllJoinsPlayList(playList)));
 
         }
         return joins;
@@ -60,7 +61,7 @@ public class JoinsDAO implements IJoins {
     }
 
     @Override
-    public void removeJoins(Joins joins, PlayList playList) throws SQLException {
+    public void removeJoins(Joins joins, PlayList playList) throws SQLException, PlayListException {
         String sql = "DELETE FROM song_playlist WHERE [Song Id]=? AND [PlayList Id]=? AND Rank= ?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -70,7 +71,7 @@ public class JoinsDAO implements IJoins {
             preparedStatement.executeUpdate();
             fillRankGap(playList, joins);
             playList.setSongs(playList.getSong() - 1);
-            playListsDAO.updatePlayList(playList, playList.getSong(), calculateTime(getAllJoinsPlayList(playList)));
+            playListsDAO.updatePlayList(playList, playList.getName(), playList.getSong(), calculateTime(getAllJoinsPlayList(playList)));
         }
     }
 
@@ -191,8 +192,9 @@ public class JoinsDAO implements IJoins {
 
         return String.format("%d:%02d:%02d", totalHours, totalMinutes, totalSeconds);
     }
+
     @Override
-    public void deleteAllJoins(Song song) throws SQLException {
+    public void deleteAllJoins(Song song) throws SQLException, PlayListException {
         String sql0 = "SELECT * FROM song_playlist WHERE [Song Id]= ?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql0);

@@ -1,8 +1,4 @@
 package be;
-
-import dal.dao.ArtistsDAO;
-import dal.dao.CategoriesDAO;
-import dal.dao.PlayListsDAO;
 import dal.dao.SongDAO;
 
 import java.sql.SQLException;

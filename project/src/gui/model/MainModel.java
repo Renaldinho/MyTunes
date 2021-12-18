@@ -76,7 +76,7 @@ public class MainModel {
         return allSongsForGivenPlayList;
     }
 
-    public void addSongToGivenPlayList(Song song, PlayList playList) throws SQLException {
+    public void addSongToGivenPlayList(Song song, PlayList playList) throws SQLException, PlayListException {
         allSongsForGivenPlayList.add(manager.createJoins(song, playList));
 
     }

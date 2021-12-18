@@ -128,19 +128,26 @@ public class SongEditController {
 
     public void addMenuItem(String categoryName) {
         MenuItem menuItem = new MenuItem(categoryName);
-        category.getItems().add(menuItem);
+        try {
+            category.getItems().add(menuItem);
+        } catch (NullPointerException e) {
+        }
         menuItem.setOnAction(event -> category.setText(menuItem.getText()));
     }
 
     public void deleteMenuItem(MenuItem menuItem) {
         MenuItem search = null;
-        for (MenuItem menuItem1 : category.getItems()) {
-            if (menuItem1.getText().equals(menuItem.getText())) {
-                search = menuItem1;
-                break;
+        try {
+            for (MenuItem menuItem1 : category.getItems()) {
+                if (menuItem1.getText().equals(menuItem.getText())) {
+                    search = menuItem1;
+                    break;
+                }
             }
+            category.getItems().remove(search);
+        } catch (NullPointerException e) {
         }
-        category.getItems().remove(search);
+
     }
 
     public void setMenuBar() throws CategoriesException {

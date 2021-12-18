@@ -3,6 +3,7 @@ package dal.dao;
 import be.Song;
 import bll.exceptions.ArtistException;
 import bll.exceptions.CategoriesException;
+import bll.exceptions.PlayListException;
 import bll.exceptions.SongException;
 import dal.DatabaseConnector;
 import dal.Interfaces.ISongDAO;
@@ -55,16 +56,17 @@ public class SongDAO implements ISongDAO {
     public Song createSong(String title, String artist, String category, String filePath, String time) throws SQLException, SongException, ArtistException, CategoriesException {
         Song song = null;
         int id = 0;
-        int categoryId ;
-        int artistId ;
+        int categoryId;
+        int artistId;
         checkString(title);
-            artistId = artistsDAO.createArtist(artist);
+        artistId = artistsDAO.createArtist(artist);
         try {
             categoryId = categoriesDAO.createCategory(category);
         } catch (CategoriesException e) {
-            categoryId=e.getId();
-            if(e.getId()==0)
-                throw e;}
+            categoryId = e.getId();
+            if (e.getId() == 0)
+                throw e;
+        }
         checkPath0(filePath);
         checkPath(filePath);
         checkTime(time);
@@ -89,7 +91,7 @@ public class SongDAO implements ISongDAO {
     }
 
     @Override
-    public void deleteSong(Song song) throws SQLException {
+    public void deleteSong(Song song) throws SQLException, PlayListException {
         String sql = "DELETE FROM songs WHERE Id = ?";
 
         joinsDAO.deleteAllJoins(song);
@@ -101,7 +103,7 @@ public class SongDAO implements ISongDAO {
     }
 
     @Override
-    public void updateSong(String title, Song song, String artist, String category) throws SQLException, ArtistException,CategoriesException {
+    public void updateSong(String title, Song song, String artist, String category) throws SQLException, ArtistException, CategoriesException {
         //update artist table
         int idArtist = artistsDAO.createArtist(artist);
         int idCategory = 0;
@@ -109,9 +111,10 @@ public class SongDAO implements ISongDAO {
         try {
             idCategory = categoriesDAO.createCategory(category);
         } catch (CategoriesException e) {
-            idCategory=e.getId();
-            if(e.getId()==0)
-                throw e;}
+            idCategory = e.getId();
+            if (e.getId() == 0)
+                throw e;
+        }
 
         //update song table
         String sql = "UPDATE songs SET Title = ?,Artist = ?, Category= ? WHERE Id=? ";
@@ -169,21 +172,23 @@ public class SongDAO implements ISongDAO {
             throw new SongException("Song already exists", exception);
         }
     }
-    private void checkPath0(String filePath) throws SongException {
-        if(!(new File(filePath).isFile()&& filePath.endsWith(".mp3")||filePath.endsWith(".wav")) )
-            throw new SongException("Please find a correct path.",new Exception());
-        }
-        private void checkTime(String time)throws SongException{
-        try {
-            Integer.parseInt(time.substring(0,time.indexOf(":")));
-            int secondIndex = time.indexOf(":",time.indexOf(":")+1);
-            Integer.parseInt(time.substring(time.indexOf(":")+1,secondIndex-1));
-            Integer.parseInt(time.substring(secondIndex+1));
-        }catch (NumberFormatException e){
-            throw new SongException("Please find a correct time in hh:mm:ss for you song",e);
-        }
-        }
 
+    private void checkPath0(String filePath) throws SongException {
+        if (!(new File(filePath).isFile() && filePath.endsWith(".mp3") || filePath.endsWith(".wav")))
+            throw new SongException("Please find a correct path.", new Exception());
     }
+
+    private void checkTime(String time) throws SongException {
+        try {
+            Integer.parseInt(time.substring(0, time.indexOf(":")));
+            int secondIndex = time.indexOf(":", time.indexOf(":") + 1);
+            Integer.parseInt(time.substring(time.indexOf(":") + 1, secondIndex - 1));
+            Integer.parseInt(time.substring(secondIndex + 1));
+        } catch (NumberFormatException e) {
+            throw new SongException("Please find a correct time in hh:mm:ss for you song", e);
+        }
+    }
+
+}
 
 

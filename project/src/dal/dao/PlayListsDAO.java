@@ -1,7 +1,6 @@
 package dal.dao;
 
 import be.PlayList;
-import be.Song;
 import bll.exceptions.PlayListException;
 import dal.DatabaseConnector;
 import dal.Interfaces.IPlayListDAO;
@@ -21,6 +20,8 @@ public class PlayListsDAO implements IPlayListDAO {
     public PlayList createPlayList(String name) throws SQLException, PlayListException {
         PlayList playList = null;
         String sql = "INSERT INTO playlists VALUES (?,?,?) ";
+
+        checkPlayListNameNotNull(name);
         checkPlayListName(name);
 
         try (Connection connection = databaseConnector.getConnection()) {
@@ -100,13 +101,16 @@ public class PlayListsDAO implements IPlayListDAO {
         }
     }
 
-    public void updatePlayList(PlayList playList, int song, String time) throws SQLException {
-        String sql = "UPDATE playlists SET Songs=?,Time=? WHERE Id = ?";
+    public void updatePlayList(PlayList playList, String name, int song, String time) throws SQLException, PlayListException {
+        String sql = "UPDATE playlists SET Name=?, Songs=?,Time=? WHERE Id = ?";
+        checkPlayListNameNotNull(name);
+        checkPlayListName(name);
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, song);
-            preparedStatement.setString(2, time);
-            preparedStatement.setInt(3, playList.getId());
+            preparedStatement.setString(1, name);
+            preparedStatement.setInt(2, song);
+            preparedStatement.setString(3, time);
+            preparedStatement.setInt(4, playList.getId());
             preparedStatement.executeUpdate();
         }
     }
@@ -124,5 +128,11 @@ public class PlayListsDAO implements IPlayListDAO {
         Exception exception = new Exception();
         if (playListNameTakenAlready(namePlayList))
             throw new PlayListException("Name already taken.", exception);
+    }
+
+    private void checkPlayListNameNotNull(String playListName) throws PlayListException {
+        Exception exception = new Exception();
+        if (playListName.isEmpty())
+            throw new PlayListException("Please find a name for your playlist.", exception);
     }
 }

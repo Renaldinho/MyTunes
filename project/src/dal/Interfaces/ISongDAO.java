@@ -3,6 +3,7 @@ package dal.Interfaces;
 import be.Song;
 import bll.exceptions.ArtistException;
 import bll.exceptions.CategoriesException;
+import bll.exceptions.PlayListException;
 import bll.exceptions.SongException;
 
 
@@ -15,7 +16,7 @@ public interface ISongDAO {
 
     Song createSong(String title, String artist, String category, String filePath,String time) throws SQLException, SongException, ArtistException, CategoriesException, URISyntaxException;
 
-    void deleteSong(Song song) throws SQLException;
+    void deleteSong(Song song) throws SQLException, PlayListException;
 
     void updateSong(String title, Song song, String newArtist, String newCategory) throws SQLException, ArtistException, CategoriesException;
 

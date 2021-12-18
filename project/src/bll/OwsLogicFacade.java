@@ -20,7 +20,7 @@ public interface OwsLogicFacade {
 
     List<PlayList> getAllPlayLists() throws PlayListException;
 
-    void removeSongFromPlayList(Joins joins, PlayList playList) throws SQLException;
+    void removeSongFromPlayList(Joins joins, PlayList playList) throws SQLException, PlayListException;
 
     List<Joins> getAllJoinsPlayList(PlayList playList) throws SQLException;
 
@@ -45,4 +45,6 @@ public interface OwsLogicFacade {
     int createNewCategory(String category) throws CategoriesException;
 
     void deleteCategory(Category category) throws CategoriesException;
+
+    void updatePlayList(PlayList playList,String name,int song,String time) throws SQLException, PlayListException;
 }

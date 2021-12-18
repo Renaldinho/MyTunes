@@ -3,9 +3,9 @@ package gui.controller;
 import be.Category;
 import bll.MyTunesManager;
 import bll.exceptions.CategoriesException;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import gui.model.NewCategoryModel;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -37,6 +37,7 @@ public class NewCategoryController implements Initializable {
     public void setController(SongController songController) {
         this.songController = songController;
     }
+
     public void setController(SongEditController songEditController) {
         this.songEditController = songEditController;
     }
@@ -44,9 +45,10 @@ public class NewCategoryController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         try {
             categoriesList.setItems(newCategoryModel.getAllCategories());
-        } catch (CategoriesException  e) {
+        } catch (CategoriesException e) {
             e.printStackTrace();
         }
     }
@@ -105,20 +107,15 @@ public class NewCategoryController implements Initializable {
     }
 
 
-    public void getSelectedCategory(MouseEvent event) {
-        categorySelected = (Category) categoriesList.getSelectionModel().selectedItemProperty().get();
-        populateTextField(categorySelected.getCategoryName());
 
-    }
-
-    public void deleteCategory(MouseEvent event) throws CategoriesException {
+    public void deleteCategory(MouseEvent event) {
         try {
             int index = categoriesList.getSelectionModel().getSelectedIndex();
-            newCategoryModel.deleteCategory(categorySelected);
-            songController.deleteMenuItem(new MenuItem(categorySelected.toString()));
-            songEditController.deleteMenuItem(new MenuItem(categorySelected.toString()));
+            newCategoryModel.deleteCategory(getCategorySelected());
             categoriesList.setItems(newCategoryModel.getAllCategories());
-            newCategoryModel.getAllCategories().remove(categorySelected);
+            songController.deleteMenuItem(new MenuItem(getCategorySelected().toString()));
+            songEditController.deleteMenuItem(new MenuItem(getCategorySelected().toString()));
+            newCategoryModel.getAllCategories().remove(getCategorySelected());
             if (index > 0) {
                 categoriesList.getSelectionModel().select(index - 1);
                 categorySelected = (Category) categoriesList.getItems().get(index - 1);
@@ -130,7 +127,7 @@ public class NewCategoryController implements Initializable {
             }
 
 
-        } catch (CategoriesException  s) {
+        } catch (CategoriesException s) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Alert window");
             alert.setHeaderText("One or many songs are associated to this category.\nPlease get rid of this dependency before you can be able to delete it.");
@@ -144,5 +141,17 @@ public class NewCategoryController implements Initializable {
     private void populateTextField(String categoryName) {
         selectedCategoryName.setText(categoryName);
         selectCategory.setText(categoryName);
+    }
+    private void setCategorySelected(){
+        categorySelected=(Category) categoriesList.getSelectionModel().selectedItemProperty().get();
+    }
+    private Category getCategorySelected(){
+        return categorySelected;
+    }
+
+    @FXML
+    private void getSelectedPlayList(MouseEvent event) {
+        setCategorySelected();
+        populateTextField(getCategorySelected().getCategoryName());
     }
 }

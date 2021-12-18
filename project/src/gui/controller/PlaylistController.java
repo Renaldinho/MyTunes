@@ -1,5 +1,6 @@
 package gui.controller;
 
+import be.PlayList;
 import bll.exceptions.PlayListException;
 import bll.exceptions.SongException;
 import gui.model.PlaylistModel;
@@ -10,6 +11,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+
 
 public class PlaylistController {
 
@@ -25,6 +27,7 @@ public class PlaylistController {
     private Button cancelPlaylistBtn;
     MainController mainController;
     Stage stage;
+    private boolean newSong = false;
 
     public PlaylistController() {
         model = new PlaylistModel();
@@ -33,19 +36,37 @@ public class PlaylistController {
     @FXML
     public void handleSavePlaylistBtn(javafx.scene.input.MouseEvent actionEvent) {
         String playlistName = playlistNameTxt.getText();
-        if (playlistName.isEmpty())
-            return;
-        else {
+        if (newSong) {
             try {
                 model.createPlaylist(playlistName);
                 mainController.updatePlayListTableView();
                 stage = (Stage) savePlaylistBtn.getScene().getWindow();
                 stage.close();
-            } catch (PlayListException | SongException  e) {
+            } catch (PlayListException e) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Error");
-                alert.setHeaderText(" Playlist already exists.");
-
+                alert.setHeaderText(e.getExceptionMessage());
+                ButtonType okButton = new ButtonType("OK");
+                alert.getButtonTypes().setAll(okButton);
+                alert.showAndWait();
+            } catch (SongException e) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText(e.getExceptionMessage());
+                ButtonType okButton = new ButtonType("OK");
+                alert.getButtonTypes().setAll(okButton);
+                alert.showAndWait();
+            }
+        } else {
+            try {
+                model.updatePlayList(mainController.getPlayList(), playlistNameTxt.getText(), mainController.getPlayList().getSong(), mainController.getPlayList().getTime());
+                mainController.updatePlayListTableView();
+                stage = (Stage) savePlaylistBtn.getScene().getWindow();
+                stage.close();
+            } catch (PlayListException e) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText(e.getExceptionMessage());
                 ButtonType okButton = new ButtonType("OK");
                 alert.getButtonTypes().setAll(okButton);
                 alert.showAndWait();
@@ -70,5 +91,13 @@ public class PlaylistController {
 
     public void setController(MainController mainController) {
         this.mainController = mainController;
+    }
+
+    public void fillField(PlayList playList) {
+        playlistNameTxt.setText(playList.getName());
+    }
+
+    public void newPlayList() {
+        newSong = true;
     }
 }

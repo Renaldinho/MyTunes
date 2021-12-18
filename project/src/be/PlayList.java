@@ -10,6 +10,10 @@ public class PlayList {
     this.songs=songs;
     this.time=time;
     }
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setSongs(int songs) {
         this.songs = songs;
     }

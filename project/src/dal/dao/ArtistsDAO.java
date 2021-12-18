@@ -1,14 +1,12 @@
 package dal.dao;
 
 import be.Artist;
-import be.Song;
 import bll.exceptions.ArtistException;
 import dal.DatabaseConnector;
 import dal.Interfaces.IArtistsDAO;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class ArtistsDAO implements IArtistsDAO {
     DatabaseConnector databaseConnector;

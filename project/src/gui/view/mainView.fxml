@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="548.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainController">
+<AnchorPane fx:id="anchorPane" prefHeight="548.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.MainController">
     <children>
         <Button layoutX="134.0" layoutY="484.0" mnemonicParsing="false" onAction="#deletePlayList" style="-fx-background-radius: 100;" text="Delete" />
         <Button layoutX="351.0" layoutY="485.0" mnemonicParsing="false" onAction="#deleteSongFromPlayList" style="-fx-background-radius: 100;" text="Delete" />
@@ -61,5 +61,6 @@
         <Button layoutX="480.0" layoutY="484.0" mnemonicParsing="false" onAction="#newSong" style="-fx-background-radius: 100;" text="New" />
         <Button fx:id="stopBtn" disable="true" layoutX="93.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleStopBtn" opacity="0.0" prefHeight="26.0" style="-fx-background-radius: 100;" text="⏸" />
         <Slider fx:id="volumeSlider" blockIncrement="1.0E-4" layoutX="204.0" layoutY="8.0" max="1.0" orientation="VERTICAL" prefHeight="66.0" prefWidth="9.0" value="0.5" />
+      <Button layoutX="75.0" layoutY="485.0" mnemonicParsing="false" onAction="#handleEditPlayList" style="-fx-background-radius: 100;" text="Edit" />
     </children>
 </AnchorPane>

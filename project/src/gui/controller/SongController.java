@@ -72,7 +72,7 @@ public class SongController {
 
         File selectedFile = fileChooser.showOpenDialog(pathField.getScene().getWindow());
         if (selectedFile != null) {
-            filePath=selectedFile.getAbsolutePath();
+            filePath = selectedFile.getAbsolutePath();
             pathField.setText(filePath);
 
             MediaPlayer player = new MediaPlayer(new Media(new File(pathField.getText()).toURI().toString()));
@@ -88,12 +88,12 @@ public class SongController {
         }
     }
 
-    public void handleSaveNewSong(ActionEvent actionEvent)  {
+    public void handleSaveNewSong(ActionEvent actionEvent) {
         String title = songTitleField.getText();
         String artist = songArtistField.getText();
         String songCategory = category.getText();
-        if(songCategory.equals("Choose one"))
-            songCategory= "";
+        if (songCategory.equals("Choose one"))
+            songCategory = "";
 
         String time = songTimeField.getText();
 
@@ -108,7 +108,7 @@ public class SongController {
             ButtonType okButton = new ButtonType("OK");
             alert.getButtonTypes().setAll(okButton);
             alert.showAndWait();
-        }catch (ArtistException e){
+        } catch (ArtistException e) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Error");
             alert.setHeaderText(e.getExceptionMessage());
@@ -121,7 +121,8 @@ public class SongController {
             alert.setHeaderText(e.getExceptionMessage());
             ButtonType okButton = new ButtonType("OK");
             alert.getButtonTypes().setAll(okButton);
-            alert.showAndWait();        } catch (URISyntaxException e) {
+            alert.showAndWait();
+        } catch (URISyntaxException e) {
             e.printStackTrace();
         }
         mainController.updateSongTableView();
@@ -138,20 +139,20 @@ public class SongController {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/gui/view/newCategory.fxml"));
 
-            root = loader.load();
-            NewCategoryController newCategoryController = loader.getController();
-            newCategoryController.setController(this);
-            Stage stage = new Stage();
-            stage.setTitle("Manage categories");
-            stage.setScene(new Scene(root));
-            stage.show();
+        root = loader.load();
+        NewCategoryController newCategoryController = loader.getController();
+        newCategoryController.setController(this);
+        Stage stage = new Stage();
+        stage.setTitle("Manage categories");
+        stage.setScene(new Scene(root));
+        stage.show();
 
 
     }
 
     public void setMenuBar() throws CategoriesException {
         MenuItem newMenuItem;
-        for (Category cat : songModel.getAllCategories()){
+        for (Category cat : songModel.getAllCategories()) {
             newMenuItem = new MenuItem(cat.toString());
             category.getItems().addAll(newMenuItem);
             MenuItem finalNewMenuItem = newMenuItem;
@@ -180,7 +181,8 @@ public class SongController {
         }
         category.getItems().remove(search);
     }
-    public void setTime(){
+
+    public void setTime() {
         songTimeField.setText("00:00:00");
     }
 }

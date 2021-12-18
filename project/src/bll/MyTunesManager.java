@@ -59,7 +59,7 @@ public class MyTunesManager implements OwsLogicFacade {
     }
 
     @Override
-    public void removeSongFromPlayList(Joins joins, PlayList playList) throws SQLException {
+    public void removeSongFromPlayList(Joins joins, PlayList playList) throws SQLException, PlayListException {
         joinsDAO.removeJoins(joins, playList);
 
     }
@@ -107,8 +107,8 @@ public class MyTunesManager implements OwsLogicFacade {
     public void deleteSong(Song song) throws SongException {
         try {
             songDAO.deleteSong(song);
-        } catch (SQLException e) {
-            throw new SongException("Something wrong went in the database", e);
+        } catch (SQLException | PlayListException e) {
+            throw new SongException("Something wrong went in the database", new Exception());
         }
 
     }
@@ -178,7 +178,16 @@ public class MyTunesManager implements OwsLogicFacade {
 
     }
 
-    public Joins createJoins(Song song, PlayList playList) throws SQLException {
+    @Override
+    public void updatePlayList(PlayList playList,String name,int song,String time) throws PlayListException {
+        try {
+            playListDAO.updatePlayList(playList,name,song,time);
+        }catch (SQLException e){
+            throw new PlayListException("Something went wrong in the database",new Exception());
+        }
+    }
+
+    public Joins createJoins(Song song, PlayList playList) throws SQLException, PlayListException {
         return joinsDAO.createJoin(song, playList);
 
     }

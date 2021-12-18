@@ -1,9 +1,7 @@
 package dal.dao;
 
-import be.Artist;
 import be.Category;
 import bll.exceptions.CategoriesException;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import dal.DatabaseConnector;
 import dal.Interfaces.ICategoriesDAO;
 
@@ -31,7 +29,7 @@ public class CategoriesDAO implements ICategoriesDAO {
             ResultSet resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {
                 id = resultSet.getInt("Id");
-                   checkCategoryName(id);
+                checkCategoryName(id);
             }
             String sql1 = "INSERT INTO categories VALUES(?)";
             PreparedStatement preparedStatement1 = connection.prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS);
@@ -104,14 +102,16 @@ public class CategoriesDAO implements ICategoriesDAO {
         }
         return allCategories;
     }
+
     private void checkCategoryName(int id) throws CategoriesException {
         Exception exception = new Exception();
-        if(id!=0)
-            throw new CategoriesException("Category already exists",exception,id);
+        if (id != 0)
+            throw new CategoriesException("Category already exists", exception, id);
     }
+
     private void categoryNameNotNull(String name) throws CategoriesException {
         Exception exception = new Exception();
-        if(name.isEmpty())
-            throw new CategoriesException("Please find a category for your song",exception);
+        if (name.isEmpty())
+            throw new CategoriesException("Please find a category for your song", exception);
     }
-    }
+}
