@@ -120,7 +120,7 @@ public class PlayListsDAO implements IPlayListDAO {
         }
     }
 
-    void checkPlayListName(String namePlayList) throws SQLException, PlayListException {
+    private void checkPlayListName(String namePlayList) throws SQLException, PlayListException {
         Exception exception = new Exception();
         if (playListNameTakenAlready(namePlayList))
             throw new PlayListException("Name already taken.", exception);

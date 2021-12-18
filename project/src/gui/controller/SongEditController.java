@@ -22,15 +22,17 @@ import java.io.File;
 public class SongEditController {
     public Button cancelSongBtn;
     @FXML
+    private Label filePath;
+    @FXML
+    private Label timeSong;
+    @FXML
     private TextField songTitleField;
     @FXML
     private TextField songArtistField;
-    @FXML
-    private TextField pathField;
+
     @FXML
     private SplitMenuButton category;
-    @FXML
-    private TextField songTimeField;
+
 
 
     Stage stage;
@@ -78,50 +80,13 @@ public class SongEditController {
         }
     }
 
-    public void handleChooseFile(ActionEvent actionEvent) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("MP3 Files", "*.mp3"),
-                new FileChooser.ExtensionFilter("WAV Files", "*.wav"));
-        File selectedFile = fileChooser.showOpenDialog(pathField.getScene().getWindow());
-        if (selectedFile != null) {
-            pathField.setText(selectedFile.getAbsolutePath());
-
-            MediaPlayer player = new MediaPlayer(new Media(new File(pathField.getText()).toURI().toString()));
-            player.setOnReady(new Runnable() {
-                @Override
-                public void run() {
-                    Duration time = player.getTotalDuration();
-                    String strDuration = String.format("%d:%02d:%02d", (int) player.getTotalDuration().toSeconds() / 3600, (int) player.getTotalDuration().toSeconds() / 60, (int) player.getTotalDuration().toSeconds() % 60);
-                    songTimeField.setText(strDuration);
-                    System.out.println();
-                }
-            });
-        }
-    }
-
     public void fillFields(Song song) {
         songTitleField.setText(song.getTitle());
         songArtistField.setText(song.getArtist());
         category.setText(song.getCategory());
-        pathField.setText(song.getFilePath());
-        songTimeField.setText(String.valueOf(song.getTime()));
+        filePath.setText(song.getFilePath());
+        timeSong.setText(String.valueOf(song.getTime()));
         setSong(song);
         stage = (Stage) cancelSongBtn.getScene().getWindow();
-    }
-
-    public void rockMusic(ActionEvent actionEvent) {
-        category.setText("Rock music");
-    }
-
-    public void rythmAndBlues(ActionEvent actionEvent) {
-        category.setText("Rythm and blues");
-    }
-
-    public void reggae(ActionEvent actionEvent) {
-        category.setText("reggae");
-    }
-
-    public void jazz(ActionEvent actionEvent) {
-        category.setText("jazz");
     }
 }

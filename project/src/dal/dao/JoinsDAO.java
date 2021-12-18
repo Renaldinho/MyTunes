@@ -44,7 +44,7 @@ public class JoinsDAO implements IJoins {
      * returns the rank of a song we add to a given playList
      * we need the rank for moving songs up and down.
      */
-    public int lastRank(PlayList playList) throws SQLException {
+    private int lastRank(PlayList playList) throws SQLException {
         int rank = 0;
         String sql = "SELECT Rank FROM song_playlist where [PlayList Id] = ? ORDER BY Rank ASC";
         try (Connection connection = databaseConnector.getConnection()) {
@@ -143,7 +143,7 @@ public class JoinsDAO implements IJoins {
      * or first song up.
      * It switches between them.
      */
-    public void switchFirstLast(PlayList playList) throws SQLException {
+    private void switchFirstLast(PlayList playList) throws SQLException {
         String sql = "UPDATE song_playlist SET Rank = CASE Rank WHEN ? THEN ? WHEN ? THEN ? ELSE Rank END WHERE [playList Id]=?";
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -156,7 +156,7 @@ public class JoinsDAO implements IJoins {
         }
     }
 
-    public void fillRankGap(PlayList playList, Joins joins) throws SQLException {
+    private void fillRankGap(PlayList playList, Joins joins) throws SQLException {
         String sql = "UPDATE song_playlist SET RANK = ? WHERE [PlayList Id]=? AND RANK=?";
         String sql0 = "SELECT * FROM song_playlist WHERE [PlayList Id]=? AND RANK>? ";
         if (joins.getRank() == 1) {

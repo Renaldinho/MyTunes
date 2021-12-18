@@ -102,6 +102,7 @@ public class MainController implements Initializable {
         SongController songController = loader.getController();
         songController.setController(this);
         songController.setMenuBar();
+        songController.setTime();
         Stage stage = new Stage();
         stage.setTitle("Create a song");
         stage.setScene(new Scene(root));

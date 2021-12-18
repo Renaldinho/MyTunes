@@ -27,6 +27,7 @@ public class SongController {
 
     MainController mainController;
     public Button cancelSongBtn;
+    String filePath;
 
     SongModel songModel;
     @FXML
@@ -70,7 +71,8 @@ public class SongController {
 
         File selectedFile = fileChooser.showOpenDialog(pathField.getScene().getWindow());
         if (selectedFile != null) {
-            pathField.setText(selectedFile.getAbsolutePath());
+            filePath=selectedFile.getAbsolutePath();
+            pathField.setText(filePath);
 
             MediaPlayer player = new MediaPlayer(new Media(new File(pathField.getText()).toURI().toString()));
             player.setOnReady(new Runnable() {
@@ -91,7 +93,6 @@ public class SongController {
         String songCategory = category.getText();
         if(songCategory.equals("Choose one"))
             songCategory= "";
-        String filePath = new File(pathField.getText()).toURI().toString();
         String time = songTimeField.getText();
 
         try {
@@ -174,5 +175,8 @@ public class SongController {
             }
         }
         category.getItems().remove(search);
+    }
+    public void setTime(){
+        songTimeField.setText("00:00:00");
     }
 }

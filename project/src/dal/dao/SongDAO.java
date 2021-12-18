@@ -60,8 +60,8 @@ public class SongDAO implements ISongDAO {
     public Song createSong(String title, String artist, String category, String filePath, String time) throws SQLException, SongException, ArtistException, CategoriesException {
         Song song = null;
         int id = 0;
-        int categoryId = 0;
-        int artistId = 0;
+        int categoryId ;
+        int artistId ;
         checkString(title);
             artistId = artistsDAO.createArtist(artist);
         try {
@@ -72,6 +72,7 @@ public class SongDAO implements ISongDAO {
                 throw e;}
         checkPath0(filePath);
         checkPath(filePath);
+        checkTime(time);
         String sql = ("INSERT INTO songs VALUES (?,?,?,?,?)");
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -156,23 +157,31 @@ public class SongDAO implements ISongDAO {
         }
     }
 
-    static void checkString(String text) throws SongException {
+    private static void checkString(String text) throws SongException {
         SQLException exception = new SQLException();
         if (text.isEmpty())
             throw new SongException("Please find a name for your song", exception);
     }
 
-    void checkPath(String filePath) throws SongException, SQLException {
+    private void checkPath(String filePath) throws SongException, SQLException {
         Exception exception = new Exception();
         if (pathAlreadyUsed(filePath)) {
             throw new SongException("Song already exists", exception);
         }
     }
-    void checkPath0(String filePath) throws SongException {
-        filePath = filePath.substring(filePath.indexOf("/")+1);
-        File file = new File(filePath).getAbsoluteFile();
-        if(!(file.isFile()&& filePath.endsWith(".mp3")||filePath.endsWith(".wav")) )
+    private void checkPath0(String filePath) throws SongException {
+        if(!(new File(filePath).isFile()&& filePath.endsWith(".mp3")||filePath.endsWith(".wav")) )
             throw new SongException("Please find a correct path.",new Exception());
+        }
+        private void checkTime(String time)throws SongException{
+        try {
+            Integer.parseInt(time.substring(0,time.indexOf(":")));
+            int secondIndex = time.indexOf(":",time.indexOf(":")+1);
+            Integer.parseInt(time.substring(time.indexOf(":")+1,secondIndex-1));
+            Integer.parseInt(time.substring(secondIndex+1));
+        }catch (NumberFormatException e){
+            throw new SongException("Please find a correct time in hh:mm:ss for you song",e);
+        }
         }
 
     }

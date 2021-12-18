@@ -104,12 +104,12 @@ public class CategoriesDAO implements ICategoriesDAO {
         }
         return allCategories;
     }
-    void checkCategoryName(int id) throws CategoriesException {
+    private void checkCategoryName(int id) throws CategoriesException {
         Exception exception = new Exception();
         if(id!=0)
             throw new CategoriesException("Category already exists",exception,id);
     }
-    void categoryNameNotNull(String name) throws CategoriesException {
+    private void categoryNameNotNull(String name) throws CategoriesException {
         Exception exception = new Exception();
         if(name.isEmpty())
             throw new CategoriesException("Please find a category for your song",exception);
