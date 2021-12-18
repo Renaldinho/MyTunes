@@ -93,6 +93,7 @@ public class SongController {
         String songCategory = category.getText();
         if(songCategory.equals("Choose one"))
             songCategory= "";
+
         String time = songTimeField.getText();
 
         try {

@@ -25,16 +25,22 @@ public class NewCategoryController implements Initializable {
     Category categorySelected;
     MyTunesManager manager;
     SongController songController;
+    SongEditController songEditController;
 
     public NewCategoryController() throws SQLException {
         newCategoryModel = new NewCategoryModel();
         manager = new MyTunesManager();
         songController = new SongController();
+        songEditController = new SongEditController();
     }
 
     public void setController(SongController songController) {
         this.songController = songController;
     }
+    public void setController(SongEditController songEditController) {
+        this.songEditController = songEditController;
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -54,6 +60,7 @@ public class NewCategoryController implements Initializable {
                 newCategoryModel.addCategory(newCategoryName.getText());
                 categoriesList.setItems(newCategoryModel.getAllCategories());
                 songController.addMenuItem(newCategoryName.getText());
+                songEditController.addMenuItem(newCategoryName.getText());
                 newCategoryName.setText("");
 
 
@@ -79,6 +86,8 @@ public class NewCategoryController implements Initializable {
             categoriesList.setItems(newCategoryModel.getAllCategories());
             songController.clearMenuBar();
             songController.setMenuBar();
+            songEditController.clearMenuBar();
+            songEditController.setMenuBar();
             selectCategory.setText(selectedCategoryName.getText());
         }
     }
@@ -107,6 +116,7 @@ public class NewCategoryController implements Initializable {
             int index = categoriesList.getSelectionModel().getSelectedIndex();
             newCategoryModel.deleteCategory(categorySelected);
             songController.deleteMenuItem(new MenuItem(categorySelected.toString()));
+            songEditController.deleteMenuItem(new MenuItem(categorySelected.toString()));
             categoriesList.setItems(newCategoryModel.getAllCategories());
             newCategoryModel.getAllCategories().remove(categorySelected);
             if (index > 0) {
@@ -123,7 +133,7 @@ public class NewCategoryController implements Initializable {
         } catch (CategoriesException  s) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Alert window");
-            alert.setHeaderText("One or many songs are associated to this category.\n Please get rid of this dependency before you can be able to delete it.");
+            alert.setHeaderText("One or many songs are associated to this category.\nPlease get rid of this dependency before you can be able to delete it.");
 
             ButtonType okButton = new ButtonType("OK");
             alert.getButtonTypes().setAll(okButton);

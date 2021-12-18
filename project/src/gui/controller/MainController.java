@@ -379,7 +379,7 @@ public class MainController implements Initializable {
         }
     }
 
-    public void handleEditSong(ActionEvent actionEvent) throws IOException {
+    public void handleEditSong(ActionEvent actionEvent) throws IOException, CategoriesException {
         if (selectedSong == null) {
         } else {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/editSong.fxml"));
@@ -390,6 +390,7 @@ public class MainController implements Initializable {
             //Get controller for the song editing window to access methods on it
             SongEditController songEditController = loader.getController();
             songEditController.setMainController(this);
+            songEditController.setMenuBar();
             songEditController.fillFields(selectedSong);
 
             stage.show();

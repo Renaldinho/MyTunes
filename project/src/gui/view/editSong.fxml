@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="343.0" prefWidth="364.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.SongEditController">
    <children>
-      <Button layoutX="282.0" layoutY="119.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="56.0" text="More" />
+      <Button layoutX="282.0" layoutY="119.0" mnemonicParsing="false" onMouseClicked="#moreCategories" prefHeight="26.0" prefWidth="56.0" text="More" />
       <Button layoutX="282.0" layoutY="294.0" mnemonicParsing="false" onAction="#handleEditSong" prefHeight="26.0" prefWidth="56.0" text="Edit" />
       <Button fx:id="cancelSongBtn" layoutX="209.0" layoutY="294.0" mnemonicParsing="false" onAction="#handleCancelSongBtn" prefHeight="26.0" prefWidth="56.0" text="Cancel" />
       <Label layoutX="20.0" layoutY="31.0" text="Title" />
@@ -17,7 +17,7 @@
       <Label layoutX="22.0" layoutY="171.0" text="File" />
       <TextField fx:id="songTitleField" layoutX="67.0" layoutY="27.0" prefHeight="26.0" prefWidth="198.0" />
       <TextField fx:id="songArtistField" layoutX="66.0" layoutY="73.0" prefHeight="26.0" prefWidth="198.0" />
-      <Label fx:id="filePath" layoutX="67.0" layoutY="167.0" prefHeight="26.0" prefWidth="198.0" />
+      <Label fx:id="filePath" layoutX="67.0" layoutY="167.0" prefHeight="26.0" prefWidth="274.0" />
       <SplitMenuButton fx:id="category" alignment="TOP_CENTER" layoutX="66.0" layoutY="119.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="198.0" text="Choose one">
       </SplitMenuButton>
       <Label layoutX="19.0" layoutY="217.0" text="Time" />

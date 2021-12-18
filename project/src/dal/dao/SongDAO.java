@@ -111,7 +111,12 @@ public class SongDAO implements ISongDAO {
         int idArtist = artistsDAO.createArtist(artist);
         int idCategory = 0;
         //update category table
-        idCategory = categoriesDAO.createNewCategory(category);
+        try {
+            idCategory = categoriesDAO.createNewCategory(category);
+        } catch (CategoriesException e) {
+            idCategory=e.getId();
+            if(e.getId()==0)
+                throw e;}
 
         //update song table
         String sql = "UPDATE songs SET Title = ?,Artist = ?, Category= ? WHERE Id=? ";
