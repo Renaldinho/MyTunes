@@ -55,9 +55,7 @@ public class NewCategoryController implements Initializable {
 
 
     public void addCategory(ActionEvent actionEvent) throws CategoriesException {
-        if (newCategoryName == null) {
-            return;
-        } else {
+
             try {
                 newCategoryModel.addCategory(newCategoryName.getText());
                 categoriesList.setItems(newCategoryModel.getAllCategories());
@@ -70,15 +68,14 @@ public class NewCategoryController implements Initializable {
                 newCategoryName.setText("");
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Error");
-                alert.setHeaderText("Category already exists.");
-
+                alert.setHeaderText(e.getExceptionMessage());
                 ButtonType okButton = new ButtonType("OK");
                 alert.getButtonTypes().setAll(okButton);
                 alert.showAndWait();
             }
 
         }
-    }
+
 
     public void editCategory(ActionEvent actionEvent) throws CategoriesException, SQLException {
         if (categorySelected == null) {
