@@ -42,7 +42,6 @@ public class SongEditController {
     SongModel songModel;
 
 
-
     Stage stage;
 
     public void setMainController(MainController mainController) {
@@ -60,14 +59,14 @@ public class SongEditController {
         songEditModel = new SongEditModel();
         artistsDAO = new ArtistsDAO();
         categoriesDAO = new CategoriesDAO();
-        songModel=new SongModel();
+        songModel = new SongModel();
     }
 
     public void setSong(Song song) {
         this.song = song;
     }
 
-    public void handleEditSong(ActionEvent actionEvent)  {
+    public void handleEditSong(ActionEvent actionEvent) {
         try {
             songEditModel.updateSong(songTitleField.getText(), song, songArtistField.getText(), category.getText());
         } catch (SongException e) {
@@ -76,8 +75,8 @@ public class SongEditController {
             alert.setHeaderText(e.getExceptionMessage());
             ButtonType okButton = new ButtonType("OK");
             alert.getButtonTypes().setAll(okButton);
-            alert.showAndWait();}
-        catch (ArtistException e){
+            alert.showAndWait();
+        } catch (ArtistException e) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Error");
             alert.setHeaderText(e.getExceptionMessage());
@@ -85,7 +84,7 @@ public class SongEditController {
             alert.getButtonTypes().setAll(okButton);
             alert.showAndWait();
 
-        }catch (CategoriesException e){
+        } catch (CategoriesException e) {
             e.printStackTrace();
         }
         mainController.updateSongTableView();
@@ -126,6 +125,7 @@ public class SongEditController {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
     public void clearMenuBar() {
         category.getItems().clear();
     }
@@ -146,9 +146,10 @@ public class SongEditController {
         }
         category.getItems().remove(search);
     }
+
     public void setMenuBar() throws CategoriesException {
         MenuItem newMenuItem;
-        for (Category cat : songModel.getAllCategories()){
+        for (Category cat : songModel.getAllCategories()) {
             newMenuItem = new MenuItem(cat.toString());
             category.getItems().addAll(newMenuItem);
             MenuItem finalNewMenuItem = newMenuItem;
