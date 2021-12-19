@@ -23,6 +23,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
+import javafx.scene.media.MediaException;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -140,13 +141,14 @@ public class MainController implements Initializable {
             stopBtn.setOpacity(100);
             stopBtn.setDisable(false);
 
-            player.currentTimeProperty().addListener(changeListener);
-            player.play();
+            try {
+                player.currentTimeProperty().addListener(changeListener);
+                player.play();
+                player.setOnEndOfMedia(runnable);
+            }catch (NullPointerException e){
 
-            player.setOnEndOfMedia(runnable);
+            }
         }
-
-
     }
 
     public void handleStopBtn(ActionEvent actionEvent) {
@@ -155,7 +157,11 @@ public class MainController implements Initializable {
         stopBtn.setOpacity(0);
         stopBtn.setDisable(true);
 
-        player.pause();
+        try {
+            player.pause();
+        }catch (NullPointerException e){
+
+        }
     }
 
     public void updatePlayListTableView() {
@@ -172,8 +178,18 @@ public class MainController implements Initializable {
 
     private void initializePlayer() {
         song = selectedSong;
-        player = new MediaPlayer(new Media(song.getFilePath()));
-        player.volumeProperty().bind(volumeSlider.valueProperty());
+        try {
+            player = new MediaPlayer(new Media(song.getFilePath()));
+            player.volumeProperty().bind(volumeSlider.valueProperty());
+
+        }catch (MediaException e){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("File not found.\nPlease try to delete and upload the song from your computer.");
+            ButtonType okButton = new ButtonType("OK");
+            alert.getButtonTypes().setAll(okButton);
+            alert.showAndWait();
+        }
     }
 
     public void updateSongTableView() {
@@ -436,8 +452,11 @@ public class MainController implements Initializable {
         this.joins = joins;
     }
 
-    public void handleNextSong(ActionEvent actionEvent) {
-        selectNextSong();
+    public void handleNextSong(ActionEvent actionEvent) throws SongException {
+        try {
+            selectNextSong();
+        }catch (NullPointerException e){
+        }
     }
 
 
@@ -473,9 +492,14 @@ public class MainController implements Initializable {
         stopBtn.setOpacity(100);
         stopBtn.setDisable(false);
 
-        player.play();
-        player.setOnEndOfMedia(runnable);
-        player.currentTimeProperty().addListener(changeListener);
+       try {
+           player.play();
+           player.setOnEndOfMedia(runnable);
+           player.currentTimeProperty().addListener(changeListener);
+       }catch (NullPointerException exception){
+
+       }
+
     }
 
 
@@ -501,7 +525,10 @@ public class MainController implements Initializable {
 
         }
         initializePlayer();
-        player.play();
+        try {
+            player.play();
+        }catch (NullPointerException e){
+        }
 
         playBtn.setDisable(true);
         playBtn.setOpacity(0);
