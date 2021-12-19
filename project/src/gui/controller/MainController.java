@@ -446,7 +446,8 @@ public class MainController implements Initializable {
     }
 
     private void selectPreviousSong() {
-        player.stop();
+        if (player!=null)
+            player.stop();
         switch (playbackType) {
             case SONGLIST_PLAYBACK:
                 if (songTable.getSelectionModel().getFocusedIndex() != 0)
@@ -466,6 +467,12 @@ public class MainController implements Initializable {
 
         }
         initializePlayer();
+
+        playBtn.setDisable(true);
+        playBtn.setOpacity(0);
+        stopBtn.setOpacity(100);
+        stopBtn.setDisable(false);
+
         player.play();
         player.setOnEndOfMedia(runnable);
         player.currentTimeProperty().addListener(changeListener);
@@ -473,7 +480,8 @@ public class MainController implements Initializable {
 
 
     private void selectNextSong() {
-        player.stop();
+        if (player!=null)
+            player.stop();
         switch (playbackType) {
             case SONGLIST_PLAYBACK:
                 if (songTable.getItems().size() != songTable.getSelectionModel().getFocusedIndex() + 1)
@@ -494,6 +502,12 @@ public class MainController implements Initializable {
         }
         initializePlayer();
         player.play();
+
+        playBtn.setDisable(true);
+        playBtn.setOpacity(0);
+        stopBtn.setOpacity(100);
+        stopBtn.setDisable(false);
+
         player.setOnEndOfMedia(runnable);
         player.currentTimeProperty().addListener(changeListener);
     }

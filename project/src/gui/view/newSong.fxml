@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="343.0" prefWidth="364.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.SongController">
+<AnchorPane prefHeight="343.0" prefWidth="364.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.SongController">
     <children>
         <Button layoutX="282.0" layoutY="119.0" mnemonicParsing="false" onAction="#newCategory" prefHeight="26.0" prefWidth="56.0" text="More" />
         <Button layoutX="282.0" layoutY="294.0" mnemonicParsing="false" onAction="#handleSaveNewSong" prefHeight="26.0" prefWidth="56.0" text="Save" />
@@ -18,10 +18,10 @@
         <Label layoutX="22.0" layoutY="171.0" text="File" />
         <TextField fx:id="songTitleField" layoutX="67.0" layoutY="27.0" prefHeight="26.0" prefWidth="198.0" />
         <TextField fx:id="songArtistField" layoutX="66.0" layoutY="73.0" prefHeight="26.0" prefWidth="198.0" />
-        <TextField fx:id="pathField" layoutX="67.0" layoutY="167.0" prefHeight="26.0" prefWidth="198.0" />
+        <TextField fx:id="pathField" editable="false" layoutX="67.0" layoutY="167.0" prefHeight="26.0" prefWidth="198.0" />
         <SplitMenuButton fx:id="category" alignment="TOP_CENTER" layoutX="66.0" layoutY="119.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="198.0" text="Choose one">
         </SplitMenuButton>
         <Label layoutX="19.0" layoutY="217.0" text="Time" />
-        <TextField fx:id="songTimeField" layoutX="67.0" layoutY="212.0" prefHeight="26.0" prefWidth="198.0" />
+        <TextField fx:id="songTimeField" editable="false" layoutX="67.0" layoutY="212.0" prefHeight="26.0" prefWidth="198.0" />
     </children>
 </AnchorPane>

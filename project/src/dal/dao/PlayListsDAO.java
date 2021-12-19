@@ -104,7 +104,6 @@ public class PlayListsDAO implements IPlayListDAO {
     public void updatePlayList(PlayList playList, String name, int song, String time) throws SQLException, PlayListException {
         String sql = "UPDATE playlists SET Name=?, Songs=?,Time=? WHERE Id = ?";
         checkPlayListNameNotNull(name);
-        checkPlayListName(name);
         try (Connection connection = databaseConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, name);
