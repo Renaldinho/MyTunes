@@ -134,7 +134,18 @@ public class MainController implements Initializable {
             if (song != null)
                 player.stop();
 
-            initializePlayer();
+            try {
+                initializePlayer();
+            }catch (MediaException exception){
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText("File not found.");
+                ButtonType okButton = new ButtonType("OK");
+                alert.getButtonTypes().setAll(okButton);
+                alert.showAndWait();
+                return;
+
+            }
 
             playBtn.setDisable(true);
             playBtn.setOpacity(0);
@@ -183,12 +194,7 @@ public class MainController implements Initializable {
             player.volumeProperty().bind(volumeSlider.valueProperty());
 
         }catch (MediaException e){
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText("File not found.\nPlease try to delete and upload the song from your computer.");
-            ButtonType okButton = new ButtonType("OK");
-            alert.getButtonTypes().setAll(okButton);
-            alert.showAndWait();
+            throw e;
         }
     }
 
@@ -356,10 +362,12 @@ public class MainController implements Initializable {
     public void deleteSong(ActionEvent actionEvent) {
         if (selectedSong != null)
             try {
-                lstPlayLists.setItems(mainModel.getAllPlayLists());
                 mainModel.deleteSong(selectedSong);
-            } catch (PlayListException | SongException e) {
-                e.printStackTrace();
+                lstPlayLists.setItems(mainModel.getAllPlayLists());
+                songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
+            } catch (PlayListException e ) {
+            }catch (SongException exception){
+            } catch (SQLException e) {
             }
 
     }
@@ -452,16 +460,15 @@ public class MainController implements Initializable {
         this.joins = joins;
     }
 
-    public void handleNextSong(ActionEvent actionEvent) throws SongException {
-        try {
+    public void handleNextSong(ActionEvent actionEvent)  {
             selectNextSong();
-        }catch (NullPointerException e){
-        }
+
     }
 
 
     public void handlePreviousSong(ActionEvent actionEvent) {
-        selectPreviousSong();
+            selectPreviousSong();
+
     }
 
     private void selectPreviousSong() {
@@ -485,7 +492,17 @@ public class MainController implements Initializable {
             }
 
         }
-        initializePlayer();
+        try {
+            initializePlayer();
+        }catch (MediaException e){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("File not found.");
+            ButtonType okButton = new ButtonType("OK");
+            alert.getButtonTypes().setAll(okButton);
+            alert.showAndWait();
+            return;
+        }
 
         playBtn.setDisable(true);
         playBtn.setOpacity(0);
@@ -524,7 +541,17 @@ public class MainController implements Initializable {
             }
 
         }
-        initializePlayer();
+        try {
+            initializePlayer();
+        }catch (MediaException e){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("File not found.");
+            ButtonType okButton = new ButtonType("OK");
+            alert.getButtonTypes().setAll(okButton);
+            alert.showAndWait();
+            return;
+        }
         try {
             player.play();
         }catch (NullPointerException e){

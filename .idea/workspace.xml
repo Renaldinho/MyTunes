@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="c5c1659a-afbc-4b2d-acaf-be950d847430" name="Changes" comment="...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/dal/dao/PlayListsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/PlayListsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/be/Joins.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/be/Joins.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/dal/dao/SongDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dal/dao/SongDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/gui/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/gui/view/newEditPlayList.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/gui/view/newEditPlayList.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,6 +159,7 @@
       <workItem from="1639705342962" duration="39820000" />
       <workItem from="1639905453260" duration="3935000" />
       <workItem from="1639915153495" duration="2059000" />
+      <workItem from="1639917880101" duration="4027000" />
     </task>
     <task id="LOCAL-00001" summary="dal 95% done still few more tests to be done">
       <created>1638404507856</created>
@@ -401,7 +403,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/project/src/gui/controller/SongEditController.java</url>
           <line>64</line>
-          <properties class="gui.controller.SongEditController">
+          <properties class="gui.controller.SongEditController" method="handleEditSong">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="36" />
@@ -409,10 +411,18 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/project/src/gui/controller/NewCategoryController.java</url>
           <line>107</line>
-          <properties class="gui.controller.NewCategoryController">
+          <properties class="gui.controller.NewCategoryController" method="deleteCategory">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/project/src/dal/dao/SongDAO.java</url>
+          <line>55</line>
+          <properties class="dal.dao.SongDAO" method="createSong">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="42" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

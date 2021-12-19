@@ -67,7 +67,7 @@ public class SongDAO implements ISongDAO {
             if (e.getId() == 0)
                 throw e;
         }
-        checkPath0(filePath);
+        checkPathNotNull(filePath);
         checkPath(filePath);
         checkTime(time);
         String sql = ("INSERT INTO songs VALUES (?,?,?,?,?)");
@@ -172,11 +172,12 @@ public class SongDAO implements ISongDAO {
             throw new SongException("Song already exists", exception);
         }
     }
-
-    private void checkPath0(String filePath) throws SongException {
-        if (!(new File(filePath).isFile())&& filePath.endsWith(".mp3") || filePath.endsWith(".wav"))
-            throw new SongException("Please find a correct path.", new Exception());
+    private void checkPathNotNull(String filePath) throws SongException {
+        if(filePath==null)
+            throw new SongException("Please find a path for your song",new Exception());
     }
+
+
 
     private void checkTime(String time) throws SongException {
         try {
