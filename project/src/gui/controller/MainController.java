@@ -348,7 +348,7 @@ public class MainController implements Initializable {
 
     }
 
-    public void moveSongUp(ActionEvent actionEvent) {
+    public void moveSongDown(ActionEvent actionEvent) {
         if (joins != null) {
             try {
                 mainModel.moveSongUp(joins);
@@ -359,7 +359,7 @@ public class MainController implements Initializable {
         }
     }
 
-    public void moveSongDown(ActionEvent actionEvent) throws SQLException {
+    public void moveSongUp(ActionEvent actionEvent) throws SQLException {
         if (joins != null) {
             mainModel.moveSongDown(joins);
             songsOnPlayList.setItems(mainModel.getAllSongsForGivenPlayList(playList));
